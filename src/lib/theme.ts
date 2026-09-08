@@ -7,7 +7,7 @@ export const theme = {
     text: "#1D1D1F",
     muted: "#6E6E73",
     border: "#D2D2D7",
-    onDark: "#FFFFFF",
+    onDark: "#FFF",
     dark: "#1D1D1F",
     transparent: "transparent",
   },
