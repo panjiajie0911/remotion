@@ -1,4 +1,7 @@
-import { CalculateMetadataFunction, Composition } from "remotion";
+import { AbsoluteFill, CalculateMetadataFunction, Composition, Sequence } from "remotion";
+import { IntroScene } from "./scenes/IntroScene";
+import { OutroScene } from "./scenes/OutroScene";
+import { ProgressBar } from "./components";
 
 type Props = {};
 
@@ -11,7 +14,7 @@ export const MyComposition = () => {
     <Composition
       id="MyComp"
       component={MyComponent}
-      durationInFrames={60}
+      durationInFrames={270}
       fps={30}
       width={1280}
       height={720}
@@ -21,5 +24,11 @@ export const MyComposition = () => {
 };
 
 export const MyComponent: React.FC<Props> = () => {
-  return null;
+  return (
+    <AbsoluteFill>
+      <Sequence durationInFrames={180}><IntroScene /></Sequence>
+      <Sequence from={180} durationInFrames={90}><OutroScene /></Sequence>
+      <ProgressBar />
+    </AbsoluteFill>
+  );
 };
