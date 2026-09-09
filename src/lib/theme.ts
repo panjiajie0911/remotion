@@ -47,7 +47,7 @@ export const theme = {
   },
   captions: {
     maxWidth: 760,
-    bottom: 420,
+    bottom: 200,
     background: "rgba(255, 255, 255, 0.92)",
     fadeSeconds: 0.15,
     slide: {

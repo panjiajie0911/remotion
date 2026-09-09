@@ -8,10 +8,10 @@ export const Episode01 = () => (
   <AbsoluteFill>
     <Sequence durationInFrames={180}>
       <PsychologyHook
-        question={[]}
         emphasis=""
         series=""
         author=""
+        question="为什么我们总觉得自己不够好？"
       />
     </Sequence>
     <Sequence from={180} durationInFrames={90}>

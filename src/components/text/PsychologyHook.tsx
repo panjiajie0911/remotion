@@ -18,6 +18,7 @@ export const PsychologyHook = ({
   eyebrow = "",
 }: PsychologyHookProps) => (
   <MinimalIntro
+  
     title={question}
     emphasis={emphasis}
     eyebrow={eyebrow}
