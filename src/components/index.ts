@@ -1,6 +1,9 @@
 export { FadeIn } from "./animation/FadeIn";
 export { TitleCard } from "./text/TitleCard";
 export { PsychologyHook } from "./text/PsychologyHook";
+export type { PsychologyHookProps } from "./text/PsychologyHook";
+export { MinimalIntro } from "./intro/MinimalIntro";
+export type { MinimalIntroProps } from "./intro/MinimalIntro";
 export { CaptionTrack } from "./text/CaptionTrack";
 export type { CaptionCue } from "./text/CaptionTrack";
 export { Badge } from "./ui/Badge";
