@@ -1,4 +1,4 @@
-import { AbsoluteFill, Easing, interpolate, Sequence, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, spring, Sequence, useCurrentFrame, useVideoConfig } from "remotion";
 import { theme } from "../../lib/theme";
 
 export type CaptionCue = {
@@ -24,12 +24,21 @@ const renderText = (text: string, emphasis: string[] = []) => {
 const Caption = ({ cue }: { cue: CaptionCue }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const entranceFrames = Math.max(1, Math.min(Math.round(theme.captions.fadeSeconds * fps), Math.round((cue.end - cue.start) * fps) - 1));
-  const opacity = interpolate(frame, [0, entranceFrames], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.bezier(...theme.motion.easing) });
-  const translateY = interpolate(frame, [0, entranceFrames], [theme.motion.enterOffset, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.bezier(...theme.motion.easing) });
+  const duration = Math.round(cue.end * fps) - Math.round(cue.start * fps);
+  const motion = theme.captions.slide;
+  // Reserve reading time for short cues and keep entry continuous during exit.
+  const exitFrames = Math.min(Math.round(motion.exitSeconds * fps), Math.floor(duration / 3));
+  const slideIn = spring({ frame, fps, config: motion.enterSpring });
+  const slideOut = exitFrames < 2 ? 0 : spring({
+    frame: frame - (duration - exitFrames), fps,
+    durationInFrames: exitFrames - 1, config: motion.exitSpring,
+  });
+  const opacity = interpolate(slideOut, [0, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const translateY = duration < 3 ? 0 : interpolate(slideIn, [0, 1], [motion.enterOffsetY, 0]);
+  const translateX = interpolate(slideOut, [0, 1], [0, motion.exitOffsetX]);
 
   return (
-    <div style={{ opacity, width: "100%", maxWidth: theme.captions.maxWidth, alignSelf: "center", whiteSpace: "pre-line", overflowWrap: "anywhere", textAlign: "center", translate: `0 ${translateY}px` }}>
+    <div style={{ opacity, width: "100%", maxWidth: theme.captions.maxWidth, alignSelf: "center", whiteSpace: "pre-line", overflowWrap: "anywhere", textAlign: "center", translate: `${translateX}px ${translateY}px` }}>
       <span style={{ color: theme.colors.text, display: "inline", fontFamily: theme.fonts.sans, fontSize: theme.typography.size.caption, fontWeight: theme.typography.weight.medium, lineHeight: theme.typography.lineHeight.normal, maxWidth: theme.captions.maxWidth, padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`, boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}>{renderText(cue.text, cue.emphasis)}</span>
     </div>
   );
