@@ -40,9 +40,17 @@ export const theme = {
     safeArea: { top: 160, right: 160, bottom: 320, left: 80 },
   },
   audio: {
+    // Caption data is maintained separately from these shared styles.
     // Linear Remotion volume values, not loudness normalization targets.
     volume: { voice: 1, music: 0.12, effect: 0.2 },
     musicEnabled: false,
+  },
+  captions: {
+    maxWidth: 760,
+    bottom: 420,
+    background: "rgba(255, 255, 255, 0.92)",
+    fadeSeconds: 0.15,
+    maxCharacters: 32,
   },
 } as const;
 
