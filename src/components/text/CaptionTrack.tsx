@@ -27,7 +27,7 @@ const Caption = ({ cue }: { cue: CaptionCue }) => {
 
   return (
     <div style={{ opacity, textAlign: "center", translate: `0 ${translateY}px` }}>
-      <span style={{ backgroundColor: "rgba(255, 255, 255, 0.92)", borderRadius: theme.radius.md, boxShadow: theme.shadow.soft, color: theme.colors.text, display: "inline", fontFamily: theme.fonts.sans, fontSize: theme.typography.size.caption, fontWeight: theme.typography.weight.medium, lineHeight: theme.typography.lineHeight.normal, padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`, boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}>{renderText(cue.text, cue.emphasis)}</span>
+      <span style={{ backgroundColor: theme.captions.background, borderRadius: theme.radius.md, boxShadow: theme.shadow.soft, color: theme.colors.text, display: "inline", fontFamily: theme.fonts.sans, fontSize: theme.typography.size.caption, fontWeight: theme.typography.weight.medium, lineHeight: theme.typography.lineHeight.normal, maxWidth: theme.captions.maxWidth, padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`, boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}>{renderText(cue.text, cue.emphasis)}</span>
     </div>
   );
 };
@@ -35,7 +35,7 @@ const Caption = ({ cue }: { cue: CaptionCue }) => {
 export const CaptionTrack = ({ captions, position = "bottom" }: CaptionTrackProps) => {
   const { fps } = useVideoConfig();
   return (
-    <AbsoluteFill pointerEvents="none" style={{ justifyContent: position === "bottom" ? "flex-end" : "center", padding: `0 ${theme.video.safeArea.left}px ${position === "bottom" ? theme.video.safeArea.bottom + 72 : 0}px` }}>
+    <AbsoluteFill style={{ justifyContent: position === "bottom" ? "flex-end" : "center", padding: `0 ${theme.video.safeArea.left}px ${position === "bottom" ? theme.captions.bottom : 0}px`, pointerEvents: "none" }}>
       {captions.map((cue) => <Sequence key={`${cue.start}-${cue.end}-${cue.text}`} from={Math.round(cue.start * fps)} durationInFrames={Math.max(1, Math.round((cue.end - cue.start) * fps))}><Caption cue={cue} /></Sequence>)}
     </AbsoluteFill>
   );
