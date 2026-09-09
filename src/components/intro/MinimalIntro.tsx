@@ -41,7 +41,6 @@ export const MinimalIntro = ({ title, eyebrow, emphasis, label, author }: Minima
         <span style={{ color: theme.colors.muted, fontSize: theme.typography.size.label }}>{label}</span>
         <span style={{ color: theme.colors.text, fontSize: theme.typography.size.label }}>{author}</span>
       </div>
-      <div style={{ backgroundColor: theme.colors.accent, bottom: theme.video.safeArea.bottom - 28, height: 3, left: theme.video.safeArea.left, opacity: reveal(36), position: "absolute", width: 72 }} />
     </AbsoluteFill>
   );
 };
