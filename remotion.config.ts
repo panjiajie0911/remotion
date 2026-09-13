@@ -8,7 +8,8 @@
 import { Config } from "@remotion/cli/config";
 import { enableTailwind } from '@remotion/tailwind-v4';
 
-Config.setRspack(true);
+// Tailwind's official webpack loader is not compatible with Remotion's Rspack path.
+Config.setRspack(false);
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
 Config.overrideBundlerConfig(enableTailwind);
