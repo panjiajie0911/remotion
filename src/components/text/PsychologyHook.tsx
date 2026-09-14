@@ -9,10 +9,10 @@ export type PsychologyHookProps = {
   eyebrow?: string;
 };
 
-/** 心理学开头预设，保留已有调用接口。 */
+/** 开头预设，保留已有调用接口。 */
 export const PsychologyHook = ({
   question,
-  emphasis,
+  emphasis, 
   series,
   author,
   eyebrow = "",
