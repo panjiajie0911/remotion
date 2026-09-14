@@ -42,10 +42,10 @@ const Caption = ({ cue }: { cue: CaptionCue }) => {
   });
   const opacity = enterProgress * interpolate(slideOut, [0, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const translateY = duration < 3 ? 0 : interpolate(enterProgress, [0, 1], [motion.enterOffsetY * 0.35, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const translateX = interpolate(slideOut, [0, 1], [0, motion.exitOffsetX]);
+  const translateYExit = interpolate(slideOut, [0, 1], [0, -motion.exitOffsetY]);
 
   return (
-    <div style={{ opacity, width: "100%", maxWidth: theme.captions.maxWidth, alignSelf: "center", whiteSpace: "pre-line", overflowWrap: "anywhere", textAlign: "center", translate: `${translateX}px ${translateY}px` }}>
+    <div style={{ opacity, width: "100%", maxWidth: theme.captions.maxWidth, alignSelf: "center", whiteSpace: "pre-line", overflowWrap: "anywhere", textAlign: "center", translate: `0 ${translateY + translateYExit}px` }}>
       <span style={{ color: theme.colors.text, display: "inline", fontFamily: theme.fonts.sans, fontSize: theme.typography.size.caption, fontWeight: theme.typography.weight.medium, lineHeight: theme.typography.lineHeight.normal, maxWidth: theme.captions.maxWidth, padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`, boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}>{renderText(cue.text, cue.emphasis)}</span>
     </div>
   );
