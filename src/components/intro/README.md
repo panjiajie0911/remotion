@@ -13,7 +13,7 @@ import { SeriesIntro, SERIES_INTRO_DURATION } from "../../components";
 </Sequence>
 ```
 
-`title` 支持字符串、换行字符串或字符串数组；`emphasisLine` 默认高亮第二行，`eyebrow` 和 `footer` 可选。组件本身不强制时间线，但标准片头时长由 `SERIES_INTRO_DURATION` 统一设为 3 秒。
+`title` 支持字符串、换行字符串或字符串数组；`emphasisLine` 默认高亮第二行，多个标题行可用 `emphasisLines` 共享同一套高亮样式，`eyebrow` 和 `footer` 可选。组件本身不强制时间线，但标准片头时长由 `SERIES_INTRO_DURATION` 统一设为 3 秒。
 
 旧版 `MinimalIntro` 保留用于其它需要自由布局的标题卡。
 

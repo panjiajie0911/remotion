@@ -8,8 +8,8 @@ export const Episode01 = () => (
   <AbsoluteFill>
     <Sequence durationInFrames={SERIES_INTRO_DURATION}>
       <SeriesIntro
-  
-        title={["那些你以为是", "正常", "其实是创伤"]}
+        emphasisLines={[1, 3]}
+        title={["那些你以为是", "正常", "其实是", "创伤"]}
       />
     </Sequence>
     <Sequence from={SERIES_INTRO_DURATION} durationInFrames={180}>

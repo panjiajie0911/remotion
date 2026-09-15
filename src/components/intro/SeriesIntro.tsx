@@ -9,6 +9,8 @@ export type SeriesIntroProps = {
   title: string | string[];
   /** Which title row receives the blue emphasis treatment. */
   emphasisLine?: number;
+  /** Multiple title rows can share the same emphasis treatment. */
+  emphasisLines?: number[];
   eyebrow?: string;
   footer?: string;
 };
@@ -17,6 +19,7 @@ export type SeriesIntroProps = {
 export const SeriesIntro = ({
   title,
   emphasisLine = 1,
+  emphasisLines,
   eyebrow,
   footer = ""
 }: SeriesIntroProps) => {
@@ -24,6 +27,7 @@ export const SeriesIntro = ({
   const { fps } = useVideoConfig();
   const ease = Easing.bezier(0.16, 1, 0.3, 1);
   const lines = (Array.isArray(title) ? title : title.split(/\r?\n/)).filter(Boolean);
+  const highlightedLines = emphasisLines ?? [emphasisLine];
   const show = (start: number, duration = 0.42) =>
     interpolate(frame, [start, start + Math.round(duration * fps)], [0, 1], {
       extrapolateLeft: "clamp",
@@ -50,9 +54,9 @@ export const SeriesIntro = ({
           {eyebrow}
         </div>
       ) : null}
-      <div style={{ left: 80, position: "absolute", right: 80, top: 250 }}>
+      <div style={{ left: 80, position: "absolute", right: 80, top: 175 }}>
         {lines.map((line, index) => {
-          const isEmphasis = index === emphasisLine;
+          const isEmphasis = highlightedLines.indexOf(index) !== -1;
           const start = 12 + index * 18;
           return (
             <div
