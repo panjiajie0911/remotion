@@ -1,5 +1,5 @@
 import { AbsoluteFill, Sequence } from "remotion";
-import { CaptionTrack, PsychologyHook, ProgressBar } from "../../components";
+import { CaptionTrack, ProgressBar, TraumaIntro } from "../../components";
 import { OutroScene } from "../../scenes/OutroScene";
 import { captions } from "./script/captions";
 
@@ -7,12 +7,7 @@ import { captions } from "./script/captions";
 export const Episode01 = () => (
   <AbsoluteFill>
     <Sequence durationInFrames={180}>
-      <PsychologyHook
-        emphasis=""
-        series=""
-        author=""
-        question="为什么我们总觉得自己不够好？"
-      />
+      <TraumaIntro />
     </Sequence>
     <Sequence from={180} durationInFrames={90}>
       <OutroScene />
