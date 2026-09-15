@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@remotion/animation-utils':
+        specifier: ^4.0.524
+        version: 4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@remotion/captions':
+        specifier: ^4.0.524
+        version: 4.0.524
       '@remotion/cli':
         specifier: 4.0.522
         version: 4.0.522(lightningcss@1.31.1)(postcss@8.5.28)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@8.1.1)(typescript@5.9.3)
@@ -418,6 +424,12 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
+  '@remotion/animation-utils@4.0.524':
+    resolution: {integrity: sha512-kEHtencSaDYb/tJl3S8gpvEQVjkTk6XnDqR5vSKSwJT2e1tQNtdsiK6/r3m5QJAPSw3TZHiL++hH6SYUnKFhUA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+
   '@remotion/bundler@4.0.522':
     resolution: {integrity: sha512-eHyDmC7lj9hemVIpmzIz8WFI3bBx4b2sOZmWu9qzgRyywRP0WCeWqH9agCINdgWKcxOJ3SqhQn6MiZZHuuUMFw==}
     peerDependencies:
@@ -432,6 +444,9 @@ packages:
 
   '@remotion/captions@4.0.522':
     resolution: {integrity: sha512-z9mUXHQBFuXRdqAuXudzyWb02De+K5MNZQ2ztLksLVBKlNhs7LQMv/Wo9SDAda4Mq6iIUXjwd6fcl0X4aRGRKQ==}
+
+  '@remotion/captions@4.0.524':
+    resolution: {integrity: sha512-WwlAXznO/AixE5VVoRPecfXqltZQ1s0/6koO1+V10hFfymr1SS0me4a/TNvzxoeyH+3ezCnSYf0Ygeb/RFKq5g==}
 
   '@remotion/cli@4.0.522':
     resolution: {integrity: sha512-9Zz80+FNpaRuJydgyvHHFbXHuSnFteN7G4B3PPECZAWuRev69Icek6C7sQDrmj8F4A7jD/BQskUWOZem1AZlww==}
@@ -484,6 +499,9 @@ packages:
     peerDependencies:
       eslint: '>=9'
 
+  '@remotion/google-fonts@4.0.524':
+    resolution: {integrity: sha512-U9MkDwO6Dyr9bTWOBCiDjGfj6RDpHw6fZ5pjcC9O6QqtHK23qPmEuv63bSqA9jZSrDCVUL2KoCfWWaGRLVmprQ==}
+
   '@remotion/licensing@4.0.522':
     resolution: {integrity: sha512-RSu7Pze1omLFHBTdAzvIB7PBoNHJZBcac4yRDtSsF0tRmaSpf1E7qZlVZmj+M+BnzG3ut6eMS9c3wTW3K0izKw==}
 
@@ -502,8 +520,20 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
+  '@remotion/media@4.0.524':
+    resolution: {integrity: sha512-shdHx6h4JSX0yBqsGtQJoI4Htu6fckpB9QtCGBSd9zATVQ9AvD4y254NQEYBCN9UG70Nxp9UZIfe8Y24xToyDQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+
   '@remotion/player@4.0.522':
     resolution: {integrity: sha512-IAdV0Qu90Orl0fETLY8MVTJBSMo8zHDTvjxo0ghj9sfb+ouk2IDhOZEqzfCOqmBEEmFHgDVMcC8P01hnxaHR/g==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+
+  '@remotion/player@4.0.524':
+    resolution: {integrity: sha512-MPaV64VKX4RFNFlEkoq7kKJKV6BfpSRdCAUKcjx6lVnF1VsSeb+wZKFGb3KvB8CzHYFkUM3RvhUi0JCxhnUmmA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -808,6 +838,9 @@ packages:
 
   '@types/dom-webcodecs@0.1.13':
     resolution: {integrity: sha512-O5hkiFIcjjszPIYyUSyvScyvrBoV3NOEEZx/pMlsu44TKzWNkLVBBxnxJz42in5n3QIolYOcBYFCPZZ0h8SkwQ==}
+
+  '@types/dom-webcodecs@0.1.19':
+    resolution: {integrity: sha512-+yFUIDUaASFz0vQpWBErPxun/Lb+F0TdrlTsj50gm7K797YzEx2TmV6fEiwciHyFNghlZYPgQXH5qRcwMHcJFQ==}
 
   '@types/eslint-scope@3.7.7':
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
@@ -1485,6 +1518,9 @@ packages:
   mediabunny@1.55.5:
     resolution: {integrity: sha512-m0v6y8FGXiK+HKOc3AZqU+kJPLYsSKaLitmQNQIIHZKIGlTwQ34OF+X6Ul0K8iV4b03oPse10apwuoqbvmKeAA==}
 
+  mediabunny@1.56.1:
+    resolution: {integrity: sha512-DNOm0bRBmeOxJgCK/g3LxNWbxY5morTauNdlychujGmJ9L37ezVezkNoI1WtO2Xdb4WlWWJlYfIKnOEzd5phRw==}
+
   memfs@3.4.3:
     resolution: {integrity: sha512-eivjfi7Ahr6eQTn44nvTnR60e4a1Fs1Via2kCR5lHo/kyNoiMWaXCNJ/GpSd0ilXas2JSOl9B5FTIhflXu0hlg==}
     engines: {node: '>= 4.0.0'}
@@ -1668,6 +1704,12 @@ packages:
 
   remotion@4.0.522:
     resolution: {integrity: sha512-f80OmFU4xUE2iTj/kcFSmb63+p5jbYXJ31qUEy/yQKZYKoVW2gMvAwDSDvUjsJKSRehfe5TG+EvHvZ+UGog1Jg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+
+  remotion@4.0.524:
+    resolution: {integrity: sha512-jtoQbO7+UD7/4gcl0Onjq/Q27DP3qjI9hRimJJGuvU9p6OekY+Oyn1wNjYxG+hGH4i6InDFneN3sazFLuSF4Og==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -2386,6 +2428,13 @@ snapshots:
       - supports-color
       - typescript
 
+  '@remotion/google-fonts@4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      remotion: 4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+    transitivePeerDependencies:
+      - react
+      - react-dom
+
   '@remotion/licensing@4.0.522': {}
 
   '@remotion/media-parser@4.0.522': {}
@@ -2405,11 +2454,25 @@ snapshots:
       remotion: 4.0.522(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       zod: 4.5.4
 
+  '@remotion/media@4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      mediabunny: 1.56.1
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      remotion: 4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      zod: 4.5.4
+
   '@remotion/player@4.0.522(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
       remotion: 4.0.522(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+
+  '@remotion/player@4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      remotion: 4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
 
   '@remotion/renderer@4.0.522(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
@@ -2777,9 +2840,11 @@ snapshots:
 
   '@types/dom-mediacapture-transform@0.1.12':
     dependencies:
-      '@types/dom-webcodecs': 0.1.13
+      '@types/dom-webcodecs': 0.1.19
 
   '@types/dom-webcodecs@0.1.13': {}
+
+  '@types/dom-webcodecs@0.1.19': {}
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -3478,6 +3543,11 @@ snapshots:
       '@types/dom-mediacapture-transform': 0.1.12
       '@types/dom-webcodecs': 0.1.13
 
+  mediabunny@1.56.1:
+    dependencies:
+      '@types/dom-mediacapture-transform': 0.1.12
+      '@types/dom-webcodecs': 0.1.13
+
   memfs@3.4.3:
     dependencies:
       fs-monkey: 1.0.3
@@ -3641,6 +3711,11 @@ snapshots:
       tslib: 2.8.1
 
   remotion@4.0.522(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+
+  remotion@4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)

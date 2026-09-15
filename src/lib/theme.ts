@@ -52,7 +52,7 @@ export const theme = {
     fadeSeconds: 0.15,
     slide: {
       enterOffsetY: 80,
-      exitOffsetX: 140,
+      exitOffsetY: 140,
       exitSeconds: 0.9,
       enterSpring: { damping: 20, stiffness: 120 },
       exitSpring: { damping: 26, stiffness: 100 },
