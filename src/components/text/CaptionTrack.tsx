@@ -10,8 +10,10 @@ export type CaptionCue = {
 
 type CaptionTrackProps = {
   captions: CaptionCue[];
-  position?: "center" | "bottom";
 };
+
+// 系列字幕统一固定在底部安全区，避免每个视频调用时重复配置位置。
+const CAPTION_POSITION = "bottom" as const;
 
 const renderText = (text: string, emphasis: string[] = []) => {
   const keywords = emphasis.filter(Boolean).sort((a, b) => b.length - a.length);
@@ -51,7 +53,7 @@ const Caption = ({ cue }: { cue: CaptionCue }) => {
   );
 };
 
-export const CaptionTrack = ({ captions, position = "bottom" }: CaptionTrackProps) => {
+export const CaptionTrack = ({ captions }: CaptionTrackProps) => {
   const { fps } = useVideoConfig();
   captions.forEach((cue, index) => {
     if (!Number.isFinite(cue.start) || !Number.isFinite(cue.end) || cue.start < 0 || Math.round(cue.end * fps) <= Math.round(cue.start * fps) || (index > 0 && cue.start < captions[index - 1].end)) {
@@ -61,7 +63,7 @@ export const CaptionTrack = ({ captions, position = "bottom" }: CaptionTrackProp
       throw new Error(`字幕 ${index + 1} 请填写 1–32 个字符、最多两行；长句请按语意拆段。`);
     }
   });
-  return <AbsoluteFill style={{ justifyContent: position === "bottom" ? "flex-end" : "center", paddingBottom: position === "bottom" ? 180 : 0, pointerEvents: "none" }}>
+  return <AbsoluteFill style={{ justifyContent: CAPTION_POSITION === "bottom" ? "flex-end" : "center", paddingBottom: CAPTION_POSITION === "bottom" ? 180 : 0, pointerEvents: "none" }}>
     {captions.map((cue, index) => <Sequence key={`${cue.start}-${index}`} from={Math.round(cue.start * fps)} durationInFrames={Math.max(1, Math.round((cue.end - cue.start) * fps))}>
       <Caption cue={cue} />
     </Sequence>)}
