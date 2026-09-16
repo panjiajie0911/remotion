@@ -20,6 +20,7 @@ export const Episode02 = () => (
         start: cue.start + SERIES_INTRO_DURATION / 30,
         end: cue.end + SERIES_INTRO_DURATION / 30,
       }))}
+   
     />
     <ProgressBar />
   </AbsoluteFill>
