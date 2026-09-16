@@ -1,20 +1,18 @@
 import { AbsoluteFill, Sequence } from "remotion";
-import { CaptionTrack, PsychologyHook, ProgressBar } from "../../components";
+import { CaptionTrack, ProgressBar, SeriesIntro, SERIES_INTRO_DURATION } from "../../components";
 import { OutroScene } from "../../scenes/OutroScene";
 import { captions } from "./script/captions";
 
 /** 第 1 期视频时间线。后续每一期复制本目录并独立维护时间线。 */
 export const Episode01 = () => (
   <AbsoluteFill>
-    <Sequence durationInFrames={180}>
-      <PsychologyHook
-        emphasis=""
-        series=""
-        author=""
-        question="为什么我们总觉得自己不够好？"
+    <Sequence durationInFrames={SERIES_INTRO_DURATION}>
+      <SeriesIntro
+        emphasisLines={[1, 3]}
+        title={["那些你以为是", "正常", "其实是", "创伤"]}
       />
     </Sequence>
-    <Sequence from={180} durationInFrames={90}>
+    <Sequence from={SERIES_INTRO_DURATION} durationInFrames={180}>
       <OutroScene />
     </Sequence>
     <CaptionTrack captions={captions} />

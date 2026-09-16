@@ -17,15 +17,6 @@ importers:
       '@remotion/cli':
         specifier: 4.0.522
         version: 4.0.522(lightningcss@1.31.1)(postcss@8.5.28)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@8.1.1)(typescript@5.9.3)
-      '@remotion/google-fonts':
-        specifier: ^4.0.524
-        version: 4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      '@remotion/media':
-        specifier: ^4.0.524
-        version: 4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      '@remotion/player':
-        specifier: ^4.0.524
-        version: 4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@remotion/tailwind-v4':
         specifier: 4.0.522
         version: 4.0.522(@remotion/bundler@4.0.522(lightningcss@1.31.1)(postcss@8.5.28)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@rspack/core@1.7.11)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.31.1)(postcss@8.5.28))
@@ -2328,12 +2319,6 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.3
 
-  '@remotion/animation-utils@4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
-    dependencies:
-      react: 19.2.3
-      react-dom: 19.2.3(react@19.2.3)
-      remotion: 4.0.524(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-
   '@remotion/bundler@4.0.522(lightningcss@1.31.1)(postcss@8.5.28)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@remotion/media-parser': 4.0.522
@@ -2376,8 +2361,6 @@ snapshots:
       remotion: 4.0.522(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
 
   '@remotion/captions@4.0.522': {}
-
-  '@remotion/captions@4.0.524': {}
 
   '@remotion/cli@4.0.522(lightningcss@1.31.1)(postcss@8.5.28)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@8.1.1)(typescript@5.9.3)':
     dependencies:
