@@ -14,9 +14,9 @@ type CardSpec = {
 
 const cards: CardSpec[] = [
   // 以主色 #527DCE 为核心，搭配雾蓝、蓝灰和低饱和蓝绿，保持高级的同色系层次。
-  { label: "本我", accent: "#527DCE", accentDark: "#35579A", face: "#EEF3FF", top: 420, rotation: -3 },
-  { label: "自我", accent: "#6C88BE", accentDark: "#465F8D", face: "#F1F4FA", top: 790, rotation: 2 },
-  { label: "超我", accent: "#6C95A7", accentDark: "#466D7D", face: "#EEF5F7", top: 1160, rotation: -2 },
+  { label: "本  我", accent: "#527DCE", accentDark: "#35579A", face: "#EEF3FF", top: 420, rotation: -3 },
+  { label: "自  我", accent: "#6C88BE", accentDark: "#465F8D", face: "#F1F4FA", top: 790, rotation: 2 },
+  { label: "超  我", accent: "#6C95A7", accentDark: "#466D7D", face: "#EEF5F7", top: 1160, rotation: -2 },
 ];
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
@@ -118,7 +118,10 @@ export const PsychologyStructureScene = () => {
             opacity: interpolate(frame, [8, 28], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease }),
           }}
         >
-          心理活动的三种力量
+          心理活动的<span style={{
+            color: "#527DCE",
+            fontSize:'72px'
+          }}>3</span>种力量
         </div>
         <div
           style={{
