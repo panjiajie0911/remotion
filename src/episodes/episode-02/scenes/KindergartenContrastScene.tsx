@@ -65,14 +65,6 @@ export const KindergartenContrastScene = () => {
         }}
       />
 
-      <div style={{ border: "7px solid #17202B", height: 170, left: 120, position: "absolute", top: 205, width: 205 }}>
-        <div style={{ backgroundColor: "#527DCE", height: 72, left: 36, position: "absolute", top: 48, width: 42 }} />
-        <div style={{ backgroundColor: "#F3CB7A", height: 110, left: 92, position: "absolute", top: 10, width: 42 }} />
-      </div>
-      <div style={{ border: "7px solid #17202B", height: 170, position: "absolute", right: 120, top: 205, width: 205 }}>
-        <div style={{ backgroundColor: "#EF8E7B", borderRadius: "50%", height: 82, left: 55, position: "absolute", top: 38, width: 82 }} />
-      </div>
-
       <Img
         src={quiet}
         style={{
