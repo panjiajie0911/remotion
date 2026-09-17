@@ -45,7 +45,7 @@ export const KindergartenContrastScene = () => {
       <AbsoluteFill style={{ backgroundColor: "#fff" }} />
       <div
         style={{
-          backgroundColor: "#E8EEF7",
+          backgroundColor: "#fff",
           bottom: 0,
           height: 570,
           left: 0,
