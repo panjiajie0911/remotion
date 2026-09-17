@@ -63,9 +63,15 @@ export const CaptionTrack = ({ captions }: CaptionTrackProps) => {
       throw new Error(`字幕 ${index + 1} 请填写 1–32 个字符、最多两行；长句请按语意拆段。`);
     }
   });
-  return <AbsoluteFill style={{ justifyContent: CAPTION_POSITION === "bottom" ? "flex-end" : "center", paddingBottom: CAPTION_POSITION === "bottom" ? 180 : 0, pointerEvents: "none" }}>
-    {captions.map((cue, index) => <Sequence key={`${cue.start}-${index}`} from={Math.round(cue.start * fps)} durationInFrames={Math.max(1, Math.round((cue.end - cue.start) * fps))}>
-      <Caption cue={cue} />
+  return <AbsoluteFill style={{ pointerEvents: "none" }}>
+    {captions.map((cue, index) => <Sequence
+      key={`${cue.start}-${index}`}
+      from={Math.round(cue.start * fps)}
+      durationInFrames={Math.max(1, Math.round((cue.end - cue.start) * fps))}
+    >
+      <AbsoluteFill style={{ justifyContent: CAPTION_POSITION === "bottom" ? "flex-end" : "center", paddingBottom: CAPTION_POSITION === "bottom" ? 180 : 0 }}>
+        <Caption cue={cue} />
+      </AbsoluteFill>
     </Sequence>)}
   </AbsoluteFill>;
 };
