@@ -5,7 +5,7 @@ import { captions } from "./script/captions";
 
 /** 第 2 期《你的孩子的“熊”来自哪里》时间线入口。字幕由 TXT 文稿在后期手动加入。 */
 export const Episode02 = () => (
-  <AbsoluteFill>
+  <AbsoluteFill style={{ backgroundColor: "#fff" }}>
     <Sequence durationInFrames={SERIES_INTRO_DURATION}>
       <SeriesIntro
         emphasisLines={[1]}

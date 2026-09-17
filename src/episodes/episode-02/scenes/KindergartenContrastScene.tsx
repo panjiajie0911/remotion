@@ -36,13 +36,13 @@ export const KindergartenContrastScene = () => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#F6F8F4",
+        backgroundColor: "#fff",
         color: "#1B2533",
         opacity: exitOpacity,
         overflow: "hidden",
       }}
     >
-      <AbsoluteFill style={{ backgroundColor: "#F7FAFF" }} />
+      <AbsoluteFill style={{ backgroundColor: "#fff" }} />
       <div
         style={{
           backgroundColor: "#E8EEF7",
