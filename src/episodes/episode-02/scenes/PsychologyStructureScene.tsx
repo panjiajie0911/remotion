@@ -4,17 +4,19 @@ export const PSYCHOLOGY_STRUCTURE_DURATION = 240;
 
 type CardSpec = {
   label: string;
-  descriptor: string;
+  descriptor?: string;
   accent: string;
   accentDark: string;
+  face: string;
   top: number;
   rotation: number;
 };
 
 const cards: CardSpec[] = [
-  { label: "本我", descriptor: "追求立刻满足", accent: "#F47D6B", accentDark: "#C85246", top: 420, rotation: -3 },
-  { label: "自我", descriptor: "负责考虑现实", accent: "#527DCE", accentDark: "#31569F", top: 790, rotation: 2 },
-  { label: "超我", descriptor: "代表规则和道德", accent: "#6F9D83", accentDark: "#476B55", top: 1160, rotation: -2 },
+  // 以主色 #527DCE 为核心，搭配雾蓝、蓝灰和低饱和蓝绿，保持高级的同色系层次。
+  { label: "本我", accent: "#527DCE", accentDark: "#35579A", face: "#EEF3FF", top: 420, rotation: -3 },
+  { label: "自我", accent: "#6C88BE", accentDark: "#465F8D", face: "#F1F4FA", top: 790, rotation: 2 },
+  { label: "超我", accent: "#6C95A7", accentDark: "#466D7D", face: "#EEF5F7", top: 1160, rotation: -2 },
 ];
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
@@ -171,7 +173,7 @@ export const PsychologyStructureScene = () => {
             />
             <div
               style={{
-                backgroundColor: "#FFFFFF",
+                backgroundColor: card.face,
                 border: `4px solid ${card.accent}`,
                 borderRadius: 32,
                 boxShadow: "0 28px 54px rgba(41, 65, 104, 0.18)",
@@ -181,29 +183,9 @@ export const PsychologyStructureScene = () => {
               }}
             >
               <div style={{ backgroundColor: card.accent, height: 16, left: 0, position: "absolute", right: 0, top: 0 }} />
-              <div style={{ alignItems: "center", display: "flex", height: "100%", padding: "0 54px" }}>
-                <div
-                  style={{
-                    alignItems: "center",
-                    backgroundColor: `${card.accent}22`,
-                    border: `3px solid ${card.accent}`,
-                    borderRadius: "50%",
-                    color: card.accentDark,
-                    display: "flex",
-                    fontSize: 36,
-                    fontWeight: 800,
-                    height: 106,
-                    justifyContent: "center",
-                    marginRight: 34,
-                    width: 106,
-                  }}
-                >
-                  {index + 1}
-                </div>
-                <div>
-                  <div style={{ color: card.accentDark, fontSize: 82, fontWeight: 800, letterSpacing: 5, lineHeight: 1 }}>{card.label}</div>
-                  <div style={{ color: "#667085", fontSize: 32, fontWeight: 500, letterSpacing: 1, marginTop: 20 }}>{card.descriptor}</div>
-                </div>
+              <div style={{ alignItems: "center", display: "flex", flexDirection: "column", height: "100%", justifyContent: "center", padding: "0 54px", textAlign: "center" }}>
+                <div style={{ color: card.accentDark, fontSize: 90, fontWeight: 800, letterSpacing: 8, lineHeight: 1 }}>{card.label}</div>
+                {card.descriptor ? <div style={{ color: "#667085", fontSize: 32, fontWeight: 500, letterSpacing: 1, marginTop: 20 }}>{card.descriptor}</div> : null}
               </div>
             </div>
           </div>
@@ -228,4 +210,3 @@ export const PsychologyStructureScene = () => {
     </AbsoluteFill>
   );
 };
-
