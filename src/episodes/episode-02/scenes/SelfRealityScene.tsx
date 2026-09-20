@@ -1,11 +1,11 @@
 import { AbsoluteFill, Easing, Img, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import balance from "../assets/img/balance.png";
 
-export const SELF_REALITY_DURATION = 75;
+export const SELF_REALITY_DURATION = 68;
 
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
 
-/** “自我负责考虑现实”：天平从冲动的一侧回到现实中的平衡。 */
+
 export const SelfRealityScene = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -49,10 +49,7 @@ export const SelfRealityScene = () => {
         }}
       />
 
-      <div style={{ bottom: 164, color: "#788394", fontSize: 34, fontWeight: 600, left: 80, opacity: noteOpacity, position: "absolute", right: 80, textAlign: "center" }}>
-        先停一下，再做决定
-      </div>
+     
     </AbsoluteFill>
   );
 };
-

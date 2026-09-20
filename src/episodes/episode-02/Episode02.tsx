@@ -10,10 +10,10 @@ import { captions } from "./script/captions";
 // 第三镜头对应旁白“弗洛伊德把人的心理活动分为……”的起始位置。
 // 时间以音频开始后计，再加上片头的 3 秒。
 export const PSYCHOLOGY_STRUCTURE_START = SERIES_INTRO_DURATION + Math.round(34.39 * 30);
-// cue “本我追求立刻满足”约从音频 40.4s 开始，片头后定位到全片约 43.4s。
+// 三句台词拆开后，分别从音频 40.42s、42.68s、44.94s 开始。
 export const ID_IMPULSE_START = SERIES_INTRO_DURATION + Math.round(40.4 * 30);
-export const SELF_REALITY_START = ID_IMPULSE_START + ID_IMPULSE_DURATION;
-export const SUPEREGO_VALUES_START = SELF_REALITY_START + SELF_REALITY_DURATION;
+export const SELF_REALITY_START = SERIES_INTRO_DURATION + Math.round(42.68 * 30);
+export const SUPEREGO_VALUES_START = SERIES_INTRO_DURATION + Math.round(44.94 * 30);
 
 /** 第 2 期《你的孩子的“熊”来自哪里》时间线入口。字幕由 TXT 文稿在后期手动加入。 */
 export const Episode02 = () => (

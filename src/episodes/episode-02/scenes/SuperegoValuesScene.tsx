@@ -2,7 +2,7 @@ import { AbsoluteFill, Easing, Img, interpolate, spring, useCurrentFrame, useVid
 import angel from "../assets/img/angel.png";
 import cloud from "../assets/img/cloud.png";
 
-export const SUPEREGO_VALUES_DURATION = 120;
+export const SUPEREGO_VALUES_DURATION = 76;
 
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
 
@@ -72,4 +72,3 @@ export const SuperegoValuesScene = () => {
     </AbsoluteFill>
   );
 };
-

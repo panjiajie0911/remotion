@@ -3,8 +3,8 @@ import demon from "../assets/img/demon.png";
 import candy from "../assets/img/candy.png";
 import toy from "../assets/img/toy.png";
 
-// 旁白时间：全片约 43.4s 开始，46.5s 结束，严格收在这句台词内。
-export const ID_IMPULSE_DURATION = 93;
+// 拆分后的第一句台词对应约 43.4s–45.7s。
+export const ID_IMPULSE_DURATION = 68;
 
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
 
