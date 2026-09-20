@@ -1,5 +1,7 @@
 import { AbsoluteFill, Easing, Img, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import demon from "../assets/img/demon.png";
+import candy from "../assets/img/candy.png";
+import toy from "../assets/img/toy.png";
 
 // 旁白时间：全片约 43.4s 开始，46.5s 结束，严格收在这句台词内。
 export const ID_IMPULSE_DURATION = 93;
@@ -14,7 +16,6 @@ export const IdImpulseScene = () => {
   const labelOpacity = interpolate(frame, [0, 10], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const targetProgress = interpolate(frame, [7, 22], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const rushProgress = interpolate(frame, [22, 61], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
-  const holdProgress = interpolate(frame, [58, 74], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const exitOpacity = interpolate(frame, [ID_IMPULSE_DURATION - 8, ID_IMPULSE_DURATION], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -39,18 +40,6 @@ export const IdImpulseScene = () => {
 
       <div
         style={{
-          border: "3px solid rgba(82,125,206,0.14)",
-          borderRadius: "50%",
-          height: 960,
-          left: "50%",
-          position: "absolute",
-          top: 440,
-          translate: "-50% 0",
-          width: 960,
-        }}
-      />
-      <div
-        style={{
           backgroundColor: "#527DCE",
           borderRadius: "50%",
           height: 18,
@@ -70,6 +59,9 @@ export const IdImpulseScene = () => {
 
       <div
         style={{
+          alignItems: "center",
+          display: "flex",
+          gap: 26,
           left: targetX,
           opacity: interpolate(targetProgress, [0, 0.2, 1], [0, 1, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
           position: "absolute",
@@ -77,11 +69,9 @@ export const IdImpulseScene = () => {
           transform: `translate(-50%, -50%) scale(${pulse})`,
         }}
       >
-        <div style={{ backgroundColor: "rgba(195,166,107,0.18)", border: "3px solid rgba(195,166,107,0.5)", borderRadius: "50%", height: 220, left: "50%", position: "absolute", top: "50%", translate: "-50% -50%", width: 220 }} />
-        <div style={{ backgroundColor: "#C3A66B", borderRadius: 26, boxShadow: "0 18px 35px rgba(120,95,48,0.18)", height: 150, position: "relative", rotate: "-5deg", width: 180 }}>
-          <div style={{ backgroundColor: "rgba(247,244,238,0.72)", height: 18, left: 0, position: "absolute", right: 0, top: 66 }} />
-          <div style={{ backgroundColor: "rgba(247,244,238,0.72)", bottom: 0, left: 80, position: "absolute", top: 0, width: 20 }} />
-          <div style={{ border: "9px solid #C3A66B", borderBottom: 0, borderRadius: "50% 50% 0 0", height: 46, left: 53, position: "absolute", top: -38, width: 68 }} />
+        <div style={{ alignItems: "center", backgroundColor: "rgba(195,166,107,0.13)", border: "3px solid rgba(195,166,107,0.42)", borderRadius: 34, display: "flex", gap: 24, height: 250, justifyContent: "center", padding: "0 24px", width: 490 }}>
+          <Img src={candy} style={{ height: 190, objectFit: "contain", rotate: "-8deg", width: 210 }} />
+          <Img src={toy} style={{ height: 205, objectFit: "contain", rotate: "7deg", width: 210 }} />
         </div>
       </div>
 
@@ -101,21 +91,7 @@ export const IdImpulseScene = () => {
         }}
       />
 
-      <div
-        style={{
-          bottom: 164,
-          color: "#788394",
-          fontSize: 34,
-          fontWeight: 600,
-          left: 80,
-          opacity: interpolate(holdProgress, [0, 1], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease }),
-          position: "absolute",
-          right: 80,
-          textAlign: "center",
-        }}
-      >
-        想要 → 马上拿
-      </div>
+    
     </AbsoluteFill>
   );
 };
