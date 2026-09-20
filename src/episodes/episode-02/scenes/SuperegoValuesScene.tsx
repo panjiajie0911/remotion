@@ -16,8 +16,6 @@ export const SuperegoValuesScene = () => {
   const angelDrop = interpolate(angelEntrance, [0, 1], [-260, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const floatY = frame > 50 ? Math.sin((frame - 50) * 0.1) * 7 : 0;
   const labelOpacity = interpolate(frame, [0, 14], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
-  const ruleProgress = interpolate(frame, [42, 58], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
-  const moralProgress = interpolate(frame, [52, 68], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const exitOpacity = interpolate(frame, [SUPEREGO_VALUES_DURATION - 10, SUPEREGO_VALUES_DURATION], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (

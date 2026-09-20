@@ -13,7 +13,6 @@ export const SelfRealityScene = () => {
   const rise = interpolate(entrance, [0, 1], [250, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const tilt = interpolate(frame, [0, 18, 38, 56], [-4, -4, 1.5, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const labelOpacity = interpolate(frame, [4, 16], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
-  const noteOpacity = interpolate(frame, [44, 58], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const exitOpacity = interpolate(frame, [SELF_REALITY_DURATION - 10, SELF_REALITY_DURATION], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
