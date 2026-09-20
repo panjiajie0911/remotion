@@ -4,6 +4,7 @@ import { KindergartenContrastScene, KINDERGARTEN_CONTRAST_DURATION } from "./sce
 import { PsychologyStructureScene, PSYCHOLOGY_STRUCTURE_DURATION } from "./scenes/PsychologyStructureScene";
 import { IdImpulseScene, ID_IMPULSE_DURATION } from "./scenes/IdImpulseScene";
 import { SelfRealityScene, SELF_REALITY_DURATION } from "./scenes/SelfRealityScene";
+import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./scenes/SuperegoValuesScene";
 import { captions } from "./script/captions";
 
 // 第三镜头对应旁白“弗洛伊德把人的心理活动分为……”的起始位置。
@@ -12,6 +13,7 @@ export const PSYCHOLOGY_STRUCTURE_START = SERIES_INTRO_DURATION + Math.round(34.
 // cue “本我追求立刻满足”约从音频 40.4s 开始，片头后定位到全片约 43.4s。
 export const ID_IMPULSE_START = SERIES_INTRO_DURATION + Math.round(40.4 * 30);
 export const SELF_REALITY_START = ID_IMPULSE_START + ID_IMPULSE_DURATION;
+export const SUPEREGO_VALUES_START = SELF_REALITY_START + SELF_REALITY_DURATION;
 
 /** 第 2 期《你的孩子的“熊”来自哪里》时间线入口。字幕由 TXT 文稿在后期手动加入。 */
 export const Episode02 = () => (
@@ -36,6 +38,9 @@ export const Episode02 = () => (
     </Sequence>
     <Sequence from={SELF_REALITY_START} durationInFrames={SELF_REALITY_DURATION}>
       <SelfRealityScene />
+    </Sequence>
+    <Sequence from={SUPEREGO_VALUES_START} durationInFrames={SUPEREGO_VALUES_DURATION}>
+      <SuperegoValuesScene />
     </Sequence>
     <CaptionTrack
       captions={captions.map((cue) => ({
