@@ -10,6 +10,7 @@ export type CaptionCue = {
 
 type CaptionTrackProps = {
   captions: CaptionCue[];
+  hiddenIntervals?: Array<{ start: number; end: number }>;
 };
 
 // 系列字幕统一固定在底部安全区，避免每个视频调用时重复配置位置。
@@ -53,8 +54,10 @@ const Caption = ({ cue }: { cue: CaptionCue }) => {
   );
 };
 
-export const CaptionTrack = ({ captions }: CaptionTrackProps) => {
+export const CaptionTrack = ({ captions, hiddenIntervals = [] }: CaptionTrackProps) => {
   const { fps } = useVideoConfig();
+  const frame = useCurrentFrame();
+  const hidden = hiddenIntervals.some((interval) => frame >= Math.round(interval.start * fps) && frame < Math.round(interval.end * fps));
   captions.forEach((cue, index) => {
     if (!Number.isFinite(cue.start) || !Number.isFinite(cue.end) || cue.start < 0 || Math.round(cue.end * fps) <= Math.round(cue.start * fps) || (index > 0 && cue.start < captions[index - 1].end)) {
       throw new Error(`字幕 ${index + 1} 时间无效：请按顺序填写、不重叠，并至少持续一帧。`);
@@ -63,7 +66,7 @@ export const CaptionTrack = ({ captions }: CaptionTrackProps) => {
       throw new Error(`字幕 ${index + 1} 请填写 1–32 个字符、最多两行；长句请按语意拆段。`);
     }
   });
-  return <AbsoluteFill style={{ pointerEvents: "none" }}>
+  return <AbsoluteFill style={{ opacity: hidden ? 0 : 1, pointerEvents: "none" }}>
     {captions.map((cue, index) => <Sequence
       key={`${cue.start}-${index}`}
       from={Math.round(cue.start * fps)}

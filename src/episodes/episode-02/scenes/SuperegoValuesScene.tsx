@@ -68,10 +68,7 @@ export const SuperegoValuesScene = () => {
         />
       </div>
 
-      <div style={{ display: "flex", gap: 28, justifyContent: "center", left: 80, position: "absolute", right: 80, top: 1450 }}>
-        <div style={{ backgroundColor: "rgba(82,125,206,0.1)", border: "3px solid rgba(82,125,206,0.5)", borderRadius: 8, color: "#527DCE", fontSize: 40, fontWeight: 700, opacity: ruleProgress, padding: "20px 48px", scale: interpolate(ruleProgress, [0, 1], [0.82, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease }) }}>规则</div>
-        <div style={{ backgroundColor: "rgba(195,166,107,0.12)", border: "3px solid rgba(195,166,107,0.58)", borderRadius: 8, color: "#8C7342", fontSize: 40, fontWeight: 700, opacity: moralProgress, padding: "20px 48px", scale: interpolate(moralProgress, [0, 1], [0.82, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease }) }}>道德</div>
-      </div>
+      
     </AbsoluteFill>
   );
 };

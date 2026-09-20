@@ -43,6 +43,7 @@ export const Episode02 = () => (
       <SuperegoValuesScene />
     </Sequence>
     <CaptionTrack
+      hiddenIntervals={[{ start: SUPEREGO_VALUES_START / 30, end: (SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION) / 30 }]}
       captions={captions.map((cue) => ({
         ...cue,
         start: cue.start + SERIES_INTRO_DURATION / 30,
