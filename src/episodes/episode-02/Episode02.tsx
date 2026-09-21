@@ -1,3 +1,5 @@
+import { DirectReactionsScene, DIRECT_REACTIONS_DURATION } from "./scenes/DirectReactionsScene";
+import { ImpulseGrabScene, IMPULSE_GRAB_DURATION } from "./scenes/ImpulseGrabScene";
 import { AbsoluteFill, Audio, Sequence, staticFile } from "remotion";
 import { CaptionTrack, ProgressBar, SeriesIntro, SERIES_INTRO_DURATION } from "../../components";
 import { KindergartenContrastScene, KINDERGARTEN_CONTRAST_DURATION } from "./scenes/KindergartenContrastScene";
@@ -5,6 +7,7 @@ import { PsychologyStructureScene, PSYCHOLOGY_STRUCTURE_DURATION } from "./scene
 import { IdImpulseScene, ID_IMPULSE_DURATION } from "./scenes/IdImpulseScene";
 import { SelfRealityScene, SELF_REALITY_DURATION } from "./scenes/SelfRealityScene";
 import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./scenes/SuperegoValuesScene";
+import { CommonCausesScene, COMMON_CAUSES_START, COMMON_CAUSES_DURATION } from "./scenes/CommonCausesScene";
 import { captions } from "./script/captions";
 
 // 第三镜头对应旁白“弗洛伊德把人的心理活动分为……”的起始位置。
@@ -30,6 +33,9 @@ export const Episode02 = () => (
     <Sequence from={SERIES_INTRO_DURATION} durationInFrames={KINDERGARTEN_CONTRAST_DURATION}>
       <KindergartenContrastScene />
     </Sequence>
+    <Sequence from={COMMON_CAUSES_START} durationInFrames={COMMON_CAUSES_DURATION} name="常见归因 · 15–21s">
+      <CommonCausesScene />
+    </Sequence>
     <Sequence from={PSYCHOLOGY_STRUCTURE_START} durationInFrames={PSYCHOLOGY_STRUCTURE_DURATION}>
       <PsychologyStructureScene />
     </Sequence>
@@ -42,6 +48,8 @@ export const Episode02 = () => (
     <Sequence from={SUPEREGO_VALUES_START} durationInFrames={SUPEREGO_VALUES_DURATION}>
       <SuperegoValuesScene />
     </Sequence>
+    <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION} durationInFrames={IMPULSE_GRAB_DURATION} name="自我控制 · 立刻拿取"><ImpulseGrabScene /></Sequence>
+    <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION} durationInFrames={DIRECT_REACTIONS_DURATION} name="直接情绪反应"><DirectReactionsScene /></Sequence>
     <CaptionTrack
       hiddenIntervals={[{ start: SUPEREGO_VALUES_START / 30, end: (SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION) / 30 }]}
       captions={captions.map((cue) => ({
@@ -54,3 +62,6 @@ export const Episode02 = () => (
     <ProgressBar />
   </AbsoluteFill>
 );
+
+
+

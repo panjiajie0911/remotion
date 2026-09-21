@@ -29,14 +29,13 @@ export const IdImpulseScene = () => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#F7F4EE",
+        backgroundColor: "#fff",
         color: "#252A33",
         fontFamily: '"Source Han Sans SC", "思源黑体", "Noto Sans CJK SC", sans-serif',
         opacity: exitOpacity,
         overflow: "hidden",
       }}
     >
-      <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 42%, rgba(255,255,255,0.72), rgba(247,244,238,0.18) 54%, rgba(221,216,207,0.22) 100%)" }} />
 
       <div
         style={{

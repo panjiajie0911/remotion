@@ -1,0 +1,5 @@
+interface:
+  display_name: "Remotion 高级镜头设计"
+  short_description: "将口播或创意转化为有高级感且可实现的 Remotion 分镜"
+  brand_color: "#527DCE"
+  default_prompt: "Use $remotion-shot-designer to turn my narration into a cinematic Remotion shot design."
