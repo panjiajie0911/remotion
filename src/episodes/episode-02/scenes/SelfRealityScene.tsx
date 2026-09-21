@@ -19,14 +19,13 @@ export const SelfRealityScene = () => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#F7F4EE",
+        backgroundColor: "#fff",
         color: "#252A33",
         fontFamily: '"Source Han Sans SC", "思源黑体", "Noto Sans CJK SC", sans-serif',
         opacity: exitOpacity,
         overflow: "hidden",
       }}
     >
-      <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 45%, rgba(255,255,255,0.72), rgba(247,244,238,0.2) 58%, rgba(221,216,207,0.18) 100%)" }} />
       <div style={{ backgroundColor: "#527DCE", borderRadius: "50%", height: 18, left: 96, opacity: 0.28, position: "absolute", top: 410, width: 18 }} />
 
       <div style={{ left: 80, opacity: labelOpacity, position: "absolute", right: 80, top: 154 }}>

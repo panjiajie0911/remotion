@@ -23,15 +23,13 @@ export const SuperegoValuesScene = () => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#F7F4EE",
+        backgroundColor: "#fff",
         color: "#252A33",
         fontFamily: '"Source Han Sans SC", "思源黑体", "Noto Sans CJK SC", sans-serif',
         opacity: exitOpacity,
         overflow: "hidden",
       }}
     >
-      <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 40%, rgba(255,255,255,0.82), rgba(247,244,238,0.24) 56%, rgba(221,216,207,0.2) 100%)" }} />
-      <div style={{ backgroundColor: "rgba(195,166,107,0.18)", borderRadius: "50%", filter: "blur(24px)", height: 390, left: "50%", position: "absolute", top: 500, translate: "-50% 0", width: 390 }} />
 
       <div style={{ left: 80, opacity: labelOpacity, position: "absolute", right: 80, top: 154 }}>
         <div style={{ color: "#527DCE", fontSize: 28, fontWeight: 700, letterSpacing: 7 }}>超我</div>

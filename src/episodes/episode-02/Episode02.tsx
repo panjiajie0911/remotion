@@ -5,6 +5,7 @@ import { PsychologyStructureScene, PSYCHOLOGY_STRUCTURE_DURATION } from "./scene
 import { IdImpulseScene, ID_IMPULSE_DURATION } from "./scenes/IdImpulseScene";
 import { SelfRealityScene, SELF_REALITY_DURATION } from "./scenes/SelfRealityScene";
 import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./scenes/SuperegoValuesScene";
+import { CommonCausesScene, COMMON_CAUSES_START, COMMON_CAUSES_DURATION } from "./scenes/CommonCausesScene";
 import { captions } from "./script/captions";
 
 // 第三镜头对应旁白“弗洛伊德把人的心理活动分为……”的起始位置。
@@ -30,6 +31,9 @@ export const Episode02 = () => (
     <Sequence from={SERIES_INTRO_DURATION} durationInFrames={KINDERGARTEN_CONTRAST_DURATION}>
       <KindergartenContrastScene />
     </Sequence>
+    <Sequence from={COMMON_CAUSES_START} durationInFrames={COMMON_CAUSES_DURATION} name="常见归因 · 15–21s">
+      <CommonCausesScene />
+    </Sequence>
     <Sequence from={PSYCHOLOGY_STRUCTURE_START} durationInFrames={PSYCHOLOGY_STRUCTURE_DURATION}>
       <PsychologyStructureScene />
     </Sequence>
@@ -54,3 +58,4 @@ export const Episode02 = () => (
     <ProgressBar />
   </AbsoluteFill>
 );
+
