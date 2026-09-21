@@ -22,6 +22,6 @@ export const ImpulseGrabScene = () => {
         <div style={{position: "absolute", left: 620, top: 245, color: theme.colors.primary, fontSize: 34, opacity: interpolate(t, [1.4, 1.7, 2.5, 2.7], [0, 1, 1, 0], clamp)}}>想要</div>
       </> : <Img src={holding} style={{position: "absolute", left: 40, bottom: 0, height: 800, width: 584, objectFit: "contain", scale: interpolate(t, [3.05, 3.17, 3.35], [1, 1.025, 1], clamp), transformOrigin: "50% 100%"}} />}
     </div>
-    <div style={{position: "absolute", top: 1480, width: "100%", textAlign: "center", fontSize: 43, fontWeight: 700, color: theme.colors.primary, opacity: interpolate(t, [3.2, 3.5], [0, 1], clamp)}}>想要 → 立刻拿</div>
+    
   </AbsoluteFill>;
 };
