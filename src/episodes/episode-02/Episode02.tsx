@@ -1,3 +1,4 @@
+import { ImpulseGrabScene, IMPULSE_GRAB_DURATION } from "./scenes/ImpulseGrabScene";
 import { AbsoluteFill, Audio, Sequence, staticFile } from "remotion";
 import { CaptionTrack, ProgressBar, SeriesIntro, SERIES_INTRO_DURATION } from "../../components";
 import { KindergartenContrastScene, KINDERGARTEN_CONTRAST_DURATION } from "./scenes/KindergartenContrastScene";
@@ -46,6 +47,7 @@ export const Episode02 = () => (
     <Sequence from={SUPEREGO_VALUES_START} durationInFrames={SUPEREGO_VALUES_DURATION}>
       <SuperegoValuesScene />
     </Sequence>
+    <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION} durationInFrames={IMPULSE_GRAB_DURATION} name="自我控制 · 立刻拿取"><ImpulseGrabScene /></Sequence>
     <CaptionTrack
       hiddenIntervals={[{ start: SUPEREGO_VALUES_START / 30, end: (SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION) / 30 }]}
       captions={captions.map((cue) => ({
@@ -58,4 +60,5 @@ export const Episode02 = () => (
     <ProgressBar />
   </AbsoluteFill>
 );
+
 
