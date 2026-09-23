@@ -1,3 +1,4 @@
+import { UnspokenFeelingsScene, UNSPOKEN_FEELINGS_DURATION } from "./episodes/episode-02/scenes/UnspokenFeelingsScene";
 import { LearningPauseScene, LEARNING_PAUSE_DURATION } from "./episodes/episode-02/scenes/LearningPauseScene";
 import { NotBadChildScene, NOT_BAD_CHILD_DURATION } from "./episodes/episode-02/scenes/NotBadChildScene";
 import { DirectReactionsScene, DIRECT_REACTIONS_DURATION } from "./episodes/episode-02/scenes/DirectReactionsScene";
@@ -20,6 +21,7 @@ const calculateMetadata: CalculateMetadataFunction<Props> = () => {
 export const MyComposition = () => {
   return (
     <>
+      <Composition id="Episode02UnspokenFeelings" component={UnspokenFeelingsScene} durationInFrames={UNSPOKEN_FEELINGS_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02LearningPause" component={LearningPauseScene} durationInFrames={LEARNING_PAUSE_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02NotBadChild" component={NotBadChildScene} durationInFrames={NOT_BAD_CHILD_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02DirectReactions" component={DirectReactionsScene} durationInFrames={DIRECT_REACTIONS_DURATION} fps={30} width={1080} height={1920} />
@@ -34,6 +36,7 @@ export const MyComposition = () => {
     </>
   );
 };
+
 
 
 
