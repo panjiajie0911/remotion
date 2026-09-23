@@ -1,3 +1,4 @@
+import { LearningPauseScene, LEARNING_PAUSE_DURATION } from "./scenes/LearningPauseScene";
 import { NotBadChildScene, NOT_BAD_CHILD_DURATION } from "./scenes/NotBadChildScene";
 import { DirectReactionsScene, DIRECT_REACTIONS_DURATION } from "./scenes/DirectReactionsScene";
 import { ImpulseGrabScene, IMPULSE_GRAB_DURATION } from "./scenes/ImpulseGrabScene";
@@ -52,6 +53,7 @@ export const Episode02 = () => (
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION} durationInFrames={IMPULSE_GRAB_DURATION} name="自我控制 · 立刻拿取"><ImpulseGrabScene /></Sequence>
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION} durationInFrames={DIRECT_REACTIONS_DURATION} name="直接情绪反应"><DirectReactionsScene /></Sequence>
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION} durationInFrames={NOT_BAD_CHILD_DURATION} name="行为不等于孩子本身"><NotBadChildScene /></Sequence>
+    <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION + NOT_BAD_CHILD_DURATION} durationInFrames={LEARNING_PAUSE_DURATION} name="学习管理冲动"><LearningPauseScene /></Sequence>
     <CaptionTrack
       hiddenIntervals={[{ start: SUPEREGO_VALUES_START / 30, end: (SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION) / 30 }]}
       captions={captions.map((cue) => ({
@@ -64,6 +66,7 @@ export const Episode02 = () => (
     <ProgressBar />
   </AbsoluteFill>
 );
+
 
 
 
