@@ -1,3 +1,4 @@
+import { NotBadChildScene, NOT_BAD_CHILD_DURATION } from "./episodes/episode-02/scenes/NotBadChildScene";
 import { DirectReactionsScene, DIRECT_REACTIONS_DURATION } from "./episodes/episode-02/scenes/DirectReactionsScene";
 import { ImpulseGrabScene, IMPULSE_GRAB_DURATION } from "./episodes/episode-02/scenes/ImpulseGrabScene";
 import { CommonCausesScene, COMMON_CAUSES_DURATION } from "./episodes/episode-02/scenes/CommonCausesScene";
@@ -18,6 +19,7 @@ const calculateMetadata: CalculateMetadataFunction<Props> = () => {
 export const MyComposition = () => {
   return (
     <>
+      <Composition id="Episode02NotBadChild" component={NotBadChildScene} durationInFrames={NOT_BAD_CHILD_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02DirectReactions" component={DirectReactionsScene} durationInFrames={DIRECT_REACTIONS_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02ImpulseGrab" component={ImpulseGrabScene} durationInFrames={IMPULSE_GRAB_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="MyComp" component={Episode01} durationInFrames={270} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
@@ -30,6 +32,7 @@ export const MyComposition = () => {
     </>
   );
 };
+
 
 
 
