@@ -1,5 +1,20 @@
+import { PermissiveParentScene, PERMISSIVE_PARENT_DURATION } from "./episodes/episode-02/scenes/PermissiveParentScene";
+import { EmotionBoundaryScene, EMOTION_BOUNDARY_DURATION } from "./episodes/episode-02/scenes/EmotionBoundaryScene";
+import { GoodEnoughEnvironmentScene, GOOD_ENOUGH_ENVIRONMENT_DURATION } from "./episodes/episode-02/scenes/GoodEnoughEnvironmentScene";
+import { SeekingAttentionScene, SEEKING_ATTENTION_DURATION } from "./episodes/episode-02/scenes/SeekingAttentionScene";
+import { UnspokenFeelingsScene, UNSPOKEN_FEELINGS_DURATION } from "./episodes/episode-02/scenes/UnspokenFeelingsScene";
+import { LearningPauseScene, LEARNING_PAUSE_DURATION } from "./episodes/episode-02/scenes/LearningPauseScene";
+import { NotBadChildScene, NOT_BAD_CHILD_DURATION } from "./episodes/episode-02/scenes/NotBadChildScene";
+import { DirectReactionsScene, DIRECT_REACTIONS_DURATION } from "./episodes/episode-02/scenes/DirectReactionsScene";
+import { ImpulseGrabScene, IMPULSE_GRAB_DURATION } from "./episodes/episode-02/scenes/ImpulseGrabScene";
+import { CommonCausesScene, COMMON_CAUSES_DURATION } from "./episodes/episode-02/scenes/CommonCausesScene";
 import { CalculateMetadataFunction, Composition } from "remotion";
 import { Episode01 } from "./episodes/episode-01/Episode01";
+import { Episode02 } from "./episodes/episode-02/Episode02";
+import { PsychologyStructureScene, PSYCHOLOGY_STRUCTURE_DURATION } from "./episodes/episode-02/scenes/PsychologyStructureScene";
+import { IdImpulseScene, ID_IMPULSE_DURATION } from "./episodes/episode-02/scenes/IdImpulseScene";
+import { SelfRealityScene, SELF_REALITY_DURATION } from "./episodes/episode-02/scenes/SelfRealityScene";
+import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./episodes/episode-02/scenes/SuperegoValuesScene";
 
 type Props = {};
 
@@ -9,15 +24,34 @@ const calculateMetadata: CalculateMetadataFunction<Props> = () => {
 
 export const MyComposition = () => {
   return (
-    <Composition
-      id="MyComp"
-      component={Episode01}
-      durationInFrames={270}
-      fps={30}
-      width={1080}
-      height={1920}
-      calculateMetadata={calculateMetadata}
-    />
+    <>
+      <Composition id="Episode02PermissiveParent" component={PermissiveParentScene} durationInFrames={PERMISSIVE_PARENT_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02EmotionBoundary" component={EmotionBoundaryScene} durationInFrames={EMOTION_BOUNDARY_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02GoodEnoughEnvironment" component={GoodEnoughEnvironmentScene} durationInFrames={GOOD_ENOUGH_ENVIRONMENT_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02SeekingAttention" component={SeekingAttentionScene} durationInFrames={SEEKING_ATTENTION_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02UnspokenFeelings" component={UnspokenFeelingsScene} durationInFrames={UNSPOKEN_FEELINGS_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02LearningPause" component={LearningPauseScene} durationInFrames={LEARNING_PAUSE_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02NotBadChild" component={NotBadChildScene} durationInFrames={NOT_BAD_CHILD_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02DirectReactions" component={DirectReactionsScene} durationInFrames={DIRECT_REACTIONS_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02ImpulseGrab" component={ImpulseGrabScene} durationInFrames={IMPULSE_GRAB_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="MyComp" component={Episode01} durationInFrames={270} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
+      <Composition id="Episode02" component={Episode02} durationInFrames={5490} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
+      <Composition id="Episode02CommonCauses" component={CommonCausesScene} durationInFrames={COMMON_CAUSES_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02Scene03" component={PsychologyStructureScene} durationInFrames={PSYCHOLOGY_STRUCTURE_DURATION} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
+      <Composition id="Episode02Scene04Id" component={IdImpulseScene} durationInFrames={ID_IMPULSE_DURATION} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
+      <Composition id="Episode02Scene05Self" component={SelfRealityScene} durationInFrames={SELF_REALITY_DURATION} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
+      <Composition id="Episode02Scene06Superego" component={SuperegoValuesScene} durationInFrames={SUPEREGO_VALUES_DURATION} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
+    </>
   );
 };
+
+
+
+
+
+
+
+
+
+
 

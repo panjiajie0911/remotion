@@ -10,8 +10,11 @@ export type CaptionCue = {
 
 type CaptionTrackProps = {
   captions: CaptionCue[];
-  position?: "center" | "bottom";
+  hiddenIntervals?: Array<{ start: number; end: number }>;
 };
+
+// 系列字幕统一固定在底部安全区，避免每个视频调用时重复配置位置。
+const CAPTION_POSITION = "bottom" as const;
 
 const renderText = (text: string, emphasis: string[] = []) => {
   const keywords = emphasis.filter(Boolean).sort((a, b) => b.length - a.length);
@@ -28,24 +31,33 @@ const Caption = ({ cue }: { cue: CaptionCue }) => {
   const motion = theme.captions.slide;
   // Reserve reading time for short cues and keep entry continuous during exit.
   const exitFrames = Math.min(Math.round(motion.exitSeconds * fps), Math.floor(duration / 3));
-  const slideIn = spring({ frame, fps, config: motion.enterSpring });
+  // Use a short, eased fade-in for a softer caption entrance. Keep the
+  // movement subtle so the text feels like it is settling into the frame.
+  const enterFrames = Math.max(2, Math.min(Math.round(0.45 * fps), Math.floor(duration / 2)));
+  const enterProgress = interpolate(frame, [0, enterFrames], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: (t) => 1 - Math.pow(1 - t, 3),
+  });
   const slideOut = exitFrames < 2 ? 0 : spring({
     frame: frame - (duration - exitFrames), fps,
     durationInFrames: exitFrames - 1, config: motion.exitSpring,
   });
-  const opacity = interpolate(slideOut, [0, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const translateY = duration < 3 ? 0 : interpolate(slideIn, [0, 1], [motion.enterOffsetY, 0]);
-  const translateX = interpolate(slideOut, [0, 1], [0, motion.exitOffsetX]);
+  const opacity = enterProgress * interpolate(slideOut, [0, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const translateY = duration < 3 ? 0 : interpolate(enterProgress, [0, 1], [motion.enterOffsetY * 0.35, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const translateYExit = interpolate(slideOut, [0, 1], [0, -motion.exitOffsetY]);
 
   return (
-    <div style={{ opacity, width: "100%", maxWidth: theme.captions.maxWidth, alignSelf: "center", whiteSpace: "pre-line", overflowWrap: "anywhere", textAlign: "center", translate: `${translateX}px ${translateY}px` }}>
+    <div style={{ opacity, width: "100%", maxWidth: theme.captions.maxWidth, alignSelf: "center", whiteSpace: "pre-line", overflowWrap: "anywhere", textAlign: "center", translate: `0 ${translateY + translateYExit}px` }}>
       <span style={{ color: theme.colors.text, display: "inline", fontFamily: theme.fonts.sans, fontSize: theme.typography.size.caption, fontWeight: theme.typography.weight.medium, lineHeight: theme.typography.lineHeight.normal, maxWidth: theme.captions.maxWidth, padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`, boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}>{renderText(cue.text, cue.emphasis)}</span>
     </div>
   );
 };
 
-export const CaptionTrack = ({ captions, position = "bottom" }: CaptionTrackProps) => {
+export const CaptionTrack = ({ captions, hiddenIntervals = [] }: CaptionTrackProps) => {
   const { fps } = useVideoConfig();
+  const frame = useCurrentFrame();
+  const hidden = hiddenIntervals.some((interval) => frame >= Math.round(interval.start * fps) && frame < Math.round(interval.end * fps));
   captions.forEach((cue, index) => {
     if (!Number.isFinite(cue.start) || !Number.isFinite(cue.end) || cue.start < 0 || Math.round(cue.end * fps) <= Math.round(cue.start * fps) || (index > 0 && cue.start < captions[index - 1].end)) {
       throw new Error(`字幕 ${index + 1} 时间无效：请按顺序填写、不重叠，并至少持续一帧。`);
@@ -54,9 +66,15 @@ export const CaptionTrack = ({ captions, position = "bottom" }: CaptionTrackProp
       throw new Error(`字幕 ${index + 1} 请填写 1–32 个字符、最多两行；长句请按语意拆段。`);
     }
   });
-  return (
-    <AbsoluteFill style={{ justifyContent: position === "bottom" ? "flex-end" : "center", padding: `0 ${theme.video.safeArea.left}px ${position === "bottom" ? theme.captions.bottom : 0}px`, pointerEvents: "none" }}>
-      {captions.map((cue) => <Sequence layout="none" key={`${cue.start}-${cue.end}-${cue.text}`} from={Math.round(cue.start * fps)} durationInFrames={Math.round(cue.end * fps) - Math.round(cue.start * fps)}><Caption cue={cue} /></Sequence>)}
-    </AbsoluteFill>
-  );
+  return <AbsoluteFill style={{ opacity: hidden ? 0 : 1, pointerEvents: "none" }}>
+    {captions.map((cue, index) => <Sequence
+      key={`${cue.start}-${index}`}
+      from={Math.round(cue.start * fps)}
+      durationInFrames={Math.max(1, Math.round((cue.end - cue.start) * fps))}
+    >
+      <AbsoluteFill style={{ justifyContent: CAPTION_POSITION === "bottom" ? "flex-end" : "center", paddingBottom: CAPTION_POSITION === "bottom" ? 180 : 0 }}>
+        <Caption cue={cue} />
+      </AbsoluteFill>
+    </Sequence>)}
+  </AbsoluteFill>;
 };

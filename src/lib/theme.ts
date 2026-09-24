@@ -47,12 +47,12 @@ export const theme = {
   },
   captions: {
     maxWidth: 760,
-    bottom: 420,
+    bottom: 200,
     background: "rgba(255, 255, 255, 0.92)",
     fadeSeconds: 0.15,
     slide: {
       enterOffsetY: 80,
-      exitOffsetX: 140,
+      exitOffsetY: 140,
       exitSeconds: 0.9,
       enterSpring: { damping: 20, stiffness: 120 },
       exitSpring: { damping: 26, stiffness: 100 },
