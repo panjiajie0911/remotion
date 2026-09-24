@@ -1,3 +1,4 @@
+import { GoodEnoughEnvironmentScene, GOOD_ENOUGH_ENVIRONMENT_DURATION } from "./episodes/episode-02/scenes/GoodEnoughEnvironmentScene";
 import { SeekingAttentionScene, SEEKING_ATTENTION_DURATION } from "./episodes/episode-02/scenes/SeekingAttentionScene";
 import { UnspokenFeelingsScene, UNSPOKEN_FEELINGS_DURATION } from "./episodes/episode-02/scenes/UnspokenFeelingsScene";
 import { LearningPauseScene, LEARNING_PAUSE_DURATION } from "./episodes/episode-02/scenes/LearningPauseScene";
@@ -22,6 +23,7 @@ const calculateMetadata: CalculateMetadataFunction<Props> = () => {
 export const MyComposition = () => {
   return (
     <>
+      <Composition id="Episode02GoodEnoughEnvironment" component={GoodEnoughEnvironmentScene} durationInFrames={GOOD_ENOUGH_ENVIRONMENT_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02SeekingAttention" component={SeekingAttentionScene} durationInFrames={SEEKING_ATTENTION_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02UnspokenFeelings" component={UnspokenFeelingsScene} durationInFrames={UNSPOKEN_FEELINGS_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02LearningPause" component={LearningPauseScene} durationInFrames={LEARNING_PAUSE_DURATION} fps={30} width={1080} height={1920} />
@@ -38,6 +40,7 @@ export const MyComposition = () => {
     </>
   );
 };
+
 
 
 
