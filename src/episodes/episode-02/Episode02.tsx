@@ -43,7 +43,12 @@ export const SUPPRESSED_NEED_START = SERIES_INTRO_DURATION + Math.round(suppress
 
 /** 第 2 期《你的孩子的“熊”来自哪里》时间线入口。字幕由 TXT 文稿在后期手动加入。 */
 export const Episode02 = () => (
-  <AbsoluteFill style={{ backgroundColor: "#fff" }}>
+  <AbsoluteFill
+    style={{
+      backgroundColor: "#fff",
+      color: "#aa4242",
+    }}
+  >
     <Sequence durationInFrames={SERIES_INTRO_DURATION}>
       <SeriesIntro
         emphasisLines={[1]}
