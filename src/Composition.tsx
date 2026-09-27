@@ -17,6 +17,8 @@ import { SelfRealityScene, SELF_REALITY_DURATION } from "./episodes/episode-02/s
 import { SuppressedNeedScene, SUPPRESSED_NEED_DURATION } from "./episodes/episode-02/scenes/SuppressedNeedScene";
 import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./episodes/episode-02/scenes/SuperegoValuesScene";
 
+import {ClosingAvatarScene, CLOSING_AVATAR_DURATION} from "./episodes/episode-02/scenes/ClosingAvatarScene";
+
 type Props = {};
 import {DeathInstinctScene, DEATH_INSTINCT_DURATION} from "./episodes/episode-02/scenes/DeathInstinctScene";
 import {ModernFactorsScene, MODERN_FACTORS_DURATION} from "./episodes/episode-02/scenes/ModernFactorsScene";
@@ -29,6 +31,7 @@ const calculateMetadata: CalculateMetadataFunction<Props> = () => {
 export const MyComposition = () => {
   return (
     <>
+      <Composition id="Episode02ClosingAvatar" component={ClosingAvatarScene} durationInFrames={CLOSING_AVATAR_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02Scene08DeathInstinct" component={DeathInstinctScene} durationInFrames={DEATH_INSTINCT_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02ModernFactors" component={ModernFactorsScene} durationInFrames={MODERN_FACTORS_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02ThinkingObservation" component={ThinkingObservationScene} durationInFrames={THINKING_OBSERVATION_DURATION} fps={30} width={1080} height={1920} />

@@ -17,6 +17,7 @@ import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./scenes/Superego
 import { CommonCausesScene, COMMON_CAUSES_START, COMMON_CAUSES_DURATION } from "./scenes/CommonCausesScene";
 import { SuppressedNeedScene, SUPPRESSED_NEED_DURATION } from "./scenes/SuppressedNeedScene";
 import { captions } from "./script/captions";
+import {ClosingAvatarScene, CLOSING_AVATAR_AUDIO_START, CLOSING_AVATAR_DURATION} from "./scenes/ClosingAvatarScene";
 import {DeathInstinctScene, DEATH_INSTINCT_AUDIO_START, DEATH_INSTINCT_DURATION} from "./scenes/DeathInstinctScene";
 import {ModernFactorsScene, MODERN_FACTORS_AUDIO_START, MODERN_FACTORS_DURATION} from "./scenes/ModernFactorsScene";
 import {ThinkingObservationScene, THINKING_OBSERVATION_AUDIO_START, THINKING_OBSERVATION_DURATION} from "./scenes/ThinkingObservationScene";
@@ -99,6 +100,9 @@ export const Episode02 = () => (
     </Sequence>
     <Sequence from={SERIES_INTRO_DURATION + THINKING_OBSERVATION_AUDIO_START} durationInFrames={THINKING_OBSERVATION_DURATION} name="观察行为 · 三个思考云">
       <ThinkingObservationScene />
+    </Sequence>
+    <Sequence from={SERIES_INTRO_DURATION + CLOSING_AVATAR_AUDIO_START} durationInFrames={CLOSING_AVATAR_DURATION} name="建立自我控制 · 头像收尾">
+      <ClosingAvatarScene />
     </Sequence>
     <CaptionTrack
       hiddenIntervals={[{ start: SUPEREGO_VALUES_START / 30, end: (SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION) / 30 }]}
