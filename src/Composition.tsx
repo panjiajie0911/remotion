@@ -20,6 +20,7 @@ import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./episodes/episod
 type Props = {};
 import {DeathInstinctScene, DEATH_INSTINCT_DURATION} from "./episodes/episode-02/scenes/DeathInstinctScene";
 import {ModernFactorsScene, MODERN_FACTORS_DURATION} from "./episodes/episode-02/scenes/ModernFactorsScene";
+import {ThinkingObservationScene, THINKING_OBSERVATION_DURATION} from "./episodes/episode-02/scenes/ThinkingObservationScene";
 
 const calculateMetadata: CalculateMetadataFunction<Props> = () => {
   return {};
@@ -30,6 +31,7 @@ export const MyComposition = () => {
     <>
       <Composition id="Episode02Scene08DeathInstinct" component={DeathInstinctScene} durationInFrames={DEATH_INSTINCT_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02ModernFactors" component={ModernFactorsScene} durationInFrames={MODERN_FACTORS_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02ThinkingObservation" component={ThinkingObservationScene} durationInFrames={THINKING_OBSERVATION_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02PermissiveParent" component={PermissiveParentScene} durationInFrames={PERMISSIVE_PARENT_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02EmotionBoundary" component={EmotionBoundaryScene} durationInFrames={EMOTION_BOUNDARY_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02GoodEnoughEnvironment" component={GoodEnoughEnvironmentScene} durationInFrames={GOOD_ENOUGH_ENVIRONMENT_DURATION} fps={30} width={1080} height={1920} />

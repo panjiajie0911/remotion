@@ -19,6 +19,7 @@ import { SuppressedNeedScene, SUPPRESSED_NEED_DURATION } from "./scenes/Suppress
 import { captions } from "./script/captions";
 import {DeathInstinctScene, DEATH_INSTINCT_AUDIO_START, DEATH_INSTINCT_DURATION} from "./scenes/DeathInstinctScene";
 import {ModernFactorsScene, MODERN_FACTORS_AUDIO_START, MODERN_FACTORS_DURATION} from "./scenes/ModernFactorsScene";
+import {ThinkingObservationScene, THINKING_OBSERVATION_AUDIO_START, THINKING_OBSERVATION_DURATION} from "./scenes/ThinkingObservationScene";
 
 // 第三镜头对应旁白“弗洛伊德把人的心理活动分为……”的起始位置。
 // 时间以音频开始后计，再加上片头的 3 秒。
@@ -90,6 +91,9 @@ export const Episode02 = () => (
     </Sequence>
     <Sequence from={SERIES_INTRO_DURATION + MODERN_FACTORS_AUDIO_START} durationInFrames={MODERN_FACTORS_DURATION} name="现代儿童心理学 · 多因素卡片">
       <ModernFactorsScene />
+    </Sequence>
+    <Sequence from={SERIES_INTRO_DURATION + THINKING_OBSERVATION_AUDIO_START} durationInFrames={THINKING_OBSERVATION_DURATION} name="观察行为 · 三个思考云">
+      <ThinkingObservationScene />
     </Sequence>
     <CaptionTrack
       hiddenIntervals={[{ start: SUPEREGO_VALUES_START / 30, end: (SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION) / 30 }]}
