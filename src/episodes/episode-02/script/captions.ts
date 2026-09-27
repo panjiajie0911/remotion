@@ -105,3 +105,30 @@ if (openingLast >= 0 && captions[0].text.startsWith("为什么同一家幼儿园
   });
   captions.splice(0, openingLast + 1, ...openingCues);
 }
+
+// Display-only segmentation: scene timing lookups continue to use captions above.
+// Keep short connective words with the following clause instead of flashing alone.
+export const displayCaptions: CaptionCue[] = captions.flatMap((cue) => {
+  const parts = cue.text.split(/[，,。.;；：:]/).map((text) => text.trim().replace(/、$/, "")).filter(Boolean);
+  const lines: string[] = [];
+  let prefix = "";
+  for (const part of parts) {
+    if (/^(但|所以|比如|于是|不过|很多时候|需要注意的是)$/.test(part)) {
+      prefix += part;
+    } else {
+      lines.push(prefix + part);
+      prefix = "";
+    }
+  }
+  if (prefix) lines.push(prefix);
+  const total = lines.reduce((sum, text) => sum + text.length, 0);
+  const startFrame = Math.round(cue.start * 30);
+  const endFrame = Math.round(cue.end * 30);
+  let consumed = 0;
+  return lines.map((text, index) => {
+    const start = startFrame + Math.round((endFrame - startFrame) * consumed / total);
+    consumed += text.length;
+    const end = index === lines.length - 1 ? endFrame : startFrame + Math.round((endFrame - startFrame) * consumed / total);
+    return {...cue, text, start: start / 30, end: end / 30};
+  });
+});
