@@ -15,6 +15,7 @@ import { IdImpulseScene, ID_IMPULSE_DURATION } from "./scenes/IdImpulseScene";
 import { SelfRealityScene, SELF_REALITY_DURATION } from "./scenes/SelfRealityScene";
 import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./scenes/SuperegoValuesScene";
 import { CommonCausesScene, COMMON_CAUSES_START, COMMON_CAUSES_DURATION } from "./scenes/CommonCausesScene";
+import { SuppressedNeedScene, SUPPRESSED_NEED_DURATION } from "./scenes/SuppressedNeedScene";
 import { captions } from "./script/captions";
 
 // 第三镜头对应旁白“弗洛伊德把人的心理活动分为……”的起始位置。
@@ -24,6 +25,18 @@ export const PSYCHOLOGY_STRUCTURE_START = SERIES_INTRO_DURATION + Math.round(34.
 export const ID_IMPULSE_START = SERIES_INTRO_DURATION + Math.round(40.4 * 30);
 export const SELF_REALITY_START = SERIES_INTRO_DURATION + Math.round(42.68 * 30);
 export const SUPEREGO_VALUES_START = SERIES_INTRO_DURATION + Math.round(44.94 * 30);
+
+// Follow the existing subtitle range, including both chunks of this sentence.
+const effectiveApproachFirst = captions.findIndex((cue) => cue.text.startsWith("真正有效的做法"));
+const effectiveApproachLast = captions.findIndex((cue, index) => index >= effectiveApproachFirst && cue.text.includes("行为是不对的"));
+if (effectiveApproachFirst < 0 || effectiveApproachLast < effectiveApproachFirst) {
+  throw new Error("未找到温和而坚定段落的完整字幕范围");
+}
+export const EFFECTIVE_APPROACH_START = SERIES_INTRO_DURATION + Math.round(captions[effectiveApproachFirst].start * 30);
+export const EFFECTIVE_APPROACH_DURATION = SERIES_INTRO_DURATION + Math.round(captions[effectiveApproachLast].end * 30) - EFFECTIVE_APPROACH_START;
+const suppressedNeedCue = captions.find((cue) => cue.text.startsWith("如果管教过度严厉"));
+if (!suppressedNeedCue) throw new Error("未找到合理需求被压制段落的字幕范围");
+export const SUPPRESSED_NEED_START = SERIES_INTRO_DURATION + Math.round(suppressedNeedCue.start * 30);
 
 /** 第 2 期《你的孩子的“熊”来自哪里》时间线入口。字幕由 TXT 文稿在后期手动加入。 */
 export const Episode02 = () => (
@@ -64,6 +77,12 @@ export const Episode02 = () => (
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION + NOT_BAD_CHILD_DURATION + LEARNING_PAUSE_DURATION + UNSPOKEN_FEELINGS_DURATION + SEEKING_ATTENTION_DURATION} durationInFrames={GOOD_ENOUGH_ENVIRONMENT_DURATION} name="足够好的环境"><GoodEnoughEnvironmentScene /></Sequence>
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION + NOT_BAD_CHILD_DURATION + LEARNING_PAUSE_DURATION + UNSPOKEN_FEELINGS_DURATION + SEEKING_ATTENTION_DURATION + GOOD_ENOUGH_ENVIRONMENT_DURATION} durationInFrames={EMOTION_BOUNDARY_DURATION} name="理解感受 · 稳定边界"><EmotionBoundaryScene /></Sequence>
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION + NOT_BAD_CHILD_DURATION + LEARNING_PAUSE_DURATION + UNSPOKEN_FEELINGS_DURATION + SEEKING_ATTENTION_DURATION + GOOD_ENOUGH_ENVIRONMENT_DURATION + EMOTION_BOUNDARY_DURATION} durationInFrames={PERMISSIVE_PARENT_DURATION} name="放任 · 缺少规则引导"><PermissiveParentScene /></Sequence>
+    <Sequence from={EFFECTIVE_APPROACH_START} durationInFrames={EFFECTIVE_APPROACH_DURATION} name="温和而坚定 · 复用亲子房屋镜头">
+      <GoodEnoughEnvironmentScene />
+    </Sequence>
+    <Sequence from={SUPPRESSED_NEED_START} durationInFrames={SUPPRESSED_NEED_DURATION} name="管教过度严厉 · 合理需求被压制">
+      <SuppressedNeedScene />
+    </Sequence>
     <CaptionTrack
       hiddenIntervals={[{ start: SUPEREGO_VALUES_START / 30, end: (SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION) / 30 }]}
       captions={captions.map((cue) => ({
