@@ -62,7 +62,7 @@ export const Episode02 = () => (
     <Sequence from={SERIES_INTRO_DURATION} durationInFrames={KINDERGARTEN_CONTRAST_DURATION}>
       <KindergartenContrastScene />
     </Sequence>
-    <Sequence from={COMMON_CAUSES_START} durationInFrames={COMMON_CAUSES_DURATION} name="常见归因 · 15–21s">
+    <Sequence from={COMMON_CAUSES_START} durationInFrames={COMMON_CAUSES_DURATION} name="常见归因 · 年龄与家庭教育">
       <CommonCausesScene />
     </Sequence>
     <Sequence from={PSYCHOLOGY_STRUCTURE_START} durationInFrames={PSYCHOLOGY_STRUCTURE_DURATION}>

@@ -106,6 +106,20 @@ if (openingLast >= 0 && captions[0].text.startsWith("为什么同一家幼儿园
   captions.splice(0, openingLast + 1, ...openingCues);
 }
 
+// Full-video 14–19s, excluding the three-second intro in audio-relative cues.
+const twinsFirst = captions.findIndex((cue) => cue.text.startsWith("但，即使是双胞胎"));
+const twinsLast = captions.findIndex((cue, index) => index >= twinsFirst && cue.text.includes("性格和行为也可能很不一样"));
+if (twinsFirst >= 0 && twinsLast >= twinsFirst) {
+  const oldStart = captions[twinsFirst].start;
+  const oldEnd = captions[twinsLast].end;
+  for (let index = twinsFirst; index <= twinsLast; index++) {
+    const cue = captions[index];
+    captions[index] = {...cue, start: 11 + (cue.start - oldStart) / (oldEnd - oldStart) * 5, end: 11 + (cue.end - oldStart) / (oldEnd - oldStart) * 5};
+  }
+  if (twinsFirst > 0) captions[twinsFirst - 1] = {...captions[twinsFirst - 1], end: 11};
+  if (captions[twinsLast + 1]?.start < 16) captions[twinsLast + 1] = {...captions[twinsLast + 1], start: 16};
+}
+
 // Display-only segmentation: scene timing lookups continue to use captions above.
 // Keep short connective words with the following clause instead of flashing alone.
 export const displayCaptions: CaptionCue[] = captions.flatMap((cue) => {
