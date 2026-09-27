@@ -1,6 +1,6 @@
 import type { CaptionCue } from "../../../components";
 
-const script = `为什么同一家幼儿园里，有的孩子安静守规矩，有的孩子却频繁闯祸？
+const script = `为什么同一家幼儿园里 有的孩子安静守规矩 有的孩子却频繁闯祸？
 
 很多人会把原因归结为年龄或家庭教育。但，即使是双胞胎，性格和行为也可能很不一样。所以，孩子所谓的“熊”，通常不是由单一因素造成的。
 
@@ -43,3 +43,65 @@ export const captions: CaptionCue[] = chunks.map((text) => {
   cursor += Math.max(1.1, (180 * text.length) / totalCharacters);
   return { start, end: Math.min(cursor, 180), text };
 });
+
+// Full-video 25s corresponds to audio 22s after the 3-second intro.
+// Retain the paragraph's original end so later scenes do not move.
+const analysisFirst = captions.findIndex((cue) => cue.text.startsWith("精神分析提供了一种理解角度"));
+const analysisLast = captions.findIndex((cue, index) => index >= analysisFirst && cue.text.includes("演”了出来"));
+if (analysisFirst >= 0 && analysisLast >= analysisFirst) {
+  const originalStart = captions[analysisFirst].start;
+  const originalEnd = captions[analysisLast].end;
+  const revisedStart = 22;
+  const remap = (time: number) => revisedStart + (time - originalStart) / (originalEnd - originalStart) * (originalEnd - revisedStart);
+  for (let index = analysisFirst; index <= analysisLast; index++) {
+    captions[index] = {...captions[index], start: remap(captions[index].start), end: remap(captions[index].end)};
+  }
+  // Prevent the preceding caption from hiding the newly advanced paragraph.
+  for (let index = 0; index < analysisFirst; index++) {
+    if (captions[index].end > revisedStart) {
+      captions[index] = {...captions[index], start: Math.min(captions[index].start, revisedStart), end: revisedStart};
+    }
+  }
+}
+
+// Manual subtitle anchor: full-video 29s (audio 26s).
+const innerConflictIndex = captions.findIndex((cue) => cue.text.startsWith("可能是孩子把内在冲突"));
+if (innerConflictIndex >= 0) {
+  captions[innerConflictIndex] = {...captions[innerConflictIndex], start: 26};
+  if (innerConflictIndex > 0) {
+    captions[innerConflictIndex - 1] = {...captions[innerConflictIndex - 1], end: 26};
+  }
+}
+
+// Manual subtitle range: full-video 37–38s (audio 34–35s).
+const idImpulseIndex = captions.findIndex((cue) => cue.text.startsWith("本我追求立刻满足"));
+if (idImpulseIndex >= 0) {
+  captions[idImpulseIndex] = {...captions[idImpulseIndex], start: 34, end: 35};
+}
+
+// Manual subtitle range: full-video 32–35s (audio 29–32s).
+const freudIndex = captions.findIndex((cue) => cue.text.startsWith("弗洛伊德把人的心理活动"));
+if (freudIndex >= 0) {
+  captions[freudIndex] = {...captions[freudIndex], start: 29, end: 32};
+  if (freudIndex > 0) {
+    captions[freudIndex - 1] = {...captions[freudIndex - 1], end: 29};
+  }
+}
+
+// Split the opening question into three consecutive, non-overlapping cues.
+// Keep its existing total duration and all later subtitle anchors unchanged.
+const openingLast = captions.findIndex((cue) => cue.text.includes("？"));
+if (openingLast >= 0 && captions[0].text.startsWith("为什么同一家幼儿园里")) {
+  const openingStart = captions[0].start;
+  const openingEnd = captions[openingLast].end;
+  const lines = ["为什么同一家幼儿园里", "有的孩子安静守规矩", "有的孩子却频繁闯祸？"];
+  const totalLength = lines.reduce((sum, text) => sum + text.length, 0);
+  let consumed = 0;
+  const openingCues = lines.map((text, index) => {
+    const start = openingStart + (openingEnd - openingStart) * consumed / totalLength;
+    consumed += text.length;
+    const end = index === lines.length - 1 ? openingEnd : openingStart + (openingEnd - openingStart) * consumed / totalLength;
+    return {text, start, end};
+  });
+  captions.splice(0, openingLast + 1, ...openingCues);
+}

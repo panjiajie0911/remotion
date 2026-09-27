@@ -26,7 +26,7 @@ import {ThinkingObservationScene, THINKING_OBSERVATION_AUDIO_START, THINKING_OBS
 // 时间以音频开始后计，再加上片头的 3 秒。
 export const PSYCHOLOGY_STRUCTURE_START = SERIES_INTRO_DURATION + Math.round(34.39 * 30);
 // 三句台词拆开后，分别从音频 40.42s、42.68s、44.94s 开始。
-export const ID_IMPULSE_START = SERIES_INTRO_DURATION + Math.round(40.4 * 30);
+export const ID_IMPULSE_START = 37 * 30;
 export const SELF_REALITY_START = SERIES_INTRO_DURATION + Math.round(42.68 * 30);
 export const SUPEREGO_VALUES_START = SERIES_INTRO_DURATION + Math.round(44.94 * 30);
 
@@ -57,7 +57,7 @@ export const Episode02 = () => (
       />
     </Sequence>
     <Sequence from={SERIES_INTRO_DURATION} durationInFrames={5400}>
-      <Audio src={staticFile("episodes/episode-02/2.m4a")} />
+      <Audio src={staticFile("episodes/episode-02/2.mp3")} />
     </Sequence>
     <Sequence from={SERIES_INTRO_DURATION} durationInFrames={KINDERGARTEN_CONTRAST_DURATION}>
       <KindergartenContrastScene />

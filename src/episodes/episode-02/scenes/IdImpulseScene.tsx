@@ -3,20 +3,22 @@ import demon from "../assets/img/demon.png";
 import candy from "../assets/img/candy.png";
 import toy from "../assets/img/toy.png";
 
-// 拆分后的第一句台词对应约 43.4s–45.7s。
-export const ID_IMPULSE_DURATION = 68;
+// Full-video 37–38 seconds at 30fps.
+export const ID_IMPULSE_DURATION = 30;
 
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
 
 /** “本我追求立刻满足”：角色被目标吸引，马上冲过去伸手去拿。 */
 export const IdImpulseScene = () => {
-  const frame = useCurrentFrame();
+  const localFrame = useCurrentFrame();
+  // Preserve the complete original choreography within the shorter shot.
+  const frame = localFrame * 67 / (ID_IMPULSE_DURATION - 1);
   const { fps } = useVideoConfig();
   const entrance = spring({ frame, fps, config: { damping: 18, mass: 0.8, stiffness: 110 } });
   const labelOpacity = interpolate(frame, [0, 10], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const targetProgress = interpolate(frame, [7, 22], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const rushProgress = interpolate(frame, [22, 61], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
-  const exitOpacity = interpolate(frame, [ID_IMPULSE_DURATION - 8, ID_IMPULSE_DURATION], [1, 0], {
+  const exitOpacity = interpolate(localFrame, [ID_IMPULSE_DURATION - 3, ID_IMPULSE_DURATION], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
