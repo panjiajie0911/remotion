@@ -17,6 +17,7 @@ import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./scenes/Superego
 import { CommonCausesScene, COMMON_CAUSES_START, COMMON_CAUSES_DURATION } from "./scenes/CommonCausesScene";
 import { SuppressedNeedScene, SUPPRESSED_NEED_DURATION } from "./scenes/SuppressedNeedScene";
 import { captions } from "./script/captions";
+import {DeathInstinctScene, DEATH_INSTINCT_AUDIO_START, DEATH_INSTINCT_DURATION} from "./scenes/DeathInstinctScene";
 
 // 第三镜头对应旁白“弗洛伊德把人的心理活动分为……”的起始位置。
 // 时间以音频开始后计，再加上片头的 3 秒。
@@ -82,6 +83,9 @@ export const Episode02 = () => (
     </Sequence>
     <Sequence from={SUPPRESSED_NEED_START} durationInFrames={SUPPRESSED_NEED_DURATION} name="管教过度严厉 · 合理需求被压制">
       <SuppressedNeedScene />
+    </Sequence>
+    <Sequence from={SERIES_INTRO_DURATION + DEATH_INSTINCT_AUDIO_START} durationInFrames={DEATH_INSTINCT_DURATION} name="经典精神分析 · 死本能">
+      <DeathInstinctScene />
     </Sequence>
     <CaptionTrack
       hiddenIntervals={[{ start: SUPEREGO_VALUES_START / 30, end: (SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION) / 30 }]}
