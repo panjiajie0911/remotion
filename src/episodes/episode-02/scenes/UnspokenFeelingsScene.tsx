@@ -6,7 +6,8 @@ import afraid from "../assets/img/afraid.png";
 import sad from "../assets/img/sad.png";
 import {theme} from "../../../lib/theme";
 
-export const UNSPOKEN_FEELINGS_DURATION = 270;
+// Full-video 58.5–66 seconds at 30fps.
+export const UNSPOKEN_FEELINGS_DURATION = 225;
 const clamp = {extrapolateLeft: "clamp", extrapolateRight: "clamp"} as const;
 const feelings = [
   {label: "被忽视", src: ignored, start: 2, end: 3.5, width: 650},

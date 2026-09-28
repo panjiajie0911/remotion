@@ -4,7 +4,9 @@ import father from "../assets/img/father-hug.png";
 import hug from "../assets/img/hug.png";
 import {theme} from "../../../lib/theme";
 
-export const SEEKING_ATTENTION_DURATION = 300;
+// Full-video 66–78.5 seconds at 30fps.
+// Full-video 66–73.5 seconds at 30fps.
+export const SEEKING_ATTENTION_DURATION = 225;
 const clamp = {extrapolateLeft: "clamp", extrapolateRight: "clamp"} as const;
 
 /** Running toward a caregiver, then being held; a possible bid for attention. */

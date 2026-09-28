@@ -134,6 +134,49 @@ if (dissatisfied >= 0) captions[dissatisfied] = {...captions[dissatisfied], star
 if (directAction >= 0) captions[directAction] = {...captions[directAction], start: 50, end: 52};
 if (dissatisfied > 0) captions[dissatisfied - 1] = {...captions[dissatisfied - 1], end: 49};
 
+const unspokenFirst = captions.findIndex((cue) => cue.text.includes("年幼的孩子很难说清楚"));
+const unspokenLast = captions.findIndex((cue, index) => index >= unspokenFirst && cue.text.includes("害怕或者委屈"));
+if (unspokenFirst >= 0 && unspokenLast >= unspokenFirst) {
+  const sourceStart = captions[unspokenFirst].start;
+  const sourceEnd = captions[unspokenLast].end;
+  for (let index = unspokenFirst; index <= unspokenLast; index++) {
+    const cue = captions[index];
+    captions[index] = {...cue, start: 55.5 + (cue.start - sourceStart) / (sourceEnd - sourceStart) * 7.5, end: 55.5 + (cue.end - sourceStart) / (sourceEnd - sourceStart) * 7.5};
+  }
+}
+
+const seekingFirst = captions.findIndex((cue) => cue.text.includes("他们可能通过捣乱"));
+const seekingLast = captions.findIndex((cue, index) => index >= seekingFirst && cue.text.includes("并试图获得关注"));
+if (seekingFirst >= 0 && seekingLast >= seekingFirst) {
+  const sourceStart = captions[seekingFirst].start;
+  const sourceEnd = captions[seekingLast].end;
+  for (let index = seekingFirst; index <= seekingLast; index++) {
+    const cue = captions[index];
+    captions[index] = {...cue, start: 63 + (cue.start - sourceStart) / (sourceEnd - sourceStart) * 7.5, end: 63 + (cue.end - sourceStart) / (sourceEnd - sourceStart) * 7.5};
+  }
+}
+
+const boundaryFirst = captions.findIndex((cue) => cue.text.startsWith("当情绪失控时"));
+const boundaryLast = captions.findIndex((cue, index) => index >= boundaryFirst && cue.text.startsWith("稳定的边界"));
+if (boundaryFirst >= 0 && boundaryLast >= boundaryFirst) {
+  const sourceStart = captions[boundaryFirst].start;
+  const sourceEnd = captions[boundaryLast].end;
+  const targetStart = 120.5;
+  const targetEnd = 126.5;
+  for (let index = boundaryFirst; index <= boundaryLast; index++) {
+    const cue = captions[index];
+    captions[index] = {...cue, start: targetStart + (cue.start - sourceStart) / (sourceEnd - sourceStart) * (targetEnd - targetStart), end: targetStart + (cue.end - sourceStart) / (sourceEnd - sourceStart) * (targetEnd - targetStart)};
+  }
+  const shift = targetEnd - sourceEnd;
+  for (let index = boundaryLast + 1; index < captions.length; index++) captions[index] = {...captions[index], start: captions[index].start + shift, end: captions[index].end + shift};
+}
+
+const attentionNotice = captions.findIndex((cue) => cue.text.includes("需要注意的是这种行为"));
+if (attentionNotice >= 0) {
+  captions[attentionNotice] = {...captions[attentionNotice], start: 75.5};
+  if (attentionNotice > 0) captions[attentionNotice - 1] = {...captions[attentionNotice - 1], end: 75.5};
+}
+
 // Display-only segmentation: scene timing lookups continue to use captions above.
 // Keep short connective words with the following clause instead of flashing alone.
 export const displayCaptions: CaptionCue[] = captions.flatMap((cue) => {
