@@ -5,7 +5,8 @@ import fight from "../assets/img/fight-boy.png";
 import negative from "../assets/img/negitive-boy.png";
 import { theme } from "../../../lib/theme";
 
-export const NOT_BAD_CHILD_DURATION = 90;
+// Full-video 55–58.5 seconds at 30fps.
+export const NOT_BAD_CHILD_DURATION = 105;
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 /** A short reframing beat: a behavior does not define the child. */

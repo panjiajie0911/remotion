@@ -120,6 +120,20 @@ if (twinsFirst >= 0 && twinsLast >= twinsFirst) {
   if (captions[twinsLast + 1]?.start < 16) captions[twinsLast + 1] = {...captions[twinsLast + 1], start: 16};
 }
 
+// Manual boundary: this shot occupies full-video 55–58.5s (audio-relative 52–55.5s).
+const notBadShot = captions.findIndex((cue) => cue.text.startsWith("这不等于孩子天生就坏"));
+const impulseManage = captions.findIndex((cue) => cue.text.startsWith("很多时候"));
+if (notBadShot >= 0) captions[notBadShot] = {...captions[notBadShot], start: 52, end: 54};
+if (impulseManage >= 0) captions[impulseManage] = {...captions[impulseManage], start: 54, end: 55.5};
+if (notBadShot > 0) captions[notBadShot - 1] = {...captions[notBadShot - 1], end: 52};
+
+// Repair the preceding reaction sequence after the 55–58.5s manual anchor.
+const dissatisfied = captions.findIndex((cue) => cue.text.startsWith("感到不满"));
+const directAction = captions.findIndex((cue) => cue.text.startsWith("会直接哭闹"));
+if (dissatisfied >= 0) captions[dissatisfied] = {...captions[dissatisfied], start: 49, end: 50};
+if (directAction >= 0) captions[directAction] = {...captions[directAction], start: 50, end: 52};
+if (dissatisfied > 0) captions[dissatisfied - 1] = {...captions[dissatisfied - 1], end: 49};
+
 // Display-only segmentation: scene timing lookups continue to use captions above.
 // Keep short connective words with the following clause instead of flashing alone.
 export const displayCaptions: CaptionCue[] = captions.flatMap((cue) => {

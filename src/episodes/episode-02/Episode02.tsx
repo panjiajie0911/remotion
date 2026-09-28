@@ -85,7 +85,7 @@ export const Episode02 = () => (
     </Sequence>
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION} durationInFrames={IMPULSE_GRAB_DURATION} name="自我控制 · 立刻拿取"><ImpulseGrabScene /></Sequence>
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION} durationInFrames={DIRECT_REACTIONS_DURATION} name="直接情绪反应"><DirectReactionsScene /></Sequence>
-    <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION} durationInFrames={NOT_BAD_CHILD_DURATION} name="行为不等于孩子本身"><NotBadChildScene /></Sequence>
+    <Sequence from={55 * 30} durationInFrames={NOT_BAD_CHILD_DURATION} name="行为不等于孩子本身"><NotBadChildScene /></Sequence>
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION + NOT_BAD_CHILD_DURATION} durationInFrames={LEARNING_PAUSE_DURATION} name="学习管理冲动"><LearningPauseScene /></Sequence>
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION + NOT_BAD_CHILD_DURATION + LEARNING_PAUSE_DURATION} durationInFrames={UNSPOKEN_FEELINGS_DURATION} name="说不清的感受"><UnspokenFeelingsScene /></Sequence>
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION + NOT_BAD_CHILD_DURATION + LEARNING_PAUSE_DURATION + UNSPOKEN_FEELINGS_DURATION} durationInFrames={SEEKING_ATTENTION_DURATION} name="寻求关注 · 拥抱"><SeekingAttentionScene /></Sequence>
