@@ -1,6 +1,7 @@
 import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 
-export const PSYCHOLOGY_STRUCTURE_DURATION = 240;
+// Full-video 32–37 seconds at 30fps.
+export const PSYCHOLOGY_STRUCTURE_DURATION = 150;
 
 type CardSpec = {
   label: string;

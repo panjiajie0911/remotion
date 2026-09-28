@@ -1,7 +1,8 @@
 import { AbsoluteFill, Easing, Img, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import balance from "../assets/img/balance.png";
 
-export const SELF_REALITY_DURATION = 68;
+// Full-video 38–40 seconds at 30fps.
+export const SELF_REALITY_DURATION = 60;
 
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
 

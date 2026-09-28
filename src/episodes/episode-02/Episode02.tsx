@@ -27,11 +27,11 @@ import {ThinkingObservationScene, THINKING_OBSERVATION_AUDIO_START, THINKING_OBS
 
 // 第三镜头对应旁白“弗洛伊德把人的心理活动分为……”的起始位置。
 // 时间以音频开始后计，再加上片头的 3 秒。
-export const PSYCHOLOGY_STRUCTURE_START = SERIES_INTRO_DURATION + Math.round(34.39 * 30);
+export const PSYCHOLOGY_STRUCTURE_START = 32 * 30;
 // 三句台词拆开后，分别从音频 40.42s、42.68s、44.94s 开始。
 export const ID_IMPULSE_START = 37 * 30;
-export const SELF_REALITY_START = SERIES_INTRO_DURATION + Math.round(42.68 * 30);
-export const SUPEREGO_VALUES_START = SERIES_INTRO_DURATION + Math.round(44.94 * 30);
+export const SELF_REALITY_START = 38 * 30;
+export const SUPEREGO_VALUES_START = 40 * 30;
 
 // Follow the existing subtitle range, including both chunks of this sentence.
 const effectiveApproachFirst = captions.findIndex((cue) => cue.text.startsWith("真正有效的做法"));

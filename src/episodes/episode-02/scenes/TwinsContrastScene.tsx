@@ -16,10 +16,7 @@ export const TwinsContrastScene = () => {
   const t = useCurrentFrame() / fps;
   const reveal = interpolate(t, [0.9, 2.1], [0, 1], {...clamp, easing: Easing.inOut(Easing.cubic)});
   return <AbsoluteFill style={{backgroundColor: "#fff", fontFamily: theme.fonts.sans, color: theme.colors.text}}>
-    <div style={{position: "absolute", left: 60, right: 60, top: 245, textAlign: "center"}}>
-      <div style={{fontSize: 36, fontWeight: 700, color: theme.colors.primary}}>即使是双胞胎</div>
-      <div style={{fontSize: 58, fontWeight: 700, marginTop: 28, opacity: interpolate(t,[1.8,2.2],[0,1],clamp)}}>也可能有不同的表现</div>
-    </div>
+  
     {[{src: quiet, label: "安静探索", left: 70}, {src: lively, label: "主动互动", left: 585}].map((item, index) => <div key={item.label} style={{position: "absolute", left: item.left, top: 620, width: 425}}>
       <div style={{position: "relative", width: 425, height: 340 + reveal * 360, overflow: "hidden", borderRadius: 32}}>
         <Img src={item.src} style={{position: "absolute", width: 425, height: 650, objectFit: "contain", objectPosition: "center top",
