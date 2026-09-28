@@ -31,7 +31,7 @@ export const PSYCHOLOGY_STRUCTURE_START = 32 * 30;
 // 三句台词拆开后，分别从音频 40.42s、42.68s、44.94s 开始。
 export const ID_IMPULSE_START = 37 * 30;
 export const SELF_REALITY_START = 38 * 30;
-export const SUPEREGO_VALUES_START = 40 * 30;
+export const SUPEREGO_VALUES_START = 42 * 30;
 
 // Follow the existing subtitle range, including both chunks of this sentence.
 const effectiveApproachFirst = captions.findIndex((cue) => cue.text.startsWith("真正有效的做法"));

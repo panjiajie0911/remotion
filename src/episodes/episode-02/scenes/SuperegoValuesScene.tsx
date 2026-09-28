@@ -2,7 +2,7 @@ import { AbsoluteFill, Easing, Img, interpolate, spring, useCurrentFrame, useVid
 import angel from "../assets/img/angel.png";
 import cloud from "../assets/img/cloud.png";
 
-// Full-video 40–42 seconds at 30fps.
+// Full-video 42–44 seconds at 30fps.
 export const SUPEREGO_VALUES_DURATION = 60;
 
 const ease = Easing.bezier(0.16, 1, 0.3, 1);

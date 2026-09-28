@@ -3,7 +3,8 @@ import cry from "../assets/img/cry-boy.png";
 import fight from "../assets/img/fight-boy.png";
 import negative from "../assets/img/negitive-boy.png";
 import {theme} from "../../../lib/theme";
-export const DIRECT_REACTIONS_DURATION = 180;
+// Ends at full-video 54s after the preceding 45s shot.
+export const DIRECT_REACTIONS_DURATION = 270;
 export const DirectReactionsScene = () => {
  const frame=useCurrentFrame(); const t=frame/30; const fade=(a:number,b:number)=>interpolate(t,[a,b],[0,1],{extrapolateLeft:"clamp",extrapolateRight:"clamp"});
  const phases=[{src:cry,label:"哭闹",from:0,to:1.8,left:90},{src:fight,label:"抢夺",from:1.8,to:3.6,left:395},{src:negative,label:"顶嘴",from:3.6,to:5.4,left:700}];
