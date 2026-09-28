@@ -1,3 +1,4 @@
+import { InnerConflictScene, INNER_CONFLICT_START, INNER_CONFLICT_DURATION } from "./scenes/InnerConflictScene";
 import { MultipleCausesScene, MULTIPLE_CAUSES_START, MULTIPLE_CAUSES_DURATION } from "./scenes/MultipleCausesScene";
 import { TwinsContrastScene, TWINS_START, TWINS_DURATION } from "./scenes/TwinsContrastScene";
 import { PermissiveParentScene, PERMISSIVE_PARENT_DURATION } from "./scenes/PermissiveParentScene";
@@ -69,6 +70,7 @@ export const Episode02 = () => (
     </Sequence>
     <Sequence from={TWINS_START} durationInFrames={TWINS_DURATION} name="双胞胎 · 不同表现"><TwinsContrastScene /></Sequence>
     <Sequence from={MULTIPLE_CAUSES_START} durationInFrames={MULTIPLE_CAUSES_DURATION} name="多种因素 · 共同影响"><MultipleCausesScene /></Sequence>
+    <Sequence from={INNER_CONFLICT_START} durationInFrames={INNER_CONFLICT_DURATION} name="内在冲突 · 行为表达"><InnerConflictScene /></Sequence>
     <Sequence from={PSYCHOLOGY_STRUCTURE_START} durationInFrames={PSYCHOLOGY_STRUCTURE_DURATION}>
       <PsychologyStructureScene />
     </Sequence>
@@ -120,6 +122,7 @@ export const Episode02 = () => (
     <ProgressBar />
   </AbsoluteFill>
 );
+
 
 
 

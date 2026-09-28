@@ -1,3 +1,4 @@
+import { InnerConflictScene, INNER_CONFLICT_DURATION } from "./episodes/episode-02/scenes/InnerConflictScene";
 import { MultipleCausesScene, MULTIPLE_CAUSES_DURATION } from "./episodes/episode-02/scenes/MultipleCausesScene";
 import { TwinsContrastScene, TWINS_DURATION } from "./episodes/episode-02/scenes/TwinsContrastScene";
 import { PermissiveParentScene, PERMISSIVE_PARENT_DURATION } from "./episodes/episode-02/scenes/PermissiveParentScene";
@@ -33,6 +34,7 @@ const calculateMetadata: CalculateMetadataFunction<Props> = () => {
 export const MyComposition = () => {
   return (
     <>
+      <Composition id="Episode02InnerConflict" component={InnerConflictScene} durationInFrames={INNER_CONFLICT_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02MultipleCauses" component={MultipleCausesScene} durationInFrames={MULTIPLE_CAUSES_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02TwinsContrast" component={TwinsContrastScene} durationInFrames={TWINS_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02ClosingAvatar" component={ClosingAvatarScene} durationInFrames={CLOSING_AVATAR_DURATION} fps={30} width={1080} height={1920} />
@@ -59,6 +61,7 @@ export const MyComposition = () => {
     </>
   );
 };
+
 
 
 
