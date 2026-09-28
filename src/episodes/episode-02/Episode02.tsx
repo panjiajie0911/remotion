@@ -1,3 +1,4 @@
+import { TwinsContrastScene, TWINS_START, TWINS_DURATION } from "./scenes/TwinsContrastScene";
 import { PermissiveParentScene, PERMISSIVE_PARENT_DURATION } from "./scenes/PermissiveParentScene";
 import { EmotionBoundaryScene, EMOTION_BOUNDARY_DURATION } from "./scenes/EmotionBoundaryScene";
 import { GoodEnoughEnvironmentScene, GOOD_ENOUGH_ENVIRONMENT_DURATION } from "./scenes/GoodEnoughEnvironmentScene";
@@ -65,6 +66,7 @@ export const Episode02 = () => (
     <Sequence from={COMMON_CAUSES_START} durationInFrames={COMMON_CAUSES_DURATION} name="常见归因 · 年龄与家庭教育">
       <CommonCausesScene />
     </Sequence>
+    <Sequence from={TWINS_START} durationInFrames={TWINS_DURATION} name="双胞胎 · 不同表现"><TwinsContrastScene /></Sequence>
     <Sequence from={PSYCHOLOGY_STRUCTURE_START} durationInFrames={PSYCHOLOGY_STRUCTURE_DURATION}>
       <PsychologyStructureScene />
     </Sequence>
@@ -116,6 +118,7 @@ export const Episode02 = () => (
     <ProgressBar />
   </AbsoluteFill>
 );
+
 
 
 
