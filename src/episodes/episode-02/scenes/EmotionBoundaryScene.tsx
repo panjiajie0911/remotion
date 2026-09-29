@@ -1,7 +1,7 @@
 import {AbsoluteFill, Img, interpolate, useCurrentFrame, useVideoConfig} from "remotion";
 import comfort from "../assets/img/comfor.png";
 import {theme} from "../../../lib/theme";
-// Full-video 123.5–129.5 seconds at 30fps.
+// Full-video 83.5–89.5 seconds at 30fps.
 export const EMOTION_BOUNDARY_DURATION = 180;
 const clamp={extrapolateLeft:"clamp",extrapolateRight:"clamp"} as const;
 export const EmotionBoundaryScene=()=>{

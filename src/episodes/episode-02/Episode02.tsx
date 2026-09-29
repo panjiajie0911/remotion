@@ -90,9 +90,9 @@ export const Episode02 = () => (
     <Sequence from={Math.round(58.5 * 30)} durationInFrames={UNSPOKEN_FEELINGS_DURATION} name="说不清的感受"><UnspokenFeelingsScene /></Sequence>
     <Sequence from={66 * 30} durationInFrames={SEEKING_ATTENTION_DURATION} name="寻求关注 · 拥抱"><SeekingAttentionScene /></Sequence>
     <Sequence from={Math.round(78.5 * 30)} durationInFrames={GOOD_ENOUGH_ENVIRONMENT_DURATION} name="足够好的环境"><GoodEnoughEnvironmentScene /></Sequence>
-    <Sequence from={Math.round(123.5 * 30)} durationInFrames={EMOTION_BOUNDARY_DURATION} name="理解感受 · 稳定边界"><EmotionBoundaryScene /></Sequence>
-    <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION + NOT_BAD_CHILD_DURATION + LEARNING_PAUSE_DURATION + UNSPOKEN_FEELINGS_DURATION + SEEKING_ATTENTION_DURATION + GOOD_ENOUGH_ENVIRONMENT_DURATION + EMOTION_BOUNDARY_DURATION} durationInFrames={PERMISSIVE_PARENT_DURATION} name="放任 · 缺少规则引导"><PermissiveParentScene /></Sequence>
-    <Sequence from={EFFECTIVE_APPROACH_START} durationInFrames={EFFECTIVE_APPROACH_DURATION} name="温和而坚定 · 复用亲子房屋镜头">
+    <Sequence from={Math.round(83.5 * 30)} durationInFrames={EMOTION_BOUNDARY_DURATION} name="理解感受 · 稳定边界"><EmotionBoundaryScene /></Sequence>
+    <Sequence from={Math.round(89.5 * 30)} durationInFrames={PERMISSIVE_PARENT_DURATION} name="放任 · 缺少规则引导"><PermissiveParentScene /></Sequence>
+    <Sequence from={Math.round(99 * 30)} durationInFrames={270} name="温和而坚定 · 复用亲子房屋镜头">
       <GoodEnoughEnvironmentScene />
     </Sequence>
     <Sequence from={SUPPRESSED_NEED_START} durationInFrames={SUPPRESSED_NEED_DURATION} name="管教过度严厉 · 合理需求被压制">

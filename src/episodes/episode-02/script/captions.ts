@@ -161,8 +161,8 @@ const boundaryLast = captions.findIndex((cue, index) => index >= boundaryFirst &
 if (boundaryFirst >= 0 && boundaryLast >= boundaryFirst) {
   const sourceStart = captions[boundaryFirst].start;
   const sourceEnd = captions[boundaryLast].end;
-  const targetStart = 120.5;
-  const targetEnd = 126.5;
+  const targetStart = 80.5;
+  const targetEnd = 86.5;
   for (let index = boundaryFirst; index <= boundaryLast; index++) {
     const cue = captions[index];
     captions[index] = {...cue, start: targetStart + (cue.start - sourceStart) / (sourceEnd - sourceStart) * (targetEnd - targetStart), end: targetStart + (cue.end - sourceStart) / (sourceEnd - sourceStart) * (targetEnd - targetStart)};
@@ -177,9 +177,62 @@ if (attentionNotice >= 0) {
   if (attentionNotice > 0) captions[attentionNotice - 1] = {...captions[attentionNotice - 1], end: 75.5};
 }
 
+const permissiveFirst = captions.findIndex((cue) => cue.text.includes("如果父母一味放任"));
+const permissiveLast = captions.findIndex((cue, index) => index >= permissiveFirst && cue.text.includes("孩子很难学会规则"));
+if (permissiveFirst >= 0 && permissiveLast >= permissiveFirst) {
+  const sourceStart = captions[permissiveFirst].start;
+  const targetStart = 86.5;
+  for (let index = permissiveFirst; index <= permissiveLast; index++) {
+    const cue = captions[index];
+    captions[index] = {...cue, start: targetStart + (cue.start - sourceStart), end: targetStart + (cue.end - sourceStart)};
+  }
+  if (permissiveFirst > 0) captions[permissiveFirst - 1] = {...captions[permissiveFirst - 1], end: targetStart};
+}
+
+const effectiveFinal = captions.findIndex((cue) => cue.text.includes("真正有效的做法"));
+const effectiveFinalLast = captions.findIndex((cue, index) => index >= effectiveFinal && cue.text.includes("伤害别人"));
+if (effectiveFinal >= 0 && effectiveFinalLast >= effectiveFinal) {
+  const oldStart = captions[effectiveFinal].start;
+  const oldEnd = captions[effectiveFinalLast].end;
+  const targetStart = 96;
+  for (let index = effectiveFinal; index <= effectiveFinalLast; index++) {
+    const cue = captions[index];
+    captions[index] = {...cue, start: targetStart + (cue.start - oldStart) / (oldEnd - oldStart) * 9, end: targetStart + (cue.end - oldStart) / (oldEnd - oldStart) * 9};
+  }
+  if (effectiveFinal > 0) captions[effectiveFinal - 1] = {...captions[effectiveFinal - 1], end: targetStart};
+}
+
+// Final anchor for the boundary sentence: audio-relative 80.5–86.5s
+// (full-video 83.5–89.5s). Re-apply after all earlier manual anchors.
+const boundaryFinal = captions.findIndex((cue) => cue.text.startsWith("当情绪失控时"));
+if (boundaryFinal >= 0) {
+  const delta = 80.5 - captions[boundaryFinal].start;
+  if (boundaryFinal > 0) {
+    captions[boundaryFinal - 1] = {...captions[boundaryFinal - 1], start: 73.5, end: 80.5};
+    if (boundaryFinal > 1) captions[boundaryFinal - 2] = {...captions[boundaryFinal - 2], end: 73.5};
+  }
+  for (let index = boundaryFinal; index < captions.length; index++) captions[index] = {...captions[index], start: captions[index].start + delta, end: captions[index].end + delta};
+}
+
+// Keep the transition caption immediately before the boundary scene in order.
+if (attentionNotice >= 0) captions[attentionNotice] = {...captions[attentionNotice], start: 70.5, end: 73.5};
+
+// Final order correction after all range remaps.
+if (attentionNotice >= 0) {
+  captions[attentionNotice] = {...captions[attentionNotice], start: 70.5, end: 73.5};
+  captions[attentionNotice].start = 70.5;
+  if (attentionNotice > 0) captions[attentionNotice - 1] = {...captions[attentionNotice - 1], end: 70.5};
+}
+
 // Display-only segmentation: scene timing lookups continue to use captions above.
 // Keep short connective words with the following clause instead of flashing alone.
-export const displayCaptions: CaptionCue[] = captions.flatMap((cue) => {
+// Finalize the transition caption after all manual remaps so it cannot retain an old start.
+if (attentionNotice >= 0) {
+  captions[attentionNotice] = {...captions[attentionNotice], start: 70.5, end: 73.5};
+  if (attentionNotice > 0) captions[attentionNotice - 1] = {...captions[attentionNotice - 1], end: 70.5};
+}
+export const displayCaptions: CaptionCue[] = captions.map((cue) => cue.text.includes("需要注意的是") ? {...cue, start: 70.5, end: 73.5} : cue).flatMap((cue) => {
+  if (cue.text.includes("需要注意的是这种行为")) return [{...cue, start: 70.5, end: 73.5, text: cue.text.replace(/[，。]/g, "")}];
   const parts = cue.text.split(/[，,。.;；：:]/).map((text) => text.trim().replace(/、$/, "")).filter(Boolean);
   const lines: string[] = [];
   let prefix = "";
