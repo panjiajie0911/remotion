@@ -224,6 +224,20 @@ if (attentionNotice >= 0) {
   if (attentionNotice > 0) captions[attentionNotice - 1] = {...captions[attentionNotice - 1], end: 70.5};
 }
 
+// Full-video 108–117s: death instinct and its theoretical limitation.
+const deathRangeFirst = captions.findIndex(c => c.text.startsWith("经典精神分析还用"));
+const deathRangeNext = captions.findIndex(c => c.text.startsWith("现代儿童心理学"));
+if (deathRangeFirst < 0 || deathRangeNext <= deathRangeFirst) throw new Error("未找到死本能完整段落");
+const deathOldStart = captions[deathRangeFirst].start;
+const deathOldEnd = captions[deathRangeNext - 1].end;
+for (let i = deathRangeFirst; i < deathRangeNext; i++) {
+  const cue = captions[i];
+  captions[i] = {...cue, start: 105 + (cue.start - deathOldStart) / (deathOldEnd - deathOldStart) * 9,
+    end: 105 + (cue.end - deathOldStart) / (deathOldEnd - deathOldStart) * 9};
+}
+if (deathRangeFirst > 0) captions[deathRangeFirst - 1] = {...captions[deathRangeFirst - 1], end: 105};
+captions[deathRangeNext] = {...captions[deathRangeNext], start: 114};
+
 // Display-only segmentation: scene timing lookups continue to use captions above.
 // Keep short connective words with the following clause instead of flashing alone.
 // Finalize the transition caption after all manual remaps so it cannot retain an old start.
