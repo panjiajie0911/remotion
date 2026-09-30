@@ -3,8 +3,8 @@ import demon from "../assets/img/demon.png";
 import candy from "../assets/img/candy.png";
 import toy from "../assets/img/toy.png";
 
-// Full-video 37–38 seconds at 30fps.
-export const ID_IMPULSE_DURATION = 30;
+// Full-video 37–39 seconds at 30fps.
+export const ID_IMPULSE_DURATION = 60;
 
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
 

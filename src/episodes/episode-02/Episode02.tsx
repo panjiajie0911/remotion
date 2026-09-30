@@ -19,7 +19,8 @@ import { SelfRealityScene, SELF_REALITY_DURATION } from "./scenes/SelfRealitySce
 import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./scenes/SuperegoValuesScene";
 import { CommonCausesScene, COMMON_CAUSES_START, COMMON_CAUSES_DURATION } from "./scenes/CommonCausesScene";
 import { SuppressedNeedScene, SUPPRESSED_NEED_DURATION } from "./scenes/SuppressedNeedScene";
-import { captions, displayCaptions } from "./script/captions";
+import { captions } from "./script/captions";
+import {sceneCaptions} from "./script/sceneCaptions";
 import {ClosingAvatarScene, CLOSING_AVATAR_AUDIO_START, CLOSING_AVATAR_DURATION} from "./scenes/ClosingAvatarScene";
 import {DeathInstinctScene, DEATH_INSTINCT_AUDIO_START, DEATH_INSTINCT_DURATION} from "./scenes/DeathInstinctScene";
 import {ModernFactorsScene, MODERN_FACTORS_AUDIO_START, MODERN_FACTORS_DURATION} from "./scenes/ModernFactorsScene";
@@ -30,7 +31,7 @@ import {ThinkingObservationScene, THINKING_OBSERVATION_AUDIO_START, THINKING_OBS
 export const PSYCHOLOGY_STRUCTURE_START = 32 * 30;
 // 三句台词拆开后，分别从音频 40.42s、42.68s、44.94s 开始。
 export const ID_IMPULSE_START = 37 * 30;
-export const SELF_REALITY_START = 38 * 30;
+export const SELF_REALITY_START = 39 * 30;
 export const SUPEREGO_VALUES_START = 42 * 30;
 
 // Follow the existing subtitle range, including both chunks of this sentence.
@@ -112,11 +113,7 @@ export const Episode02 = () => (
     </Sequence>
     <CaptionTrack
       hiddenIntervals={[{ start: SUPEREGO_VALUES_START / 30, end: (SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION) / 30 }]}
-      captions={displayCaptions.map((cue) => ({
-        ...cue,
-        start: cue.start + SERIES_INTRO_DURATION / 30,
-        end: cue.end + SERIES_INTRO_DURATION / 30,
-      }))}
+      captions={sceneCaptions}
    
     />
     <ProgressBar />

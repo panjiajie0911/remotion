@@ -45,7 +45,9 @@ export const ThinkingObservationScene = () => {
   return <AbsoluteFill style={{backgroundColor: "#F7F4EE", fontFamily: theme.fonts.sans, color: "#252A33", overflow: "hidden"}}>
     <div style={{position: "absolute", top: 210, left: 80, right: 80, textAlign: "center", opacity: interpolate(frame, [0, 18], [0, 1], ease)}}>
       <Sequence durationInFrames={observe} layout="none"><Interactive.Div name="开场标题" style={{fontSize: 76, fontWeight: 800, color: "#527DCE"}}>先别急着贴标签</Interactive.Div></Sequence>
-      <Sequence from={observe} layout="none"><Interactive.Div name="观察标题" style={{fontSize: 76, fontWeight: 800, color: "#527DCE"}}>重要的是观察</Interactive.Div></Sequence>
+      <Sequence from={observe} layout="none">
+        {/* <Interactive.Div name="观察标题" style={{fontSize: 76, fontWeight: 800, color: "#527DCE"}}>重要的是观察</Interactive.Div> */}
+        </Sequence>
       <div style={{width: 150, height: 5, backgroundColor: "#C3A66B", margin: "30px auto"}} />
     </div>
     <div style={{position: "absolute", left: 80, right: 80, top: 500, textAlign: "center", fontSize: 48, lineHeight: 1.7, opacity: interpolate(frame, [when, when + 15, clouds[0].start - 16, clouds[0].start], [0, 1, 1, 0], ease)}}>
