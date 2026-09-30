@@ -9,8 +9,10 @@ const firstIndex = captions.findIndex((cue) => cue.text.startsWith("所以，比
 const lastIndex = captions.findIndex((cue, index) => index >= firstIndex && cue.text.includes("试探边界"));
 if (firstIndex < 0 || lastIndex < firstIndex) throw new Error("未找到观察行为段落字幕");
 const cues = captions.slice(firstIndex, lastIndex + 1);
-export const THINKING_OBSERVATION_AUDIO_START = Math.round(cues[0].start * 30);
-export const THINKING_OBSERVATION_DURATION = Math.round(cues[cues.length - 1].end * 30) - THINKING_OBSERVATION_AUDIO_START;
+// Full-video placement is 2:11–2:21.5. Episode02 adds the 3-second intro
+// offset, so expose the corresponding audio-relative start and fixed duration.
+export const THINKING_OBSERVATION_AUDIO_START = Math.round(128 * 30);
+export const THINKING_OBSERVATION_DURATION = Math.round(10.5 * 30);
 // Word timings inherit the existing character-based estimates, not audio alignment.
 const wordFrame = (word: string) => {
   const cue = cues.find((item) => item.text.includes(word));

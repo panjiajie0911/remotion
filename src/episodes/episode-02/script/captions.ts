@@ -256,6 +256,22 @@ if (modernRangeFirst >= 0 && modernRangeLast >= modernRangeFirst) {
   }
 }
 
+// Observation scene: full-video 2:11–2:21.5.
+const observationFirst = captions.findIndex(c => c.text.startsWith("所以，比起简单地说"));
+const observationLast = captions.findIndex((c, i) => i >= observationFirst && c.text.includes("试探边界"));
+if (observationFirst >= 0 && observationLast >= observationFirst) {
+  const oldStart = captions[observationFirst].start;
+  const oldEnd = captions[observationLast].end;
+  for (let i = observationFirst; i <= observationLast; i++) {
+    const cue = captions[i];
+    captions[i] = {...cue,
+      start: 131 + (cue.start - oldStart) / (oldEnd - oldStart) * 10.5,
+      end: 131 + (cue.end - oldStart) / (oldEnd - oldStart) * 10.5};
+  }
+  if (observationFirst > 0) captions[observationFirst - 1] = {...captions[observationFirst - 1], end: 131};
+  if (observationLast + 1 < captions.length) captions[observationLast + 1] = {...captions[observationLast + 1], start: 141.5};
+}
+
 // Display-only segmentation: scene timing lookups continue to use captions above.
 // Keep short connective words with the following clause instead of flashing alone.
 // Finalize the transition caption after all manual remaps so it cannot retain an old start.
