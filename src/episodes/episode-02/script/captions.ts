@@ -238,6 +238,24 @@ for (let i = deathRangeFirst; i < deathRangeNext; i++) {
 if (deathRangeFirst > 0) captions[deathRangeFirst - 1] = {...captions[deathRangeFirst - 1], end: 105};
 captions[deathRangeNext] = {...captions[deathRangeNext], start: 114};
 
+// Modern child-psychology factors: full-video 1:54–2:11.
+// The following observation scene starts at the same 2:11 boundary.
+const modernRangeFirst = captions.findIndex(c => c.text.startsWith("现代儿童心理学"));
+const modernRangeLast = captions.findIndex((c, i) => i >= modernRangeFirst && c.text.includes("综合理解孩子的攻击或破坏行为"));
+if (modernRangeFirst >= 0 && modernRangeLast >= modernRangeFirst) {
+  const oldStart = captions[modernRangeFirst].start;
+  const oldEnd = captions[modernRangeLast].end;
+  for (let i = modernRangeFirst; i <= modernRangeLast; i++) {
+    const cue = captions[i];
+    captions[i] = {...cue,
+      start: 114 + (cue.start - oldStart) / (oldEnd - oldStart) * 14,
+      end: 114 + (cue.end - oldStart) / (oldEnd - oldStart) * 14};
+  }
+  if (modernRangeLast + 1 < captions.length) {
+    captions[modernRangeLast + 1] = {...captions[modernRangeLast + 1], start: 128};
+  }
+}
+
 // Display-only segmentation: scene timing lookups continue to use captions above.
 // Keep short connective words with the following clause instead of flashing alone.
 // Finalize the transition caption after all manual remaps so it cannot retain an old start.
