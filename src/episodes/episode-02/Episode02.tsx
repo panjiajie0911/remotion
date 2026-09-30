@@ -59,7 +59,7 @@ export const Episode02 = () => (
         title={["你的孩子的", "“熊”", "来自哪里"]}
       />
     </Sequence>
-    <Sequence from={SERIES_INTRO_DURATION} durationInFrames={5400}>
+    <Sequence from={SERIES_INTRO_DURATION} durationInFrames={CLOSING_AVATAR_AUDIO_START + CLOSING_AVATAR_DURATION}>
       <Audio src={staticFile("episodes/episode-02/2.mp3")} />
     </Sequence>
     <Sequence from={SERIES_INTRO_DURATION} durationInFrames={KINDERGARTEN_CONTRAST_DURATION}>

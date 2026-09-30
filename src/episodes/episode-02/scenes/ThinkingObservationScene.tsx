@@ -20,13 +20,17 @@ const wordFrame = (word: string) => {
   return Math.round((cue.start + (cue.end - cue.start) * cue.text.indexOf(word) / cue.text.length) * 30) - THINKING_OBSERVATION_AUDIO_START;
 };
 const clouds = [
-  {text: "不会表达", left: 65, top: 560},
-  {text: "控制不住", left: 390, top: 440},
-  {text: "试探边界", left: 715, top: 560},
-].map((cloud) => ({...cloud, start: wordFrame(cloud.text)}));
-const observe = wordFrame("重要的是观察");
-const when = wordFrame("这个行为");
-const meaning = wordFrame("孩子想表达什么");
+  // Scene starts at full-video 2:11, so these are local frames 7s/8s/9s.
+  {text: "不会表达", left: 65, top: 560, start: 7 * 30},
+  {text: "控制不住", left: 390, top: 440, start: 8 * 30},
+  {text: "试探边界", left: 715, top: 560, start: 9 * 30},
+];
+// Keep the question's entrance before its exit, even when caption timing
+// extends beyond the manually anchored cloud entrances.
+const questionFadeOut = clouds[0].start - 16;
+const when = Math.max(1, Math.min(wordFrame("这个行为"), questionFadeOut - 30));
+const observe = Math.max(1, Math.min(wordFrame("重要的是观察"), when - 15));
+const meaning = Math.max(when + 16, Math.min(wordFrame("孩子想表达什么"), clouds[0].start));
 const ease = {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic)} as const;
 
 const CloudEntrance = ({children, origin}: {children: ReactNode; origin: string}) => {

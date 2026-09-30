@@ -265,11 +265,23 @@ if (observationFirst >= 0 && observationLast >= observationFirst) {
   for (let i = observationFirst; i <= observationLast; i++) {
     const cue = captions[i];
     captions[i] = {...cue,
-      start: 131 + (cue.start - oldStart) / (oldEnd - oldStart) * 10.5,
-      end: 131 + (cue.end - oldStart) / (oldEnd - oldStart) * 10.5};
+      start: 128 + (cue.start - oldStart) / (oldEnd - oldStart) * 10.5,
+      end: 128 + (cue.end - oldStart) / (oldEnd - oldStart) * 10.5};
   }
-  if (observationFirst > 0) captions[observationFirst - 1] = {...captions[observationFirst - 1], end: 131};
-  if (observationLast + 1 < captions.length) captions[observationLast + 1] = {...captions[observationLast + 1], start: 141.5};
+  if (observationFirst > 0) captions[observationFirst - 1] = {...captions[observationFirst - 1], end: 128};
+  if (observationLast + 1 < captions.length) captions[observationLast + 1] = {...captions[observationLast + 1], start: 138.5};
+}
+
+// Closing sentence: full-video 141.5s through the measured audio end.
+const closingFirst = captions.findIndex(c => c.text.startsWith("看懂行为背后的需要"));
+if (closingFirst < 0) throw new Error("未找到收尾字幕");
+const closingOldStart = captions[closingFirst].start;
+const closingOldEnd = captions[captions.length - 1].end;
+for (let i = closingFirst; i < captions.length; i++) {
+  const cue = captions[i];
+  captions[i] = {...cue,
+    start: 138.5 + (cue.start - closingOldStart) / (closingOldEnd - closingOldStart) * (148.3755 - 138.5),
+    end: 138.5 + (cue.end - closingOldStart) / (closingOldEnd - closingOldStart) * (148.3755 - 138.5)};
 }
 
 // Display-only segmentation: scene timing lookups continue to use captions above.

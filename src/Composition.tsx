@@ -20,7 +20,8 @@ import { SelfRealityScene, SELF_REALITY_DURATION } from "./episodes/episode-02/s
 import { SuppressedNeedScene, SUPPRESSED_NEED_DURATION } from "./episodes/episode-02/scenes/SuppressedNeedScene";
 import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "./episodes/episode-02/scenes/SuperegoValuesScene";
 
-import {ClosingAvatarScene, CLOSING_AVATAR_DURATION} from "./episodes/episode-02/scenes/ClosingAvatarScene";
+import {ClosingAvatarScene, CLOSING_AVATAR_AUDIO_START, CLOSING_AVATAR_DURATION} from "./episodes/episode-02/scenes/ClosingAvatarScene";
+import {SERIES_INTRO_DURATION} from "./components";
 
 type Props = {};
 import {DeathInstinctScene, DEATH_INSTINCT_DURATION} from "./episodes/episode-02/scenes/DeathInstinctScene";
@@ -51,7 +52,7 @@ export const MyComposition = () => {
       <Composition id="Episode02DirectReactions" component={DirectReactionsScene} durationInFrames={DIRECT_REACTIONS_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02ImpulseGrab" component={ImpulseGrabScene} durationInFrames={IMPULSE_GRAB_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="MyComp" component={Episode01} durationInFrames={270} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
-      <Composition id="Episode02" component={Episode02} durationInFrames={5490} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
+      <Composition id="Episode02" component={Episode02} durationInFrames={SERIES_INTRO_DURATION + CLOSING_AVATAR_AUDIO_START + CLOSING_AVATAR_DURATION} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
       <Composition id="Episode02CommonCauses" component={CommonCausesScene} durationInFrames={COMMON_CAUSES_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="Episode02Scene03" component={PsychologyStructureScene} durationInFrames={PSYCHOLOGY_STRUCTURE_DURATION} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
       <Composition id="Episode02Scene04Id" component={IdImpulseScene} durationInFrames={ID_IMPULSE_DURATION} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />

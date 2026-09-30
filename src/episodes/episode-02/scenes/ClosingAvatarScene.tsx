@@ -1,12 +1,8 @@
 import {AbsoluteFill, Easing, Img, interpolate, useCurrentFrame} from "remotion";
 import avatar from "../../../assets/img/avatar.png";
-import {captions} from "../script/captions";
-
-const firstIndex = captions.findIndex((cue) => cue.text.startsWith("看懂行为背后的需要"));
-if (firstIndex < 0) throw new Error("未找到收尾段落字幕");
-export const CLOSING_AVATAR_AUDIO_START = Math.round(captions[firstIndex].start * 30);
-// Follow the existing estimated subtitle range through the final sentence.
-export const CLOSING_AVATAR_DURATION = Math.round(captions[captions.length - 1].end * 30) - CLOSING_AVATAR_AUDIO_START;
+// Audio is 148.3755 seconds; full-video placement includes a 3-second intro.
+export const CLOSING_AVATAR_AUDIO_START = Math.round(138.5 * 30);
+export const CLOSING_AVATAR_DURATION = Math.ceil(148.3755 * 30) - CLOSING_AVATAR_AUDIO_START;
 
 export const ClosingAvatarScene = () => {
   const frame = useCurrentFrame();
