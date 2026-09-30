@@ -3,7 +3,7 @@ import { MultipleCausesScene, MULTIPLE_CAUSES_START, MULTIPLE_CAUSES_DURATION } 
 import { TwinsContrastScene, TWINS_START, TWINS_DURATION } from "./scenes/TwinsContrastScene";
 import { PermissiveParentScene, PERMISSIVE_PARENT_DURATION } from "./scenes/PermissiveParentScene";
 import { EmotionBoundaryScene, EMOTION_BOUNDARY_DURATION } from "./scenes/EmotionBoundaryScene";
-import { GoodEnoughEnvironmentScene, GOOD_ENOUGH_ENVIRONMENT_DURATION } from "./scenes/GoodEnoughEnvironmentScene";
+import { GoodEnoughEnvironmentScene } from "./scenes/GoodEnoughEnvironmentScene";
 import { SeekingAttentionScene, SEEKING_ATTENTION_DURATION } from "./scenes/SeekingAttentionScene";
 import { UnspokenFeelingsScene, UNSPOKEN_FEELINGS_DURATION } from "./scenes/UnspokenFeelingsScene";
 import { LearningPauseScene, LEARNING_PAUSE_DURATION } from "./scenes/LearningPauseScene";
@@ -89,7 +89,7 @@ export const Episode02 = () => (
     <Sequence from={SUPEREGO_VALUES_START + SUPEREGO_VALUES_DURATION + IMPULSE_GRAB_DURATION + DIRECT_REACTIONS_DURATION + NOT_BAD_CHILD_DURATION} durationInFrames={LEARNING_PAUSE_DURATION} name="学习管理冲动"><LearningPauseScene /></Sequence>
     <Sequence from={Math.round(58.5 * 30)} durationInFrames={UNSPOKEN_FEELINGS_DURATION} name="说不清的感受"><UnspokenFeelingsScene /></Sequence>
     <Sequence from={66 * 30} durationInFrames={SEEKING_ATTENTION_DURATION} name="寻求关注 · 拥抱"><SeekingAttentionScene /></Sequence>
-    <Sequence from={Math.round(78.5 * 30)} durationInFrames={GOOD_ENOUGH_ENVIRONMENT_DURATION} name="足够好的环境"><GoodEnoughEnvironmentScene /></Sequence>
+    <Sequence from={66 * 30 + SEEKING_ATTENTION_DURATION} durationInFrames={Math.round(83.5 * 30) - (66 * 30 + SEEKING_ATTENTION_DURATION)} name="足够好的环境"><GoodEnoughEnvironmentScene /></Sequence>
     <Sequence from={Math.round(83.5 * 30)} durationInFrames={EMOTION_BOUNDARY_DURATION} name="理解感受 · 稳定边界"><EmotionBoundaryScene /></Sequence>
     <Sequence from={Math.round(89.5 * 30)} durationInFrames={PERMISSIVE_PARENT_DURATION} name="放任 · 缺少规则引导"><PermissiveParentScene /></Sequence>
     <Sequence from={Math.round(99 * 30)} durationInFrames={270} name="温和而坚定 · 复用亲子房屋镜头">
