@@ -48,8 +48,8 @@ export const ModernFactorsScene = () => {
       }}>{item.title}</div>;
     })}
     <div style={{position: "absolute", top: 765, left: 290, width: 500, textAlign: "center", opacity: interpolate(frame, [summaryStart + 22, summaryStart + 42], [0, 1], easing)}}>
-      <div style={{fontSize: 64, fontWeight: 800, color: "#527DCE"}}>综合理解</div>
-      <div style={{fontSize: 36, marginTop: 22, lineHeight: 1.6}}>孩子的攻击<br />或破坏行为</div>
+      {/* <div style={{fontSize: 64, fontWeight: 800, color: "#527DCE"}}>综合理解</div> */}
+      <div style={{fontSize: 36, marginTop: 22, lineHeight: 1.6}}>攻击或破坏行为</div>
     </div>
   </AbsoluteFill>;
 };
