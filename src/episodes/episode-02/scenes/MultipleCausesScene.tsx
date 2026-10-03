@@ -1,12 +1,10 @@
 import {AbsoluteFill, Easing, Img, interpolate, useCurrentFrame} from "remotion";
 import child from "../assets/img/confused.png";
-import {captions} from "../script/captions";
 import {theme} from "../../../lib/theme";
 
-const cue = captions.find(c => c.text.startsWith("所以，孩子所谓的"));
-if (!cue) throw new Error("未找到非单一因素字幕");
-export const MULTIPLE_CAUSES_START = 90 + Math.round(cue.start * 30);
-export const MULTIPLE_CAUSES_DURATION = Math.round(cue.end * 30) - Math.round(cue.start * 30);
+// This shot follows the twins shot directly at full-video 19s and runs to 25s.
+export const MULTIPLE_CAUSES_START = 19 * 30;
+export const MULTIPLE_CAUSES_DURATION = 6 * 30;
 const clamp = {extrapolateLeft: "clamp", extrapolateRight: "clamp"} as const;
 const factors = [
   {label: "年龄", x: 65, y: 750, delay: 0.22, path: "M335 803 Q385 803 410 900"},

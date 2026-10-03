@@ -11,10 +11,7 @@ export const ImpulseGrabScene = () => {
   const enter = interpolate(t, [0, 0.4], [0, 1], clamp);
   const grab = interpolate(t, [2.65, 3.05], [0, 1], {...clamp, easing: Easing.in(Easing.cubic)});
   return <AbsoluteFill style={{backgroundColor: "#fff", fontFamily: theme.fonts.sans, color: theme.colors.text}}>
-    <div style={{position: "absolute", left: 80, top: 154, opacity: enter}}>
-      <div style={{color: theme.colors.primary, fontSize: 28, fontWeight: 700}}>自我控制</div>
-      <div style={{fontSize: 62, fontWeight: 800, marginTop: 22}}>还在发展中</div>
-    </div>
+     
     <div style={{position: "absolute", left: 100, top: 600, width: 850, height: 810, opacity: enter}}>
       {t < 3.05 ? <>
         <Img src={reaching} style={{position: "absolute", left: 40 + grab * 25, bottom: 0, height: 800, width: 426, objectFit: "contain"}} />

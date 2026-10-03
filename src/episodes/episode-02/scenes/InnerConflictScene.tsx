@@ -20,17 +20,11 @@ export const InnerConflictScene = () => {
  const fall = enter(.77,.85);
  const push = interpolate(p,[.71,.77,.85],[0,45,25],clamp);
  return <AbsoluteFill style={{backgroundColor:"#fff",fontFamily:theme.fonts.sans,color:theme.colors.text}}>
-  <div style={{position:"absolute",left:60,right:60,top:220,textAlign:"center",fontSize:31,fontWeight:700,color:theme.colors.primary}}>精神分析 · 一种理解角度</div>
-  <div style={{position:"absolute",left:60,right:60,top:290,textAlign:"center",fontSize:55,fontWeight:700,opacity:enter(.82,.89)}}>内在冲突，可能通过行为表达</div>
+ 
+  {/* <div style={{position:"absolute",left:60,right:60,top:290,textAlign:"center",fontSize:55,fontWeight:700,opacity:enter(.82,.89)}}>内在冲突，可能通过行为表达</div> */}
   <div style={{position:"absolute",left:90,top:470,width:900,height:310,opacity:thought}}>
-   <svg width="900" height="390" style={{position:"absolute",inset:0}}>
-    <rect x="8" y="8" width="884" height="290" rx="65" fill="white" stroke={theme.colors.primary} strokeWidth="4"/>
-    <circle cx="280" cy="330" r="15" fill="white" stroke={theme.colors.primary} strokeWidth="3"/>
-    <circle cx="255" cy="372" r="8" fill="white" stroke={theme.colors.primary} strokeWidth="3"/>
-   </svg>
-   <div style={{position:"absolute",left:40,top:108,fontSize:43,fontWeight:700,color:theme.colors.primary}}>我想现在玩</div>
-   <div style={{position:"absolute",right:35,top:108,fontSize:43,fontWeight:700,color:theme.colors.primary,opacity:enter(.43,.49)}}>可是要等一等</div>
-   <div style={{position:"absolute",left:380,top:120,width:85,height:5,backgroundColor:theme.colors.primary,opacity:enter(.43,.49),translate:`${p>.49 && p<.65?Math.sin((p-.49)/.16*Math.PI*2)*12:0}px 0`}}/>
+   
+  
   </div>
   <svg width="1080" height="1920" style={{position:"absolute",inset:0,opacity:enter(.7,.73)*(1-enter(.9,.94))}}>
    <path d="M735 760 Q820 940 510 1080" fill="none" stroke={theme.colors.primary} strokeWidth="4" strokeLinecap="round" pathLength="1" strokeDasharray="1" strokeDashoffset={1-enter(.7,.78)}/>
