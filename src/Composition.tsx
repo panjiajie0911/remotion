@@ -27,6 +27,7 @@ type Props = {};
 import {DeathInstinctScene, DEATH_INSTINCT_DURATION} from "./episodes/episode-02/scenes/DeathInstinctScene";
 import {ModernFactorsScene, MODERN_FACTORS_DURATION} from "./episodes/episode-02/scenes/ModernFactorsScene";
 import {ThinkingObservationScene, THINKING_OBSERVATION_DURATION} from "./episodes/episode-02/scenes/ThinkingObservationScene";
+import { Episode03, EPISODE03_DURATION } from "./episodes/episode-03/Episode03";
 
 const calculateMetadata: CalculateMetadataFunction<Props> = () => {
   return {};
@@ -59,6 +60,7 @@ export const MyComposition = () => {
       <Composition id="Episode02Scene05Self" component={SelfRealityScene} durationInFrames={SELF_REALITY_DURATION} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
       <Composition id="Episode02Scene07SuppressedNeed" component={SuppressedNeedScene} durationInFrames={SUPPRESSED_NEED_DURATION} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
       <Composition id="Episode02Scene06Superego" component={SuperegoValuesScene} durationInFrames={SUPEREGO_VALUES_DURATION} fps={30} width={1080} height={1920} calculateMetadata={calculateMetadata} />
+      <Composition id="Episode03WorkTrauma" component={Episode03} durationInFrames={EPISODE03_DURATION} fps={30} width={1080} height={1920} />
     </>
   );
 };
