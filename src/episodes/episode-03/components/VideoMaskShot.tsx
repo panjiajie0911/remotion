@@ -9,14 +9,6 @@ import {
   useVideoConfig,
 } from "remotion";
 
-import { loadFont as loadBebasNeue } from "@remotion/google-fonts/BebasNeue";
-
-// Remotion Studio generated Google Font loading
-loadBebasNeue("normal", {
-  weights: ["400"],
-  subsets: ["latin"],
-});
-
 export type VideoMaskShotProps = {
   video: string;
   kicker: string;
@@ -73,7 +65,7 @@ export const VideoMaskShot = ({
       style={{
         background: "#0d1014",
         overflow: "hidden",
-        fontFamily: "Bebas Neue",
+        fontFamily: '"Microsoft YaHei", "PingFang SC", sans-serif',
       }}
     >
       <OffthreadVideo src={src} muted endAt={videoFrames} style={style} />
@@ -86,19 +78,23 @@ export const VideoMaskShot = ({
       <div
         style={{
           position: "absolute",
-          width: "80%",
+          width: "82%",
           left: "50%",
           top: "50%",
           opacity,
-          transform: "translate(-50%, -50%)",
+          transform: `translate(-50%, calc(-50% + ${y}px))`,
         }}
       >
+        <div style={{fontSize: 20, fontWeight: 600, letterSpacing: 3, color: "#61758a", textAlign: "center", marginBottom: 24}}>
+          WORKPLACE STRESS RESPONSE
+        </div>
         <div
           style={{
-            fontSize: "11rem",
+            fontSize:150,
+            fontWeight: 600,
             letterSpacing: 2,
-            color: "#0b84f3",
-            marginBottom: 208,
+            color: "#2467a8",
+            marginBottom: 56,
             textAlign: "center",
             width: "100%",
           }}
@@ -108,13 +104,17 @@ export const VideoMaskShot = ({
 
         <div
           style={{
-            marginTop: 26,
-            fontSize: "2.35rem",
-            fontWeight: "bold",
-            lineHeight: 1.8,
+            marginTop: 0,
+            fontSize: 34,
+            fontWeight: 400,
+            lineHeight: 1.75,
             color: "#243447",
             textAlign: "left",
             width: "100%",
+            background: "rgba(255,255,255,0.45)",
+            padding: "30px 36px",
+            boxSizing: "border-box",
+            borderRadius: 12,
           }}
         >
           {description}
@@ -123,9 +123,10 @@ export const VideoMaskShot = ({
           <div
             style={{
               marginTop: 24,
-              fontSize: 19,
-              lineHeight: 1.5,
-              color: "#686c73",
+              fontSize: 34,
+              fontWeight: 400,
+              lineHeight: 1.75,
+              color: "#243447",
             }}
           >
             {cause}
@@ -135,8 +136,8 @@ export const VideoMaskShot = ({
       <div
         style={{
           position: "absolute",
-          left: 64,
-          right: 64,
+          left: "9%",
+          width: "70%",
           bottom: 40,
           height: 2,
           background: "rgba(255,255,255,.25)",
