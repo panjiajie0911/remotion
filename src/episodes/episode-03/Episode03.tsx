@@ -1,5 +1,5 @@
 import {VideoMaskShot} from "./components/VideoMaskShot";
-import {AbsoluteFill, interpolate, Series, useCurrentFrame} from "remotion";
+import {AbsoluteFill, Audio, interpolate, Series, staticFile, useCurrentFrame} from "remotion";
 import type {ReactNode} from "react";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components";
 
@@ -18,6 +18,8 @@ const IntroCrossfade = ({children}: {children: ReactNode}) => {
 };
 
 export const Episode03 = () => (
+  <AbsoluteFill>
+  <Audio src={staticFile("episode-03-nop.mp3")} volume={0.3} />
   <Series>
   <Series.Sequence durationInFrames={SERIES_INTRO_DURATION}>
     <SeriesIntro title={["职场", "应激创伤"]} emphasisLines={[1]} />
@@ -89,4 +91,5 @@ export const Episode03 = () => (
     />
   </Series.Sequence>
   </Series>
+  </AbsoluteFill>
 );
