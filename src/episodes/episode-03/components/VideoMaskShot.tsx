@@ -36,7 +36,7 @@ export const VideoMaskShot = ({
   const titleLength = Math.max(1, Array.from(kicker).length);
   const titleFontSize = Math.min(150, (width * 0.82 * 0.96) / titleLength - 2);
   const blurStart = videoFrames + freezeFrames;
-  const blur = interpolate(frame, [blurStart, blurStart + 18], [0, 6], {
+  const blur = interpolate(frame, [blurStart, blurStart + 18], [0, 8], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -59,7 +59,7 @@ export const VideoMaskShot = ({
     width: "100%",
     height: "100%",
     objectFit: "cover" as const,
-    filter: `blur(${blur}px)`,
+    filter: `blur(${blur}px) brightness(0.94)`,
     transform: "scale(1.035)",
   };
   return (
