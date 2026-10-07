@@ -6,6 +6,7 @@ import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components";
 // 30fps: 5.4s entrance + 3.5 / 3 / 2 / 4.5 / 3 seconds of fully visible text.
 const SHOT_DURATIONS = [267, 252, 222, 297, 252];
 const INTRO_TRANSITION_DURATION = 15;
+const OUTRO_TRANSITION_DURATION = 12;
 export const EPISODE03_DURATION = SERIES_INTRO_DURATION * 2 + SHOT_DURATIONS.reduce((total, duration) => total + duration, 0) - INTRO_TRANSITION_DURATION;
 
 const IntroCrossfade = ({children}: {children: ReactNode}) => {
@@ -15,6 +16,15 @@ const IntroCrossfade = ({children}: {children: ReactNode}) => {
     extrapolateRight: "clamp",
   });
   return <AbsoluteFill style={{opacity}}>{children}</AbsoluteFill>;
+};
+
+const OutroTransition = ({children}: {children: ReactNode}) => {
+  const frame = useCurrentFrame();
+  const opacity = interpolate(frame, [SHOT_DURATIONS[4] - OUTRO_TRANSITION_DURATION, SHOT_DURATIONS[4] - 1], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  return <AbsoluteFill>{children}<AbsoluteFill style={{backgroundColor: "#F3F7FF", opacity}} /></AbsoluteFill>;
 };
 
 export const Episode03 = () => (
@@ -79,6 +89,7 @@ export const Episode03 = () => (
     />
   </Series.Sequence>
   <Series.Sequence durationInFrames={SHOT_DURATIONS[4]}>
+    <OutroTransition>
     <VideoMaskShot
       video="episode-03-meeting.mp4"
       videoFrames={120}
@@ -91,6 +102,7 @@ export const Episode03 = () => (
         <span style={{display: "block", marginTop: 24}}>如果紧张导致的自主神经系统被激活，同时还会伴随有腹痛，腹泻，恶心，心慌，出汗等。</span>
       </>}
     />
+    </OutroTransition>
   </Series.Sequence>
   <Series.Sequence durationInFrames={SERIES_INTRO_DURATION}>
     <SeriesIntro title={["不要被毒性职场氛围", "伤害",
