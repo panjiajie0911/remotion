@@ -2,7 +2,7 @@ import {VideoMaskShot} from "./components/VideoMaskShot";
 import {Series} from "remotion";
 
 const SHOT_DURATION = 240;
-export const EPISODE03_DURATION = SHOT_DURATION * 4;
+export const EPISODE03_DURATION = SHOT_DURATION * 5;
 
 export const Episode03 = () => (
   <Series>
@@ -54,6 +54,20 @@ export const Episode03 = () => (
       kicker="潜意识"
       title="潜意识"
       description="对工作出错的恐惧被延续到睡眠中，“梦中持续工作”象征内在的责任压力，对评价的担忧和难以允许自己休息"
+    />
+  </Series.Sequence>
+  <Series.Sequence durationInFrames={SHOT_DURATION}>
+    <VideoMaskShot
+      video="episode-03-meeting.mp4"
+      videoFrames={120}
+      freezeFrames={12}
+      durationInFrames={SHOT_DURATION}
+      kicker="急性应激反应"
+      title="急性应激反应"
+      description={<>
+        在开会中出现走神和记忆丢失，是工作压力过大导致的注意力短暂“断线”。
+        <span style={{display: "block", marginTop: 24}}>如果紧张导致的自主神经系统被激活，同时还会伴随有腹痛，腹泻，恶心，心慌，出汗等。</span>
+      </>}
     />
   </Series.Sequence>
   </Series>
