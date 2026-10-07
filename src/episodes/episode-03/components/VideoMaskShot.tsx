@@ -71,12 +71,9 @@ export const VideoMaskShot = ({
         fontFamily: '"幼圆","DingLieHuoBanTi", "Arial", sans-serif',
       }}
     >
-      <OffthreadVideo src={src} muted endAt={videoFrames} style={style} />
-      {frame >= videoFrames && (
-        <Freeze frame={videoFrames - 1}>
-          <OffthreadVideo src={src} muted style={style} />
-        </Freeze>
-      )}
+      <Freeze frame={videoFrames - 1} active={frame >= videoFrames}>
+        <OffthreadVideo src={src} muted style={style} />
+      </Freeze>
       <AbsoluteFill style={{ background: `rgba(255,255,255,${veil})` }} />
       <div
         style={{

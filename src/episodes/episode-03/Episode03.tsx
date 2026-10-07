@@ -89,8 +89,7 @@ export const Episode03 = () => (
     />
   </Series.Sequence>
   <Series.Sequence durationInFrames={SHOT_DURATIONS[4]}>
-    <OutroTransition>
-    <VideoMaskShot
+     <VideoMaskShot
       video="episode-03-meeting.mp4"
       videoFrames={120}
       freezeFrames={12}
@@ -102,10 +101,10 @@ export const Episode03 = () => (
         <span style={{display: "block", marginTop: 24}}>如果紧张导致的自主神经系统被激活，同时还会伴随有腹痛，腹泻，恶心，心慌，出汗等。</span>
       </>}
     />
-    </OutroTransition>
+    
   </Series.Sequence>
   <Series.Sequence durationInFrames={SERIES_INTRO_DURATION}>
-    <SeriesIntro title={["不要被毒性职场氛围", "伤害",
+    <SeriesIntro title={["不要被毒性职场", "伤害",
     ]} emphasisLines={[1]} />
   </Series.Sequence>
   </Series>
