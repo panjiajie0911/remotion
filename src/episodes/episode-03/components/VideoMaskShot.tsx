@@ -65,9 +65,10 @@ export const VideoMaskShot = ({
   return (
     <AbsoluteFill
       style={{
-        background: "#0d1014",
+        backgroundColor: "#0d1014",
         overflow: "hidden",
-        fontFamily: '"Microsoft YaHei", "PingFang SC", sans-serif',
+        fontWeight:"bold",
+        fontFamily: '"YouYuan", "幼圆", "SimYou", "Arial Rounded MT Bold", "Microsoft YaHei", sans-serif',
       }}
     >
       <OffthreadVideo src={src} muted endAt={videoFrames} style={style} />
