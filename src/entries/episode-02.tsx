@@ -1,0 +1,52 @@
+import "../index.css";
+import {Composition, registerRoot} from "remotion";
+import { InnerConflictScene, INNER_CONFLICT_DURATION } from "../episodes/episode-02/scenes/InnerConflictScene";
+import { MultipleCausesScene, MULTIPLE_CAUSES_DURATION } from "../episodes/episode-02/scenes/MultipleCausesScene";
+import { TwinsContrastScene, TWINS_DURATION } from "../episodes/episode-02/scenes/TwinsContrastScene";
+import { PermissiveParentScene, PERMISSIVE_PARENT_DURATION } from "../episodes/episode-02/scenes/PermissiveParentScene";
+import { EmotionBoundaryScene, EMOTION_BOUNDARY_DURATION } from "../episodes/episode-02/scenes/EmotionBoundaryScene";
+import { GoodEnoughEnvironmentScene, GOOD_ENOUGH_ENVIRONMENT_DURATION } from "../episodes/episode-02/scenes/GoodEnoughEnvironmentScene";
+import { SeekingAttentionScene, SEEKING_ATTENTION_DURATION } from "../episodes/episode-02/scenes/SeekingAttentionScene";
+import { UnspokenFeelingsScene, UNSPOKEN_FEELINGS_DURATION } from "../episodes/episode-02/scenes/UnspokenFeelingsScene";
+import { LearningPauseScene, LEARNING_PAUSE_DURATION } from "../episodes/episode-02/scenes/LearningPauseScene";
+import { NotBadChildScene, NOT_BAD_CHILD_DURATION } from "../episodes/episode-02/scenes/NotBadChildScene";
+import { DirectReactionsScene, DIRECT_REACTIONS_DURATION } from "../episodes/episode-02/scenes/DirectReactionsScene";
+import { ImpulseGrabScene, IMPULSE_GRAB_DURATION } from "../episodes/episode-02/scenes/ImpulseGrabScene";
+import { CommonCausesScene, COMMON_CAUSES_DURATION } from "../episodes/episode-02/scenes/CommonCausesScene";
+import { Episode02 } from "../episodes/episode-02/Episode02";
+import { PsychologyStructureScene, PSYCHOLOGY_STRUCTURE_DURATION } from "../episodes/episode-02/scenes/PsychologyStructureScene";
+import { IdImpulseScene, ID_IMPULSE_DURATION } from "../episodes/episode-02/scenes/IdImpulseScene";
+import { SelfRealityScene, SELF_REALITY_DURATION } from "../episodes/episode-02/scenes/SelfRealityScene";
+import { SuppressedNeedScene, SUPPRESSED_NEED_DURATION } from "../episodes/episode-02/scenes/SuppressedNeedScene";
+import { SuperegoValuesScene, SUPEREGO_VALUES_DURATION } from "../episodes/episode-02/scenes/SuperegoValuesScene";
+import {ClosingAvatarScene, CLOSING_AVATAR_AUDIO_START, CLOSING_AVATAR_DURATION} from "../episodes/episode-02/scenes/ClosingAvatarScene";
+import {SERIES_INTRO_DURATION} from "../components";
+import {DeathInstinctScene, DEATH_INSTINCT_DURATION} from "../episodes/episode-02/scenes/DeathInstinctScene";
+import {ModernFactorsScene, MODERN_FACTORS_DURATION} from "../episodes/episode-02/scenes/ModernFactorsScene";
+import {ThinkingObservationScene, THINKING_OBSERVATION_DURATION} from "../episodes/episode-02/scenes/ThinkingObservationScene";
+const Root = () => <>
+      <Composition id="Episode02InnerConflict" component={InnerConflictScene} durationInFrames={INNER_CONFLICT_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02MultipleCauses" component={MultipleCausesScene} durationInFrames={MULTIPLE_CAUSES_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02TwinsContrast" component={TwinsContrastScene} durationInFrames={TWINS_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02ClosingAvatar" component={ClosingAvatarScene} durationInFrames={CLOSING_AVATAR_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02Scene08DeathInstinct" component={DeathInstinctScene} durationInFrames={DEATH_INSTINCT_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02ModernFactors" component={ModernFactorsScene} durationInFrames={MODERN_FACTORS_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02ThinkingObservation" component={ThinkingObservationScene} durationInFrames={THINKING_OBSERVATION_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02PermissiveParent" component={PermissiveParentScene} durationInFrames={PERMISSIVE_PARENT_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02EmotionBoundary" component={EmotionBoundaryScene} durationInFrames={EMOTION_BOUNDARY_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02GoodEnoughEnvironment" component={GoodEnoughEnvironmentScene} durationInFrames={GOOD_ENOUGH_ENVIRONMENT_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02SeekingAttention" component={SeekingAttentionScene} durationInFrames={SEEKING_ATTENTION_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02UnspokenFeelings" component={UnspokenFeelingsScene} durationInFrames={UNSPOKEN_FEELINGS_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02LearningPause" component={LearningPauseScene} durationInFrames={LEARNING_PAUSE_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02NotBadChild" component={NotBadChildScene} durationInFrames={NOT_BAD_CHILD_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02DirectReactions" component={DirectReactionsScene} durationInFrames={DIRECT_REACTIONS_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02ImpulseGrab" component={ImpulseGrabScene} durationInFrames={IMPULSE_GRAB_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02" component={Episode02} durationInFrames={SERIES_INTRO_DURATION + CLOSING_AVATAR_AUDIO_START + CLOSING_AVATAR_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02CommonCauses" component={CommonCausesScene} durationInFrames={COMMON_CAUSES_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02Scene03" component={PsychologyStructureScene} durationInFrames={PSYCHOLOGY_STRUCTURE_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02Scene04Id" component={IdImpulseScene} durationInFrames={ID_IMPULSE_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02Scene05Self" component={SelfRealityScene} durationInFrames={SELF_REALITY_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02Scene07SuppressedNeed" component={SuppressedNeedScene} durationInFrames={SUPPRESSED_NEED_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="Episode02Scene06Superego" component={SuperegoValuesScene} durationInFrames={SUPEREGO_VALUES_DURATION} fps={30} width={1080} height={1920} />
+</>;
+registerRoot(Root);

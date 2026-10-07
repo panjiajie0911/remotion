@@ -1,0 +1,44 @@
+{
+  "name": "remotion-video",
+  "version": "1.0.0",
+  "description": "My Remotion video",
+  "repository": {},
+  "license": "UNLICENSED",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "dependencies": {
+    "@remotion/animation-utils": "^4.0.524",
+    "@remotion/captions": "^4.0.524",
+    "@remotion/cli": "4.0.522",
+    "@remotion/google-fonts": "^4.0.524",
+    "@remotion/install-whisper-cpp": "^4.0.522",
+    "@remotion/media": "^4.0.524",
+    "@remotion/player": "^4.0.524",
+    "@remotion/tailwind-v4": "4.0.522",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.522",
+    "roughjs": "^4.6.6",
+    "tailwindcss": "4.2.0"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.522",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.19.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "node scripts/episode.mjs preview episode-03",
+    "build": "node scripts/episode.mjs bundle episode-03",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc",
+    "media": "node scripts/media.mjs",
+    "preview": "node scripts/episode.mjs preview",
+    "render": "node scripts/episode.mjs render"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}
