@@ -10,6 +10,7 @@ export const theme = {
     onDark: "#FFF",
     dark: "#1D1D1F",
     transparent: "transparent",
+    danger: "#D73737",
   },
   fonts: {
     // Install or load the font files before rendering on another machine.

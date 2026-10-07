@@ -8,7 +8,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-
+import { theme } from "../../../lib/theme";
 export type VideoMaskShotProps = {
   video: string;
   kicker: string;
@@ -95,7 +95,7 @@ export const VideoMaskShot = ({
             whiteSpace: "nowrap",
             fontWeight: 600,
             letterSpacing: 2,
-            color: "#2467a8",
+            color: theme.colors.primary,
             marginBottom: 56,
             textAlign: "center",
             width: "100%",
@@ -110,7 +110,7 @@ export const VideoMaskShot = ({
             fontSize: 34,
             fontWeight: 'bold',
             lineHeight: 1.75,
-            color: "#243447",
+            color: theme.colors.text,
             textAlign: "left",
             width: "100%",
             background: "rgba(255,255,255,0.45)",

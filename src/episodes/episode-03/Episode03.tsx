@@ -2,11 +2,11 @@ import {VideoMaskShot} from "./components/VideoMaskShot";
 import {AbsoluteFill, Audio, interpolate, Series, staticFile, useCurrentFrame} from "remotion";
 import type {ReactNode} from "react";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components";
-
+import {theme} from "../../lib/theme";
 // 30fps: 5.4s entrance + 3.5 / 3 / 4 / 4.5 / 3 seconds of fully visible text.
 const SHOT_DURATIONS = [267, 252, 282, 297, 252];
 const INTRO_TRANSITION_DURATION = 15;
-const OUTRO_TRANSITION_DURATION = 12;
+
 export const EPISODE03_DURATION = SERIES_INTRO_DURATION * 2 + SHOT_DURATIONS.reduce((total, duration) => total + duration, 0) - INTRO_TRANSITION_DURATION;
 
 const IntroCrossfade = ({children}: {children: ReactNode}) => {
@@ -18,14 +18,7 @@ const IntroCrossfade = ({children}: {children: ReactNode}) => {
   return <AbsoluteFill style={{opacity}}>{children}</AbsoluteFill>;
 };
 
-const OutroTransition = ({children}: {children: ReactNode}) => {
-  const frame = useCurrentFrame();
-  const opacity = interpolate(frame, [SHOT_DURATIONS[4] - OUTRO_TRANSITION_DURATION, SHOT_DURATIONS[4] - 1], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  return <AbsoluteFill>{children}<AbsoluteFill style={{backgroundColor: "#F3F7FF", opacity}} /></AbsoluteFill>;
-};
+
 
 export const Episode03 = () => (
   <AbsoluteFill>
@@ -44,9 +37,9 @@ export const Episode03 = () => (
     kicker="过度警觉"
     title={<>你不是太敏感，<br />而是一直在等待出问题。</>}
     description={<>
-      职场过度警觉，就是长期处在“随时可能出问题”的紧张状态，对领导、同事和工作消息过度敏感，容易反复检查、担心犯错，甚至下班后也无法放松。
+      长期处在“随时可能出问题”紧张状态，对工作群，钉钉消息过度敏感，容易反复检查、担心犯错，甚至下班后也无法放松，被称为<span style={{color: theme.colors.danger}}>“职场过度警觉”</span>
       <span style={{display: "block", marginTop: 24}}>
-        它通常是长期<span style={{color: "#b64d3f"}}>压力</span>、<span style={{color: "#b64d3f"}}>冲突</span>或<span style={{color: "#b64d3f"}}>不安全感</span>造成的应激反应。
+        通常是长期<span style={{color: theme.colors.danger}}>压力</span>、<span style={{color: theme.colors.danger}}>冲突</span>或<span style={{color: theme.colors.danger}}>不安全感</span>造成的应激反应。
       </span>
     </>}
   />
@@ -61,8 +54,8 @@ export const Episode03 = () => (
       kicker="预期性焦虑"
       title="预期性焦虑"
       description={<>
-        在休息时间，一想到星期一要上班，就莫名出现心慌、胸闷、烦躁、失眠或胃部不适，心理学称之为“周日恐惧（Sunday Scaries）”。
-        <span style={{display: "block", marginTop: 24}}>这是职场的<span style={{color: "#b64d3f"}}>压力</span>，<span style={{color: "#b64d3f"}}>不确定感</span>和<span style={{color: "#b64d3f"}}>倦怠</span>导致大脑提前进入警戒状态。</span>
+        在休息时间，一想到星期一要上班，就莫名出现心慌、胸闷、烦躁、失眠或胃部不适，心理学称之为<span style={{color: theme.colors.danger}}>周日恐惧（Sunday Scaries）</span>
+        <span style={{display: "block", marginTop: 24}}>这是职场的<span style={{color: theme.colors.danger}}>压力</span>，<span style={{color: theme.colors.danger}}>不确定感</span>和<span style={{color: theme.colors.danger}}>倦怠</span>导致大脑提前进入警戒状态。</span>
       </>}
     />
   </Series.Sequence>
@@ -74,7 +67,7 @@ export const Episode03 = () => (
       durationInFrames={SHOT_DURATIONS[2]}
       kicker="压力性失眠"
       title="压力性失眠"
-      description="大脑在夜间仍处于工作警戒状态，不断回想任务、担心出错或预演明天的情况，因此难以入睡"
+      description="大脑在夜间仍处于工作警戒状态，不断回想任务、担心出错或预演明天的情况，难以入睡"
     />
   </Series.Sequence>
   <Series.Sequence durationInFrames={SHOT_DURATIONS[3]}>
@@ -85,7 +78,7 @@ export const Episode03 = () => (
       durationInFrames={SHOT_DURATIONS[3]}
       kicker="梦境反刍"
       title="梦境反刍"
-      description={<>对工作出错的恐惧被延续到睡眠中，“梦中持续工作”象征内在的<span style={{color: "#b64d3f"}}>责任压力</span>，对评价的<span style={{color: "#b64d3f"}}>担忧</span>和<span style={{color: "#b64d3f"}}>难以允许</span>自己休息</>}
+      description={<>对工作出错的恐惧被延续到睡眠中，“梦中持续工作”象征内在的<span style={{color: theme.colors.danger}}>责任压力</span>，对评价的<span style={{color: theme.colors.danger}}>担忧</span>和<span style={{color: theme.colors.danger}}>难以允许</span>自己休息</>}
     />
   </Series.Sequence>
   <Series.Sequence durationInFrames={SHOT_DURATIONS[4]}>
@@ -97,8 +90,8 @@ export const Episode03 = () => (
       kicker="急性应激反应"
       title="急性应激反应"
       description={<>
-        在开会中出现<span style={{color: "#b64d3f"}}>走神</span>和<span style={{color: "#b64d3f"}}>记忆丢失</span>，是工作压力过大导致的注意力短暂“断线”。
-        <span style={{display: "block", marginTop: 24}}>如果紧张导致的自主神经系统被激活，同时还会伴随有腹痛，腹泻，恶心，心慌，出汗等。</span>
+        在开会时出现<span style={{color: theme.colors.danger}}>走神</span>和<span style={{color: theme.colors.danger}}>间歇性失忆</span>，是工作压力过大导致的注意力短暂“断线”。
+        <span style={{display: "block", marginTop: 24}}>开会不自觉的紧张导致自主神经系统激活，伴随有腹痛，腹泻，恶心，心慌，手心出汗，说不出话 等。</span>
       </>}
     />
     
