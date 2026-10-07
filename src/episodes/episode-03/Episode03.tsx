@@ -3,8 +3,8 @@ import {AbsoluteFill, Audio, interpolate, Series, staticFile, useCurrentFrame} f
 import type {ReactNode} from "react";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components";
 
-// 30fps: 5.4s entrance + 3.5 / 3 / 2 / 4.5 / 3 seconds of fully visible text.
-const SHOT_DURATIONS = [267, 252, 222, 297, 252];
+// 30fps: 5.4s entrance + 3.5 / 3 / 4 / 4.5 / 3 seconds of fully visible text.
+const SHOT_DURATIONS = [267, 252, 282, 297, 252];
 const INTRO_TRANSITION_DURATION = 15;
 const OUTRO_TRANSITION_DURATION = 12;
 export const EPISODE03_DURATION = SERIES_INTRO_DURATION * 2 + SHOT_DURATIONS.reduce((total, duration) => total + duration, 0) - INTRO_TRANSITION_DURATION;
@@ -104,7 +104,7 @@ export const Episode03 = () => (
     
   </Series.Sequence>
   <Series.Sequence durationInFrames={SERIES_INTRO_DURATION}>
-    <SeriesIntro title={["不要被毒性职场", "伤害",
+    <SeriesIntro title={["珍爱自己，远离", "职场创伤后应激障碍",
     ]} emphasisLines={[1]} />
   </Series.Sequence>
   </Series>
