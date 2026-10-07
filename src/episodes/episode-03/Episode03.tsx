@@ -6,7 +6,7 @@ import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components";
 // 30fps: 5.4s entrance + 3.5 / 3 / 2 / 4.5 / 3 seconds of fully visible text.
 const SHOT_DURATIONS = [267, 252, 222, 297, 252];
 const INTRO_TRANSITION_DURATION = 15;
-export const EPISODE03_DURATION = SERIES_INTRO_DURATION + SHOT_DURATIONS.reduce((total, duration) => total + duration, 0) - INTRO_TRANSITION_DURATION;
+export const EPISODE03_DURATION = SERIES_INTRO_DURATION * 2 + SHOT_DURATIONS.reduce((total, duration) => total + duration, 0) - INTRO_TRANSITION_DURATION;
 
 const IntroCrossfade = ({children}: {children: ReactNode}) => {
   const frame = useCurrentFrame();
@@ -35,7 +35,9 @@ export const Episode03 = () => (
     title={<>你不是太敏感，<br />而是一直在等待出问题。</>}
     description={<>
       职场过度警觉，就是长期处在“随时可能出问题”的紧张状态，对领导、同事和工作消息过度敏感，容易反复检查、担心犯错，甚至下班后也无法放松。
-      <span style={{display: "block", marginTop: 24}}>它通常是长期压力、职场冲突或不安全感造成的应激反应。</span>
+      <span style={{display: "block", marginTop: 24}}>
+        它通常是长期<span style={{color: "#b64d3f"}}>压力</span>、<span style={{color: "#b64d3f"}}>冲突</span>或<span style={{color: "#b64d3f"}}>不安全感</span>造成的应激反应。
+      </span>
     </>}
   />
   </IntroCrossfade>
@@ -89,6 +91,10 @@ export const Episode03 = () => (
         <span style={{display: "block", marginTop: 24}}>如果紧张导致的自主神经系统被激活，同时还会伴随有腹痛，腹泻，恶心，心慌，出汗等。</span>
       </>}
     />
+  </Series.Sequence>
+  <Series.Sequence durationInFrames={SERIES_INTRO_DURATION}>
+    <SeriesIntro title={["不要被毒性职场氛围", "伤害",
+    ]} emphasisLines={[1]} />
   </Series.Sequence>
   </Series>
   </AbsoluteFill>
