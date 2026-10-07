@@ -2,7 +2,7 @@ import {VideoMaskShot} from "./components/VideoMaskShot";
 import {Series} from "remotion";
 
 const SHOT_DURATION = 240;
-export const EPISODE03_DURATION = SHOT_DURATION * 3;
+export const EPISODE03_DURATION = SHOT_DURATION * 4;
 
 export const Episode03 = () => (
   <Series>
@@ -43,6 +43,17 @@ export const Episode03 = () => (
       kicker="压力性失眠"
       title="压力性失眠"
       description="大脑在夜间仍处于工作警戒状态，不断回想任务、担心出错或预演明天的情况，因此难以入睡"
+    />
+  </Series.Sequence>
+  <Series.Sequence durationInFrames={SHOT_DURATION}>
+    <VideoMaskShot
+      video="episode-03-dream.mp4"
+      videoFrames={120}
+      freezeFrames={12}
+      durationInFrames={SHOT_DURATION}
+      kicker="潜意识"
+      title="潜意识"
+      description="对工作出错的恐惧被延续到睡眠中，“梦中持续工作”象征内在的责任压力，对评价的担忧和难以允许自己休息"
     />
   </Series.Sequence>
   </Series>
