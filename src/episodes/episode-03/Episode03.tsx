@@ -62,7 +62,7 @@ export const Episode03 = () => (
       title="预期性焦虑"
       description={<>
         在休息时间，一想到星期一要上班，就莫名出现心慌、胸闷、烦躁、失眠或胃部不适，心理学称之为“周日恐惧（Sunday Scaries）”。
-        <span style={{display: "block", marginTop: 24}}>这是职场的压力，不确定感和倦怠导致大脑提前进入警戒状态。</span>
+        <span style={{display: "block", marginTop: 24}}>这是职场的<span style={{color: "#b64d3f"}}>压力</span>，<span style={{color: "#b64d3f"}}>不确定感</span>和<span style={{color: "#b64d3f"}}>倦怠</span>导致大脑提前进入警戒状态。</span>
       </>}
     />
   </Series.Sequence>
@@ -85,7 +85,7 @@ export const Episode03 = () => (
       durationInFrames={SHOT_DURATIONS[3]}
       kicker="梦境反刍"
       title="梦境反刍"
-      description="对工作出错的恐惧被延续到睡眠中，“梦中持续工作”象征内在的责任压力，对评价的担忧和难以允许自己休息"
+      description={<>对工作出错的恐惧被延续到睡眠中，“梦中持续工作”象征内在的<span style={{color: "#b64d3f"}}>责任压力</span>，对评价的<span style={{color: "#b64d3f"}}>担忧</span>和<span style={{color: "#b64d3f"}}>难以允许</span>自己休息</>}
     />
   </Series.Sequence>
   <Series.Sequence durationInFrames={SHOT_DURATIONS[4]}>
@@ -98,7 +98,7 @@ export const Episode03 = () => (
       kicker="急性应激反应"
       title="急性应激反应"
       description={<>
-        在开会中出现走神和记忆丢失，是工作压力过大导致的注意力短暂“断线”。
+        在开会中出现<span style={{color: "#b64d3f"}}>走神</span>和<span style={{color: "#b64d3f"}}>记忆丢失</span>，是工作压力过大导致的注意力短暂“断线”。
         <span style={{display: "block", marginTop: 24}}>如果紧张导致的自主神经系统被激活，同时还会伴随有腹痛，腹泻，恶心，心慌，出汗等。</span>
       </>}
     />

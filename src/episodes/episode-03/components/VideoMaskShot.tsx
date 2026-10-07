@@ -68,7 +68,7 @@ export const VideoMaskShot = ({
         backgroundColor: "#0d1014",
         overflow: "hidden",
         fontWeight:"bold",
-        fontFamily: '"YouYuan", "幼圆", "SimYou", "Arial Rounded MT Bold", "Microsoft YaHei", sans-serif',
+        fontFamily: '"幼圆","DingLieHuoBanTi", "Arial", sans-serif',
       }}
     >
       <OffthreadVideo src={src} muted endAt={videoFrames} style={style} />
@@ -86,6 +86,7 @@ export const VideoMaskShot = ({
           top: "50%",
           opacity,
           transform: `translate(-50%, calc(-50% + ${y}px))`,
+          textShadow: "0 3px 6px rgba(25, 48, 72, 0.22)",
         }}
       >
         <div style={{fontSize: 20, fontWeight: 600, letterSpacing: 3, color: "#61758a", textAlign: "center", marginBottom: 24}}>
@@ -110,7 +111,7 @@ export const VideoMaskShot = ({
           style={{
             marginTop: 0,
             fontSize: 34,
-            fontWeight: 400,
+            fontWeight: 'bold',
             lineHeight: 1.75,
             color: "#243447",
             textAlign: "left",
@@ -128,7 +129,7 @@ export const VideoMaskShot = ({
             style={{
               marginTop: 24,
               fontSize: 34,
-              fontWeight: 400,
+              fontWeight: 600,
               lineHeight: 1.75,
               color: "#243447",
             }}

@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "DingLieHuoBanTi";
+  src: url("./assets/font/DingLieHuoBanTi/dingliehuobanfont20241217-2.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
