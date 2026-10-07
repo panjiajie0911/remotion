@@ -107,7 +107,7 @@ export const VideoMaskShot = ({
         <div
           style={{
             marginTop: 0,
-            fontSize: 34,
+            fontSize:40,
             fontWeight: 'bold',
             lineHeight: 1.75,
             color: theme.colors.text,
@@ -125,7 +125,7 @@ export const VideoMaskShot = ({
           <div
             style={{
               marginTop: 24,
-              fontSize: 34,
+              fontSize:40,
               fontWeight: 600,
               lineHeight: 1.75,
               color: "#243447",
