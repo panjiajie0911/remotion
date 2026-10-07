@@ -1,0 +1,42 @@
+-------------
+
+Version mismatch:
+- On version: 4.0.524
+  - @remotion/animation-utils ..\..\node_modules\.pnpm\@remotion+animation-utils@4_01fb62011da1d16c2f99206698ecd53e\node_modules\@remotion\animation-utils\package.json
+  - @remotion/google-fonts ..\..\node_modules\.pnpm\@remotion+google-fonts@4.0._da98d5227cc73de16016828d9e735129\node_modules\@remotion\google-fonts\package.json
+  - @remotion/install-whisper-cpp ..\..\node_modules\.pnpm\@remotion+install-whisper-cpp@4.0.524\node_modules\@remotion\install-whisper-cpp\package.json
+  - @remotion/player ..\..\node_modules\.pnpm\@remotion+player@4.0.524_re_6598c189be0429323312ff0a9a8ad109\node_modules\@remotion\player\package.json
+  - @remotion/captions ..\..\node_modules\.pnpm\@remotion+captions@4.0.524\node_modules\@remotion\captions\package.json
+  - @remotion/media ..\..\node_modules\.pnpm\@remotion+media@4.0.524_rea_4a730628dae3579248130c38b9c1e25d\node_modules\@remotion\media\package.json
+- On version: 4.0.522
+
+
+  - @remotion/cli ..\..\node_modules\.pnpm\@remotion+cli@4.0.522_light_04745cc0db8e9d56cd8f31b1c0b394d5\node_modules\@remotion\cli\package.json
+  - remotion ..\..\node_modules\.pnpm\remotion@4.0.522_react-dom@19.2.3_react@19.2.3__react@19.2.3\node_modules\remotion\package.json
+  - @remotion/eslint-config-flat ..\..\node_modules\.pnpm\@remotion+eslint-config-fla_0156f52f2ba8d0d2305c080458cbe74d\node_modules\@remotion\eslint-config-flat\package.json
+  - @remotion/tailwind-v4 ..\..\node_modules\.pnpm\@remotion+tailwind-v4@4.0.5_0fe02bbf204bece576f9f1179c989794\node_modules\@remotion\tailwind-v4\package.json
+You may experience breakages such as:
+- React context and hooks not working
+- Type errors and feature incompatibilities
+- Failed renders and unclear errors
+To resolve:
+- Make sure your package.json has all Remotion packages pointing to the same version.
+- Remove the `^` character in front of a version to pin a package.
+- Run `npx remotion versions --log=verbose` to see the path of the modules resolved.
+-------------
+
+🧹 Webpack config change detected. Clearing cache... 
+Bundling 6%
+Bundling 21%
+Bundling 32%
+Bundling 43%
+Bundling 54%
+Bundling 65%
+Bundling 70%
+Bundling 75%
+Bundling 80%
+Bundling 85%
+Bundling 91%
+Bundling 98%
+⚡️ Cached bundle. Subsequent renders will be faster.
++ D:\remotion\split-delivery\remotion-studio\build\episode-01
