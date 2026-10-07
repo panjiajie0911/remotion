@@ -1,12 +1,28 @@
 import {VideoMaskShot} from "./components/VideoMaskShot";
-import {Series} from "remotion";
+import {AbsoluteFill, interpolate, Series, useCurrentFrame} from "remotion";
+import type {ReactNode} from "react";
+import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components";
 
 const SHOT_DURATION = 240;
-export const EPISODE03_DURATION = SHOT_DURATION * 5;
+const INTRO_TRANSITION_DURATION = 15;
+export const EPISODE03_DURATION = SERIES_INTRO_DURATION + SHOT_DURATION * 5 - INTRO_TRANSITION_DURATION;
+
+const IntroCrossfade = ({children}: {children: ReactNode}) => {
+  const frame = useCurrentFrame();
+  const opacity = interpolate(frame, [0, INTRO_TRANSITION_DURATION - 1], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  return <AbsoluteFill style={{opacity}}>{children}</AbsoluteFill>;
+};
 
 export const Episode03 = () => (
   <Series>
-  <Series.Sequence durationInFrames={SHOT_DURATION}>
+  <Series.Sequence durationInFrames={SERIES_INTRO_DURATION}>
+    <SeriesIntro title={["职场", "应激创伤"]} emphasisLines={[1]} />
+  </Series.Sequence>
+  <Series.Sequence durationInFrames={SHOT_DURATION} offset={-INTRO_TRANSITION_DURATION}>
+  <IntroCrossfade>
   <VideoMaskShot
     video="episode-03-anxious.mp4"
     videoFrames={120}
@@ -19,6 +35,7 @@ export const Episode03 = () => (
       <span style={{display: "block", marginTop: 24}}>它通常是长期压力、职场冲突或不安全感造成的应激反应。</span>
     </>}
   />
+  </IntroCrossfade>
   </Series.Sequence>
   <Series.Sequence durationInFrames={SHOT_DURATION}>
     <VideoMaskShot
@@ -51,8 +68,8 @@ export const Episode03 = () => (
       videoFrames={120}
       freezeFrames={12}
       durationInFrames={SHOT_DURATION}
-      kicker="潜意识"
-      title="潜意识"
+      kicker="梦境反刍"
+      title="梦境反刍"
       description="对工作出错的恐惧被延续到睡眠中，“梦中持续工作”象征内在的责任压力，对评价的担忧和难以允许自己休息"
     />
   </Series.Sequence>

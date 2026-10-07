@@ -32,7 +32,9 @@ export const VideoMaskShot = ({
   accentColor = "#ff806f",
 }: VideoMaskShotProps) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, width } = useVideoConfig();
+  const titleLength = Math.max(1, Array.from(kicker).length);
+  const titleFontSize = Math.min(150, (width * 0.82 * 0.96) / titleLength - 2);
   const blurStart = videoFrames + freezeFrames;
   const blur = interpolate(frame, [blurStart, blurStart + 18], [0, 6], {
     extrapolateLeft: "clamp",
@@ -90,7 +92,8 @@ export const VideoMaskShot = ({
         </div>
         <div
           style={{
-            fontSize:150,
+            fontSize: titleFontSize,
+            whiteSpace: "nowrap",
             fontWeight: 600,
             letterSpacing: 2,
             color: "#2467a8",
