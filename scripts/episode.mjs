@@ -4,7 +4,7 @@ import {spawnSync} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {root,check} from './media.mjs';
 const [mode,episode='episode-03',...extra] = process.argv.slice(2);
-const ids = {'episode-01':'MyComp','episode-02':'Episode02','episode-03':'Episode03WorkTrauma'};
+const ids = {'episode-01':'MyComp','episode-02':'Episode02','episode-03':'Episode03EatingHabits'};
 if (!ids[episode] || !['preview','render','bundle'].includes(mode)) throw new Error('Usage: preview|render|bundle episode-01|episode-02|episode-03');
 if (check(episode, false).length) throw new Error(`Restore assets first: npm run media -- restore ${episode}`);
 const publicDir = path.join(root,'.media',episode,'public');
