@@ -17,9 +17,7 @@ export const Episode03 = () => (
       padding: 100,
     }}
   >
-    <div style={{fontSize: 32, color: theme.colors.muted, marginBottom: 40}}>
-      心理科普 · 第三期
-    </div>
+    
     <div style={{fontSize: 88, fontWeight: 700, lineHeight: 1.35}}>
       你的吃饭习惯，
       <br />
