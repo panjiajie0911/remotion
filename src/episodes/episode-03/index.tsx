@@ -3,6 +3,7 @@ import {theme} from "../../lib/theme";
 
 export const EPISODE03_ID = "Episode03EatingHabits";
 export const EPISODE03_FPS = 30;
+export const EPISODE03_BACKGROUND = "#FFFFF0"; // Ivory white, this episode's main color.
 // Temporary title-card duration; update when narration and scenes are ready.
 export const EPISODE03_DURATION = 6 * EPISODE03_FPS;
 
@@ -10,7 +11,7 @@ export const EPISODE03_DURATION = 6 * EPISODE03_FPS;
 export const Episode03 = () => (
   <AbsoluteFill
     style={{
-      backgroundColor: theme.colors.background,
+      backgroundColor: EPISODE03_BACKGROUND,
       color: theme.colors.text,
       fontFamily: theme.fonts.sans,
       justifyContent: "center",
