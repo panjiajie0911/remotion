@@ -15,6 +15,12 @@ if (missingAssets.length) {
 }
 const publicDir = path.join(root,'.media',episode,'public');
 fs.mkdirSync(publicDir,{recursive:true});
+const avatarSource = path.join(root,'src/assets/img/avatar.png');
+if (fs.existsSync(avatarSource)) {
+  const sharedDir = path.join(publicDir,'shared');
+  fs.mkdirSync(sharedDir,{recursive:true});
+  fs.copyFileSync(avatarSource,path.join(sharedDir,'avatar.png'));
+}
 const require = createRequire(import.meta.url);
 const cliPackage = require.resolve('@remotion/cli/package.json');
 const pkg = JSON.parse(fs.readFileSync(cliPackage,'utf8'));

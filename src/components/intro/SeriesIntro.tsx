@@ -1,5 +1,4 @@
-import { AbsoluteFill, Easing, Img, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
-import avatar from "../../assets/img/avatar.png";
+import { AbsoluteFill, Easing, getStaticFiles, Img, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { theme } from "../../lib/theme";
 
 export const SERIES_INTRO_DURATION = 90;
@@ -24,6 +23,7 @@ export const SeriesIntro = ({
   footer = ""
 }: SeriesIntroProps) => {
   const frame = useCurrentFrame();
+  const avatar = getStaticFiles().find((file) => file.name === "shared/avatar.png")?.src;
   const { fps } = useVideoConfig();
   const ease = Easing.bezier(0.16, 1, 0.3, 1);
   const lines = (Array.isArray(title) ? title : title.split(/\r?\n/)).filter(Boolean);
@@ -47,7 +47,7 @@ export const SeriesIntro = ({
   return (
     <AbsoluteFill style={{ backgroundColor: "#F3F7FF", color: theme.colors.text, fontFamily: theme.fonts.sans, overflow: "hidden" }}>
       <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 38%, rgba(255,255,255,0.98) 0%, rgba(232,240,255,0.9) 42%, rgba(210,224,250,0.98) 100%)", opacity: wash }} />
-      <Img src={avatar} style={{ bottom: -140, height: 1480, left: "50%", objectFit: "contain", opacity: 0.9, position: "absolute", translate: "-50% 0", scale: imageScale }} />
+      {avatar ? <Img src={avatar} style={{ bottom: -140, height: 1480, left: "50%", objectFit: "contain", opacity: 0.9, position: "absolute", translate: "-50% 0", scale: imageScale }} /> : null}
 
       {eyebrow ? (
         <div style={{ color: theme.colors.accent, fontSize: 28, fontWeight: 700, left: 80, letterSpacing: 5, opacity: show(6), position: "absolute", right: 80, top: 112 }}>
