@@ -1,4 +1,5 @@
 import {AbsoluteFill, Sequence} from "remotion";
+import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
 import {theme} from "../../lib/theme";
 import {episode03Timeline} from "./timeline";
 export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
@@ -17,6 +18,13 @@ export const Episode03 = () => (
       padding: 100,
     }}
   >
+    <Sequence durationInFrames={SERIES_INTRO_DURATION} name="统一片头">
+      <SeriesIntro
+        eyebrow="第 03 期 · 心理观察"
+        title={["你的吃饭习惯，", "暴露了你的心理"]}
+        emphasisLines={[1]}
+      />
+    </Sequence>
     {episode03Timeline.map((chapter) => (
       <Sequence key={chapter.id} from={chapter.from} durationInFrames={chapter.durationInFrames} name={`${chapter.label} · ${chapter.title.replace("\n", "")}`}>
         <AbsoluteFill style={{padding: "150px 90px 220px"}}>

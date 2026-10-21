@@ -1,3 +1,4 @@
+import {SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
 export const EPISODE03_FPS = 30;
 
 // Draft timing, pending recorded narration. Text remains in words.txt.
@@ -9,7 +10,7 @@ export const episode03Chapters = [
   {id: "closing", label: "总 · 结尾", seconds: 14, title: "少一点自我评判\n多留意自己的感受", visual: "回到安静的餐桌，人物放松用餐", narration: "words.txt 第 11–13 行", beats: ["吃饭习惯不能直接证明心理创伤", "关注自己的感受", "事已至此，先吃饭吧"]},
 ] as const;
 
-let cursor = 0;
+let cursor = SERIES_INTRO_DURATION;
 export const episode03Timeline = episode03Chapters.map((chapter) => {
   const from = cursor;
   const durationInFrames = chapter.seconds * EPISODE03_FPS;
