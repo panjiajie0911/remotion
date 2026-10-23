@@ -18,6 +18,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remotion": "4.0.522",
+    "roughjs": "^4.6.6",
     "tailwindcss": "4.2.0"
   },
   "devDependencies": {
@@ -29,10 +30,13 @@
     "typescript": "5.9.3"
   },
   "scripts": {
-    "dev": "remotion studio",
-    "build": "remotion bundle",
+    "dev": "node scripts/episode.mjs preview episode-03",
+    "build": "node scripts/episode.mjs bundle episode-03",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "media": "node scripts/media.mjs",
+    "preview": "node scripts/episode.mjs preview",
+    "render": "node scripts/episode.mjs render"
   },
   "sideEffects": [
     "*.css"

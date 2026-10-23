@@ -1,0 +1,579 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "group": "episode-02",
+      "source": "src/assets/audio/2.mp3",
+      "target": "src/assets/audio/2.mp3",
+      "sha256": "fe26fa935d40abec4f2b5fb299d82fe77b307982e4e6e60b362a8dafeb3bf39b",
+      "bytes": 2374008
+    },
+    {
+      "group": "shared",
+      "source": "src/assets/font/DingLieHuoBanTi/dingliehuobanfont20241217-2.ttf",
+      "target": "src/assets/font/DingLieHuoBanTi/dingliehuobanfont20241217-2.ttf",
+      "sha256": "b6e045bdb200408b2f055dac4b95e21b24a63570022fbc59130a5963ec5c5c16",
+      "bytes": 4454588
+    },
+    {
+      "group": "shared",
+      "source": "src/assets/img/avatar.png",
+      "target": "src/assets/img/avatar.png",
+      "sha256": "acae677103f1f2a0d1857f1927582cb5f4425152944cc1631686552eb437e8e5",
+      "bytes": 552043
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/afraid.png",
+      "target": "src/episodes/episode-02/assets/img/afraid.png",
+      "sha256": "4739e1345db7bf2450e8950f2827729480aac4da0c51d853161c57c472f62844",
+      "bytes": 184591
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/angel.png",
+      "target": "src/episodes/episode-02/assets/img/angel.png",
+      "sha256": "9441cf6f68c57805fa8f9fd15f79d985880ba5b28a314f68580d2fd85ad9c859",
+      "bytes": 249023
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/angry.png",
+      "target": "src/episodes/episode-02/assets/img/angry.png",
+      "sha256": "178c0c9863e67e43f7cf7683cd76cf201646b16d922ab71b2ded15f4ee33a6bf",
+      "bytes": 873126
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/balance.png",
+      "target": "src/episodes/episode-02/assets/img/balance.png",
+      "sha256": "00bc8c53daed0dca158df6c3e3bfd6fd79eebcffb733318a628cb31ad6efe3ce",
+      "bytes": 350299
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/book.png",
+      "target": "src/episodes/episode-02/assets/img/book.png",
+      "sha256": "ea650e1b7e991a76bd918be0224ab8187ecb16bf334afed0a5feff110c4127f8",
+      "bytes": 1703030
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/boy-hug.png",
+      "target": "src/episodes/episode-02/assets/img/boy-hug.png",
+      "sha256": "e6f005de14c54d633064c85c281cd27cdbe51c4f0ad4df891d964b3feda574c2",
+      "bytes": 233124
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/boy-with-toy.png",
+      "target": "src/episodes/episode-02/assets/img/boy-with-toy.png",
+      "sha256": "18601c59f6c940c4845a9ef90bcc290df37709f8a21f6575440c23f0843dd4d4",
+      "bytes": 205448
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/boy.png",
+      "target": "src/episodes/episode-02/assets/img/boy.png",
+      "sha256": "3287f4f6ff9cd60587c2bd40d91cbec327f8e76c7cc1dbfe0b5073e606e94852",
+      "bytes": 706868
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/bugging.png",
+      "target": "src/episodes/episode-02/assets/img/bugging.png",
+      "sha256": "b2dcf54e76a59ffd6eb65ac27a981e5a4a841e28419d55d5fcb3a59079e2eb22",
+      "bytes": 270545
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/candy.png",
+      "target": "src/episodes/episode-02/assets/img/candy.png",
+      "sha256": "14102c559188f8c0881cc1b0c1a699fb377a7e94d489df67ad6d291f46765a20",
+      "bytes": 194907
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/chat-box-clean.png",
+      "target": "src/episodes/episode-02/assets/img/chat-box-clean.png",
+      "sha256": "0a131e12efae3ea27b6df4626b470427da2257e0588e608ae6f15253c28ad04c",
+      "bytes": 5578
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/chat-box.png",
+      "target": "src/episodes/episode-02/assets/img/chat-box.png",
+      "sha256": "859590fa22fc88e43d6b1e0bd8800252acc34840523a8f5baa42d43f88984d2a",
+      "bytes": 47395
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/chat-cloud.png",
+      "target": "src/episodes/episode-02/assets/img/chat-cloud.png",
+      "sha256": "fdec46f371c6d249605750a276ad4b5d39b6f0a980b1510a560f34ec6ad65d25",
+      "bytes": 170754
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/cloud.png",
+      "target": "src/episodes/episode-02/assets/img/cloud.png",
+      "sha256": "f4fd49516a45630391be8a896f9a8831a2a04f56bf49ee621d30419075e76cfd",
+      "bytes": 98830
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/comfor.png",
+      "target": "src/episodes/episode-02/assets/img/comfor.png",
+      "sha256": "59b0db8c01435ba9c815034183df14f740c1471ee44b5f8658ea2bcefdc29ff1",
+      "bytes": 784602
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/compare.png",
+      "target": "src/episodes/episode-02/assets/img/compare.png",
+      "sha256": "1d52b2280b69bc423bf9e6ab49363e43a1bfb85c55ed80f47e0ecf56f4169bea",
+      "bytes": 485023
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/complete-jimu.png",
+      "target": "src/episodes/episode-02/assets/img/complete-jimu.png",
+      "sha256": "11fbd7f376a70fe7a47600ffc1438e0559e5b50f103978d50b82c2a7635766d1",
+      "bytes": 627372
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/confused.png",
+      "target": "src/episodes/episode-02/assets/img/confused.png",
+      "sha256": "b32966b36791aa90c6093dff95e08bbaa873716cc0141bc585585c7957877638",
+      "bytes": 129084
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/cry-boy.png",
+      "target": "src/episodes/episode-02/assets/img/cry-boy.png",
+      "sha256": "eb68cd138d9f9580ab4c687625a43ca11d527b5ad70ac959a88d95865bc092c0",
+      "bytes": 238172
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/demon.png",
+      "target": "src/episodes/episode-02/assets/img/demon.png",
+      "sha256": "845b42ea739a7f4647e4aecdccb7bc02220faecf33dd8eb7cfd998fb648abb40",
+      "bytes": 129518
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/desk.png",
+      "target": "src/episodes/episode-02/assets/img/desk.png",
+      "sha256": "2be183f36680d22023288b89f307e08e3b61289c2f866dddd2ad4a57fa0c53c7",
+      "bytes": 177632
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/education.png",
+      "target": "src/episodes/episode-02/assets/img/education.png",
+      "sha256": "fc115168eebc0217d8d6c5d9e5df318aff80900a31ecc7428b3c72c63a028519",
+      "bytes": 551103
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/family-clean.png",
+      "target": "src/episodes/episode-02/assets/img/family-clean.png",
+      "sha256": "1986b6e5fedb14425cfadd46efaf70f614391c3bb88780bbe4957fd552b2b2cd",
+      "bytes": 16687
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/family.png",
+      "target": "src/episodes/episode-02/assets/img/family.png",
+      "sha256": "33382555097f958f90834ef64dcdd4d9523031985e249d43e29fae82126d068e",
+      "bytes": 225509
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/father-hug.png",
+      "target": "src/episodes/episode-02/assets/img/father-hug.png",
+      "sha256": "101473b53085491a8f6c40c739468e6c4725f6ccb71b344bd6a5dd1fb7f9890c",
+      "bytes": 238865
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/fight-boy.png",
+      "target": "src/episodes/episode-02/assets/img/fight-boy.png",
+      "sha256": "f31dcebfec81e74fe01ea878ce9c714066af0fbc636e17fedae8f4558112d286",
+      "bytes": 233417
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/fouced.png",
+      "target": "src/episodes/episode-02/assets/img/fouced.png",
+      "sha256": "bc781c701df6d296e6b720d05ae6993371986b0a553561c96e136f6b5011ac36",
+      "bytes": 345963
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/hand-up.png",
+      "target": "src/episodes/episode-02/assets/img/hand-up.png",
+      "sha256": "c35d1a3da86da47ade00593fb7966ad418fab9518f3fbd2a6f70891f41ce4eac",
+      "bytes": 193176
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/hug.png",
+      "target": "src/episodes/episode-02/assets/img/hug.png",
+      "sha256": "954deb4fa8efbd6acdcb692b866b0602a733af4add8456bf442f3140de00645f",
+      "bytes": 305958
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/igrone.png",
+      "target": "src/episodes/episode-02/assets/img/igrone.png",
+      "sha256": "b1c7f86b46b3721bd1e35be9208bd6a247ab230accadae3bb50d688be75aab72",
+      "bytes": 270455
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/impulsive-clean.png",
+      "target": "src/episodes/episode-02/assets/img/impulsive-clean.png",
+      "sha256": "2c9e27c21681508d01ee06a847aeb97efb03dc3c021600fa7df8827c2fc85942",
+      "bytes": 498675
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/impulsive.png",
+      "target": "src/episodes/episode-02/assets/img/impulsive.png",
+      "sha256": "f4a9b2cc9a022466bb32a93fb20f6725ab3716e8ec146f4ac72ceb75876524f4",
+      "bytes": 744453
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/jes.png",
+      "target": "src/episodes/episode-02/assets/img/jes.png",
+      "sha256": "066892ad8bccd1d5d0b19e2324c2f2f57e03d4a51f54ed67ae46d0e5241d3117",
+      "bytes": 197514
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/jimu-clean.png",
+      "target": "src/episodes/episode-02/assets/img/jimu-clean.png",
+      "sha256": "cebfdb52869de051967ba855da6dc9daeb2c19fc873275a6484d9ebe87f493ac",
+      "bytes": 181583
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/jimu-destroed.png",
+      "target": "src/episodes/episode-02/assets/img/jimu-destroed.png",
+      "sha256": "8c92e4aa9b318ba7e541e35dabbfbbf854e74f02f9b1b6faf728c4c4498e222f",
+      "bytes": 455357
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/jimu-down-clean.png",
+      "target": "src/episodes/episode-02/assets/img/jimu-down-clean.png",
+      "sha256": "a79af78623ca815615d1c088ac06412ffd331c3bf6542ce6affd57d05dbf5ca2",
+      "bytes": 400927
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/jimu-down.png",
+      "target": "src/episodes/episode-02/assets/img/jimu-down.png",
+      "sha256": "8feb25e1cd03d4876392300a43986ed20bf1d7bb02a210b1cf5d1fa29c6fbc74",
+      "bytes": 731849
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/jimu.png",
+      "target": "src/episodes/episode-02/assets/img/jimu.png",
+      "sha256": "5dd4bc40e1645ea3c77842a36deb48ec52694f2c2b2a4df8469ca2fb9314b3b4",
+      "bytes": 517109
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/light-shadow.jpg",
+      "target": "src/episodes/episode-02/assets/img/light-shadow.jpg",
+      "sha256": "7600bb8d0df4d19d33e88c16cf33c8b0190d4dcb2b1ca2ac5f022ef52d5fe871",
+      "bytes": 85801
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/line.png",
+      "target": "src/episodes/episode-02/assets/img/line.png",
+      "sha256": "780c317712f637a55eec7df0f0276f0d68b09c91aac5096b49a9017828ce95df",
+      "bytes": 240936
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/line2-clean.png",
+      "target": "src/episodes/episode-02/assets/img/line2-clean.png",
+      "sha256": "e13eb844597ed01d83d1aa391dfd7e4104a3c1e306a266581aeb21b50dfa8abe",
+      "bytes": 4187
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/line2.png",
+      "target": "src/episodes/episode-02/assets/img/line2.png",
+      "sha256": "a27820416c84419c549313870e2ab5189bfb0911793645749120e2d27171e700",
+      "bytes": 69508
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/mess-jimu.png",
+      "target": "src/episodes/episode-02/assets/img/mess-jimu.png",
+      "sha256": "fd6047cc233a24c71e4c7c1cf000f0af098a514e0e3e09d27b00fa3d454dba23",
+      "bytes": 639025
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/negitive-boy.png",
+      "target": "src/episodes/episode-02/assets/img/negitive-boy.png",
+      "sha256": "43565a4b83f7cb8998ae961e8e399a0a16a9649064eff2d25be38c1f527cb59e",
+      "bytes": 198274
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/noisy.png",
+      "target": "src/episodes/episode-02/assets/img/noisy.png",
+      "sha256": "734f59343869f088f0e4a7d2175b8cb5b2c2125d12bdc41430f99ca949f4c6fe",
+      "bytes": 533332
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/person-clean.png",
+      "target": "src/episodes/episode-02/assets/img/person-clean.png",
+      "sha256": "a255f11196449c90e80c28795eac1b2373cca0339f433282b36af563d4ce66f5",
+      "bytes": 10241
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/person.png",
+      "target": "src/episodes/episode-02/assets/img/person.png",
+      "sha256": "2c9d13bc81e4ef1a8f76867a4a34931b42ae07d09a1284668c7b61edc4b12166",
+      "bytes": 161284
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/playing-father.png",
+      "target": "src/episodes/episode-02/assets/img/playing-father.png",
+      "sha256": "51ff42dd7d7be89f903ed3264d114478d0d89afa2b3ea54445c6e27d45095ca3",
+      "bytes": 211854
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/post.png",
+      "target": "src/episodes/episode-02/assets/img/post.png",
+      "sha256": "ce60d6f6ecb9c90ba28c763b78fd2de9f17811cdda2bcdae58ada129eea294fa",
+      "bytes": 1836401
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/push-away.png",
+      "target": "src/episodes/episode-02/assets/img/push-away.png",
+      "sha256": "be71a60f543238f8577cd96d35c73ce694a4fbd585fa5cceb086dcd81e0e6bde",
+      "bytes": 227475
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/quiet-clean.png",
+      "target": "src/episodes/episode-02/assets/img/quiet-clean.png",
+      "sha256": "d96db731591d33e13c9c99831192806120e743c808ae78473672654602a4016d",
+      "bytes": 481816
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/quiet.png",
+      "target": "src/episodes/episode-02/assets/img/quiet.png",
+      "sha256": "25154a2c90a11ba7e1f069c89162c871bbfff741e22202bb2b069a0c786300e5",
+      "bytes": 694634
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/quite.png",
+      "target": "src/episodes/episode-02/assets/img/quite.png",
+      "sha256": "da716dc45ecf3d6784e4ba64f8d413756eaa46c46914588622bab9e4d16cd475",
+      "bytes": 311889
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/rough-thought-cloud.svg",
+      "target": "src/episodes/episode-02/assets/img/rough-thought-cloud.svg",
+      "sha256": "5d51c8abcce2b5ffa60251d46ff7cbe1516a3828209a36b24c1f26276748ae78",
+      "bytes": 14068
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/sad.png",
+      "target": "src/episodes/episode-02/assets/img/sad.png",
+      "sha256": "a24575c04494687aff1c7373904664cb35abe79eff3c9a7545ddc2e19e029ffc",
+      "bytes": 199896
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/thinking.png",
+      "target": "src/episodes/episode-02/assets/img/thinking.png",
+      "sha256": "4e587c9f9cd90376bdef30e70a99891a42a38836400bed6bf8c9d17740b4bf6d",
+      "bytes": 555874
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/toy.png",
+      "target": "src/episodes/episode-02/assets/img/toy.png",
+      "sha256": "d063618906648442d2a1903e8d7090481fbb8a03817675bf5f09101b959f1328",
+      "bytes": 172754
+    },
+    {
+      "group": "episode-02",
+      "source": "src/episodes/episode-02/assets/img/toy2.png",
+      "target": "src/episodes/episode-02/assets/img/toy2.png",
+      "sha256": "59ec0f6ef544a484d53f3351aebd317ca51b49a45e506241987b0bd749660385",
+      "bytes": 104816
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/img/house.png",
+      "target": "src/episodes/episode-03/assets/img/house.png",
+      "sha256": "9dca1ca5ee1fd20296c2ef7dac52452d58e1b6bb57aef4eddf0e37ee2dd8c457",
+      "bytes": 754237
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/img/person.png",
+      "target": "src/episodes/episode-03/assets/img/person.png",
+      "sha256": "216c8d49a4e931fdc1f7ebae6819525a2ab8ee1f523181d3543d47faebbf9339",
+      "bytes": 177099
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/img/post.png",
+      "target": "src/episodes/episode-03/assets/img/post.png",
+      "sha256": "78fd267bc99c214afab662593dc7ccfc8ef96cd97a16348d859d2a633d5652b8",
+      "bytes": 3457816
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/img/post2.png",
+      "target": "src/episodes/episode-03/assets/img/post2.png",
+      "sha256": "db71b7b66c1a800ba6e37a6e936b1b204524549b4159f20843c4bcd9365bb84b",
+      "bytes": 2994225
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/img/waiting.png",
+      "target": "src/episodes/episode-03/assets/img/waiting.png",
+      "sha256": "34a028cc9354edc7eb9e809941aaa67b1eeca3a44df4738ad9aca8cf9014db66",
+      "bytes": 679093
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/video/anxious.mp4",
+      "target": "src/episodes/episode-03/assets/video/anxious.mp4",
+      "sha256": "4dbb4e31f0c48922a7f82ea6d0a4347c8a0222e97312e5c6641290a3d6c3ff46",
+      "bytes": 380196
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/video/dream.mp4",
+      "target": "src/episodes/episode-03/assets/video/dream.mp4",
+      "sha256": "92cf237891fe259fddaaff0afbc1744771360fdae60ac42432733d10d57477ee",
+      "bytes": 1752382
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/video/house.mp4",
+      "target": "src/episodes/episode-03/assets/video/house.mp4",
+      "sha256": "e7fc79cf356b9ea5cd7ca9891efc21a0f86b0a2b5be0fbb4c3f8651a75c5fc51",
+      "bytes": 623333
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/video/meeting.mp4",
+      "target": "src/episodes/episode-03/assets/video/meeting.mp4",
+      "sha256": "c07c9c151e58bdfee0e2391b3b68a8bedbb81d4e18755e8f63b365ccee0c41ce",
+      "bytes": 884996
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/video/nop.mp3",
+      "target": "src/episodes/episode-03/assets/video/nop.mp3",
+      "sha256": "0be121e38ec5e2e5c0cc6c286a540fefd2dddf1f21c66d2ee1eca58c0b089b16",
+      "bytes": 1630876
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/assets/video/sleep.mp4",
+      "target": "src/episodes/episode-03/assets/video/sleep.mp4",
+      "sha256": "926979c56b14b25e7739fbd8f0e0529f3c7920a32362e41e804909efb1a2d3f4",
+      "bytes": 638052
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/script.xlsx",
+      "target": "src/episodes/episode-03/script.xlsx",
+      "sha256": "e8a19826e8d79bd6f1402a7c1b017c279901db5b96f62966b860ed1a7524bace",
+      "bytes": 13937
+    },
+    {
+      "group": "episode-03",
+      "source": "src/episodes/episode-03/~$script.xlsx",
+      "target": "src/episodes/episode-03/~$script.xlsx",
+      "sha256": "0aac4cd6bbd7180d3747134f6e4538debb19307c087927a59abdd85641df86c9",
+      "bytes": 165
+    },
+    {
+      "group": "episode-03",
+      "source": "public/episode-03-anxious.mp4",
+      "target": ".media/episode-03/public/episode-03-anxious.mp4",
+      "sha256": "4dbb4e31f0c48922a7f82ea6d0a4347c8a0222e97312e5c6641290a3d6c3ff46",
+      "bytes": 380196
+    },
+    {
+      "group": "episode-03",
+      "source": "public/episode-03-dream.mp4",
+      "target": ".media/episode-03/public/episode-03-dream.mp4",
+      "sha256": "92cf237891fe259fddaaff0afbc1744771360fdae60ac42432733d10d57477ee",
+      "bytes": 1752382
+    },
+    {
+      "group": "episode-03",
+      "source": "public/episode-03-house.mp4",
+      "target": ".media/episode-03/public/episode-03-house.mp4",
+      "sha256": "e7fc79cf356b9ea5cd7ca9891efc21a0f86b0a2b5be0fbb4c3f8651a75c5fc51",
+      "bytes": 623333
+    },
+    {
+      "group": "episode-03",
+      "source": "public/episode-03-meeting.mp4",
+      "target": ".media/episode-03/public/episode-03-meeting.mp4",
+      "sha256": "c07c9c151e58bdfee0e2391b3b68a8bedbb81d4e18755e8f63b365ccee0c41ce",
+      "bytes": 884996
+    },
+    {
+      "group": "episode-03",
+      "source": "public/episode-03-nop.mp3",
+      "target": ".media/episode-03/public/episode-03-nop.mp3",
+      "sha256": "0be121e38ec5e2e5c0cc6c286a540fefd2dddf1f21c66d2ee1eca58c0b089b16",
+      "bytes": 1630876
+    },
+    {
+      "group": "episode-03",
+      "source": "public/episode-03-sleep.mp4",
+      "target": ".media/episode-03/public/episode-03-sleep.mp4",
+      "sha256": "926979c56b14b25e7739fbd8f0e0529f3c7920a32362e41e804909efb1a2d3f4",
+      "bytes": 638052
+    },
+    {
+      "group": "episode-02",
+      "source": "public/episodes/episode-02/2.m4a",
+      "target": ".media/episode-02/public/episodes/episode-02/2.m4a",
+      "sha256": "c987e9c0f564438db79d47c523ed5ec364da493ce6a1761f4a3e5a846e17e1bf",
+      "bytes": 2905853
+    },
+    {
+      "group": "episode-02",
+      "source": "public/episodes/episode-02/2.mp3",
+      "target": ".media/episode-02/public/episodes/episode-02/2.mp3",
+      "sha256": "fe26fa935d40abec4f2b5fb299d82fe77b307982e4e6e60b362a8dafeb3bf39b",
+      "bytes": 2374008
+    }
+  ]
+}

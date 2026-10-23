@@ -70,7 +70,10 @@ export const CaptionTrack = ({ captions, hiddenIntervals = [] }: CaptionTrackPro
     {captions.map((cue, index) => <Sequence
       key={`${cue.start}-${index}`}
       from={Math.round(cue.start * fps)}
-      durationInFrames={Math.max(1, Math.round((cue.end - cue.start) * fps))}
+      durationInFrames={Math.max(
+        1,
+        Math.round((cue.end - cue.start) * fps),
+      )}
     >
       <AbsoluteFill style={{ justifyContent: CAPTION_POSITION === "bottom" ? "flex-end" : "center", paddingBottom: CAPTION_POSITION === "bottom" ? 180 : 0 }}>
         <Caption cue={cue} />
