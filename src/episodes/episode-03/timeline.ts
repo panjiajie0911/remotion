@@ -4,6 +4,7 @@ export const EPISODE03_OPENING_DURATION = 122;
 export const EPISODE03_DELICIOUS_DURATION = 134;
 export const EPISODE03_REVERSE_DURATION = 303;
 export const EPISODE03_ADULT_DURATION = 304; // ceil(10.100998 seconds * 30 fps).
+export const EPISODE03_EAT_DURATION = 152; // ceil(5.061995 seconds * 30 fps).
 
 // Draft timing, pending recorded narration. Text remains in words.txt.
 export const episode03Chapters = [

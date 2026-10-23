@@ -4,6 +4,8 @@ import forbiddenVideo from "./assets/forbidden.mp4";
 import deliciousVideo from "./assets/delicious.mp4";
 import reverseVideo from "./assets/reverse.mp4";
 import adultVideo from "./assets/adult.mp4";
+import eatVideo from "./assets/eat.mp4";
+import {EPISODE03_EAT_DURATION} from "./timeline";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
 import {theme} from "../../lib/theme";
 import {episode03Timeline, EPISODE03_OPENING_DURATION, EPISODE03_DELICIOUS_DURATION as DELICIOUS_DURATION, EPISODE03_REVERSE_DURATION as REVERSE_DURATION, EPISODE03_ADULT_DURATION} from "./timeline";
@@ -88,6 +90,26 @@ const AdultScene = () => {
   );
 };
 
+const EatFastScene = () => {
+  const frame = useCurrentFrame();
+  // Draft timing, pending alignment with the final voiceover.
+  const captions = [
+    {from: 0, text: "吃饭吃得很快"},
+    {from: 38, text: "习惯狼吞虎咽的人"},
+    {from: 87, text: "对外界充满了不信任感"},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
+  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 2) + 1);
+  return (
+    <AbsoluteFill>
+      <Video src={eatVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
+        {visibleText}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 /** Main episode timeline. Add narration and illustration scenes here. */
 export const Episode03 = () => (
   <AbsoluteFill
@@ -127,7 +149,12 @@ export const Episode03 = () => (
             <AdultScene />
           </Sequence>
         )}
-        {chapter.id !== "save-best" && <Sequence name="后续内容占位">
+        {chapter.id === "eat-fast" && (
+          <Sequence durationInFrames={EPISODE03_EAT_DURATION} name="狼吞虎咽 · 视频">
+            <EatFastScene />
+          </Sequence>
+        )}
+        {chapter.id !== "save-best" && <Sequence from={chapter.id === "eat-fast" ? EPISODE03_EAT_DURATION : 0} name="后续内容占位">
         <AbsoluteFill style={{padding: "150px 90px 220px"}}>
           <div style={{fontSize: 30, color: theme.colors.primary, marginBottom: 40}}>{chapter.title.replace("\n", "")}</div>
           <div style={{fontSize: 78, fontWeight: 700, lineHeight: 1.35, whiteSpace: "pre-line"}}>{chapter.title}</div>
