@@ -1,7 +1,9 @@
 import {AbsoluteFill, Sequence} from "remotion";
+import {Video} from "@remotion/media";
+import forbiddenVideo from "./assets/forbidden.mp4";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
 import {theme} from "../../lib/theme";
-import {episode03Timeline} from "./timeline";
+import {episode03Timeline, EPISODE03_OPENING_DURATION} from "./timeline";
 export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
 
 export const EPISODE03_ID = "Episode03EatingHabits";
@@ -24,6 +26,13 @@ export const Episode03 = () => (
         title={["你的吃饭习惯，", "暴露了你的心理"]}
         emphasisLines={[1]}
       />
+    </Sequence>
+    <Sequence from={SERIES_INTRO_DURATION} durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
+      <Video src={forbiddenVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center"}}>
+        几乎所有不健全家庭长大的孩子，<br />
+        都存在进食障碍
+      </div>
     </Sequence>
     {episode03Timeline.map((chapter) => (
       <Sequence key={chapter.id} from={chapter.from} durationInFrames={chapter.durationInFrames} name={`${chapter.label} · ${chapter.title.replace("\n", "")}`}>
