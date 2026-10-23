@@ -3,9 +3,12 @@ import {Video} from "@remotion/media";
 import forbiddenVideo from "./assets/forbidden.mp4";
 import deliciousVideo from "./assets/delicious.mp4";
 import reverseVideo from "./assets/reverse.mp4";
+import adultVideo from "./assets/adult.mp4";
+import eatVideo from "./assets/eat.mp4";
+import {EPISODE03_EAT_DURATION} from "./timeline";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
 import {theme} from "../../lib/theme";
-import {episode03Timeline, EPISODE03_OPENING_DURATION} from "./timeline";
+import {episode03Timeline, EPISODE03_OPENING_DURATION, EPISODE03_DELICIOUS_DURATION as DELICIOUS_DURATION, EPISODE03_REVERSE_DURATION as REVERSE_DURATION, EPISODE03_ADULT_DURATION} from "./timeline";
 export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
 
 export const EPISODE03_ID = "Episode03EatingHabits";
@@ -27,7 +30,6 @@ const OpeningCaption = () => {
   );
 };
 
-const DELICIOUS_DURATION = 134; // 4.458333 seconds at the composition's 30 fps.
 const DeliciousScene = () => {
   const frame = useCurrentFrame();
   const captions = [
@@ -47,20 +49,60 @@ const DeliciousScene = () => {
   );
 };
 
-const REVERSE_DURATION = 303; // 10.08 seconds, rounded up at 30 fps.
 const ConditionalLoveScene = () => {
   const frame = useCurrentFrame();
   const captions = [
     {from: 0, text: "这样的人，从小生活在"},
-    {from: 72, text: "“有条件的爱”的家庭里。"},
+    {from: 72, text: "“有条件的爱”的家庭里"},
     {from: 153, text: "只有表现得好"},
-    {from: 216, text: "才能获得奖励和鼓励。"},
+    {from: 216, text: "才能获得奖励和鼓励"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 3) + 1);
   return (
     <AbsoluteFill>
       <Video src={reverseVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
+        {visibleText}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const AdultScene = () => {
+  const frame = useCurrentFrame();
+  // Draft caption timing; adjust against the final narration recording.
+  const captions = [
+    {from: 0, text: "潜意识中存在深深的"},
+    {from: 65, text: "对安全感的失控的恐惧"},
+    {from: 146, text: "因此成年后形成了"},
+    {from: 217, text: "隐忍，自律的性格"},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
+  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 3) + 1);
+  return (
+    <AbsoluteFill>
+      <Video src={adultVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
+        {visibleText}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const EatFastScene = () => {
+  const frame = useCurrentFrame();
+  // Draft timing, pending alignment with the final voiceover.
+  const captions = [
+    {from: 0, text: "吃饭吃得很快"},
+    {from: 38, text: "习惯狼吞虎咽的人"},
+    {from: 87, text: "对外界充满了不信任感"},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
+  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 2) + 1);
+  return (
+    <AbsoluteFill>
+      <Video src={eatVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
         {visibleText}
       </div>
@@ -102,7 +144,17 @@ export const Episode03 = () => (
             <ConditionalLoveScene />
           </Sequence>
         )}
-        <Sequence from={chapter.id === "save-best" ? DELICIOUS_DURATION + REVERSE_DURATION : 0} name="后续内容占位">
+        {chapter.id === "save-best" && (
+          <Sequence from={DELICIOUS_DURATION + REVERSE_DURATION} durationInFrames={EPISODE03_ADULT_DURATION} name="成年后的隐忍与自律 · 视频">
+            <AdultScene />
+          </Sequence>
+        )}
+        {chapter.id === "eat-fast" && (
+          <Sequence durationInFrames={EPISODE03_EAT_DURATION} name="狼吞虎咽 · 视频">
+            <EatFastScene />
+          </Sequence>
+        )}
+        {chapter.id !== "save-best" && <Sequence from={chapter.id === "eat-fast" ? EPISODE03_EAT_DURATION : 0} name="后续内容占位">
         <AbsoluteFill style={{padding: "150px 90px 220px"}}>
           <div style={{fontSize: 30, color: theme.colors.primary, marginBottom: 40}}>{chapter.title.replace("\n", "")}</div>
           <div style={{fontSize: 78, fontWeight: 700, lineHeight: 1.35, whiteSpace: "pre-line"}}>{chapter.title}</div>
@@ -113,7 +165,7 @@ export const Episode03 = () => (
           <div style={{marginTop: 55, fontSize: 36, lineHeight: 1.7}}>{chapter.beats.map((beat) => <div key={beat}>{beat}</div>)}</div>
           <div style={{position: "absolute", bottom: 150, fontSize: 26, color: theme.colors.muted}}>口播位置 · {chapter.narration}</div>
         </AbsoluteFill>
-        </Sequence>
+        </Sequence>}
       </Sequence>
     ))}
   </AbsoluteFill>
