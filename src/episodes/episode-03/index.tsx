@@ -1,4 +1,4 @@
-import {AbsoluteFill, Sequence} from "remotion";
+import {AbsoluteFill, Sequence, useCurrentFrame} from "remotion";
 import {Video} from "@remotion/media";
 import forbiddenVideo from "./assets/forbidden.mp4";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
@@ -8,6 +8,22 @@ export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
 
 export const EPISODE03_ID = "Episode03EatingHabits";
 export const EPISODE03_BACKGROUND = "#FFFFF0"; // Ivory white, this episode's main color.
+
+// Frame-based typing stays deterministic during playback, seeking and rendering.
+const OpeningCaption = () => {
+  const frame = useCurrentFrame();
+  const secondStartsAt = 76;
+  const text = frame < secondStartsAt
+    ? "几乎所有不健全家庭长大的孩子"
+    : "都存在进食障碍";
+  const localFrame = frame < secondStartsAt ? frame : frame - secondStartsAt;
+  const visibleText = text.slice(0, Math.min(text.length, Math.floor(localFrame / 3) + 1));
+  return (
+    <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
+      {visibleText}
+    </div>
+  );
+};
 
 /** Main episode timeline. Add narration and illustration scenes here. */
 export const Episode03 = () => (
@@ -29,10 +45,7 @@ export const Episode03 = () => (
     </Sequence>
     <Sequence from={SERIES_INTRO_DURATION} durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
       <Video src={forbiddenVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center"}}>
-        几乎所有不健全家庭长大的孩子，<br />
-        都存在进食障碍
-      </div>
+      <OpeningCaption />
     </Sequence>
     {episode03Timeline.map((chapter) => (
       <Sequence key={chapter.id} from={chapter.from} durationInFrames={chapter.durationInFrames} name={`${chapter.label} · ${chapter.title.replace("\n", "")}`}>
