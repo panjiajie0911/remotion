@@ -2,6 +2,7 @@ import {AbsoluteFill, Sequence, useCurrentFrame} from "remotion";
 import {Video} from "@remotion/media";
 import forbiddenVideo from "./assets/forbidden.mp4";
 import deliciousVideo from "./assets/delicious.mp4";
+import reverseVideo from "./assets/reverse.mp4";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
 import {theme} from "../../lib/theme";
 import {episode03Timeline, EPISODE03_OPENING_DURATION} from "./timeline";
@@ -46,6 +47,27 @@ const DeliciousScene = () => {
   );
 };
 
+const REVERSE_DURATION = 303; // 10.08 seconds, rounded up at 30 fps.
+const ConditionalLoveScene = () => {
+  const frame = useCurrentFrame();
+  const captions = [
+    {from: 0, text: "这样的人，从小生活在"},
+    {from: 72, text: "“有条件的爱”的家庭里。"},
+    {from: 153, text: "只有表现得好"},
+    {from: 216, text: "才能获得奖励和鼓励。"},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
+  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 3) + 1);
+  return (
+    <AbsoluteFill>
+      <Video src={reverseVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
+        {visibleText}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 /** Main episode timeline. Add narration and illustration scenes here. */
 export const Episode03 = () => (
   <AbsoluteFill
@@ -75,7 +97,12 @@ export const Episode03 = () => (
             <DeliciousScene />
           </Sequence>
         )}
-        <Sequence from={chapter.id === "save-best" ? DELICIOUS_DURATION : 0} name="后续内容占位">
+        {chapter.id === "save-best" && (
+          <Sequence from={DELICIOUS_DURATION} durationInFrames={REVERSE_DURATION} name="有条件的爱 · 视频">
+            <ConditionalLoveScene />
+          </Sequence>
+        )}
+        <Sequence from={chapter.id === "save-best" ? DELICIOUS_DURATION + REVERSE_DURATION : 0} name="后续内容占位">
         <AbsoluteFill style={{padding: "150px 90px 220px"}}>
           <div style={{fontSize: 30, color: theme.colors.primary, marginBottom: 40}}>{chapter.title.replace("\n", "")}</div>
           <div style={{fontSize: 78, fontWeight: 700, lineHeight: 1.35, whiteSpace: "pre-line"}}>{chapter.title}</div>
