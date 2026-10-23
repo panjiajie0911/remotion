@@ -100,3 +100,7 @@ tmp/
 *.woff
 *.woff2
 *.xlsx
+
+# Episode 03 assets are shared through Git.
+!/src/episodes/episode-03/assets/
+!/src/episodes/episode-03/assets/**
