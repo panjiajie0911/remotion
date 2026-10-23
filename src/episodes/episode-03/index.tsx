@@ -51,9 +51,9 @@ const ConditionalLoveScene = () => {
   const frame = useCurrentFrame();
   const captions = [
     {from: 0, text: "这样的人，从小生活在"},
-    {from: 72, text: "“有条件的爱”的家庭里。"},
+    {from: 72, text: "“有条件的爱”的家庭里"},
     {from: 153, text: "只有表现得好"},
-    {from: 216, text: "才能获得奖励和鼓励。"},
+    {from: 216, text: "才能获得奖励和鼓励"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 3) + 1);
@@ -74,7 +74,7 @@ const AdultScene = () => {
     {from: 0, text: "潜意识中存在深深的"},
     {from: 65, text: "对安全感的失控的恐惧"},
     {from: 146, text: "因此成年后形成了"},
-    {from: 217, text: "隐忍，自律的性格。"},
+    {from: 217, text: "隐忍，自律的性格"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 3) + 1);
