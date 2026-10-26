@@ -24,11 +24,11 @@ const BottomCaption = ({from, text, secondLine}: {from: number; text: string; se
   const frame = useCurrentFrame();
   return (
     <div style={{
-      position: "absolute", left: 80, right: 80, bottom: 220,
+      position: "absolute", left: 80, right: 80, bottom: 160,
       color: "#FFF9F0", fontFamily: '"Noto Sans SC", "Microsoft YaHei", sans-serif',
-      fontSize: 44, fontWeight: 500, lineHeight: 1.5, textAlign: "center",
+      fontSize: 44, fontWeight: 500, lineHeight: 1.5, letterSpacing: 2, textAlign: "center",
       WebkitTextStroke: "1px rgba(25, 22, 20, 0.85)", paintOrder: "stroke fill",
-      textShadow: "0 2px 5px rgba(0, 0, 0, 0.55)", pointerEvents: "none",
+      textShadow: "0 3px 10px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.65)", pointerEvents: "none",
       opacity: interpolate(frame - from, [0, 6], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}),
     }}>
       <div>{text}</div>
@@ -190,7 +190,7 @@ export const Episode03 = () => (
   <AbsoluteFill style={{backgroundColor: EPISODE03_BACKGROUND, color: theme.colors.text, fontFamily: theme.fonts.sans}}>
     <Series>
       <Series.Sequence durationInFrames={SERIES_INTRO_DURATION} name="统一片头">
-        <SeriesIntro eyebrow="第 03 期 · 心理观察" title={["你的吃饭习惯，", "暴露了你的心理"]} emphasisLines={[1]} />
+        <SeriesIntro title={["你的吃饭习惯，", "暴露了你的心理"]} emphasisLines={[1]} />
       </Series.Sequence>
       <Series.Sequence durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
         <Video src={forbiddenVideo} objectFit="contain" style={{width: "100%", height: "100%"}} /><OpeningCaption />
