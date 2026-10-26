@@ -1,4 +1,4 @@
-import {AbsoluteFill, Series, useCurrentFrame} from "remotion";
+import {AbsoluteFill, Series, interpolate, useCurrentFrame} from "remotion";
 import {Video} from "@remotion/media";
 import forbiddenVideo from "./assets/forbidden.mp4";
 import deliciousVideo from "./assets/delicious.mp4";
@@ -19,7 +19,24 @@ export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
 export const EPISODE03_ID = "Episode03EatingHabits";
 export const EPISODE03_BACKGROUND = "#FFFFF0"; // Ivory white, this episode's main color.
 
-// Frame-based typing stays deterministic during playback, seeking and rendering.
+// Whole captions fade in over six frames, including when seeking.
+const BottomCaption = ({from, text, secondLine}: {from: number; text: string; secondLine?: string}) => {
+  const frame = useCurrentFrame();
+  return (
+    <div style={{
+      position: "absolute", left: 80, right: 80, bottom: 220,
+      color: "#FFF9F0", fontFamily: '"Noto Sans SC", "Microsoft YaHei", sans-serif',
+      fontSize: 44, fontWeight: 500, lineHeight: 1.5, textAlign: "center",
+      WebkitTextStroke: "1px rgba(25, 22, 20, 0.85)", paintOrder: "stroke fill",
+      textShadow: "0 2px 5px rgba(0, 0, 0, 0.55)", pointerEvents: "none",
+      opacity: interpolate(frame - from, [0, 6], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}),
+    }}>
+      <div>{text}</div>
+      {secondLine && <div>{secondLine}</div>}
+    </div>
+  );
+};
+
 const OpeningCaption = () => {
   const frame = useCurrentFrame();
   const secondStartsAt = 76;
@@ -27,11 +44,8 @@ const OpeningCaption = () => {
     ? "几乎所有不健全家庭长大的孩子"
     : "都存在进食障碍";
   const localFrame = frame < secondStartsAt ? frame : frame - secondStartsAt;
-  const visibleText = text.slice(0, Math.min(text.length, Math.floor(localFrame / 3) + 1));
   return (
-    <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
-      {visibleText}
-    </div>
+    <BottomCaption from={frame - localFrame} text={text} />
   );
 };
 
@@ -43,13 +57,10 @@ const DeliciousScene = () => {
     {from: 82, text: "潜意识中存在“不配得感”"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
-  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 2) + 1);
   return (
     <AbsoluteFill>
       <Video src={deliciousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
-        {visibleText}
-      </div>
+      <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
@@ -63,13 +74,10 @@ const ConditionalLoveScene = () => {
     {from: 216, text: "才能获得奖励和鼓励"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
-  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 3) + 1);
   return (
     <AbsoluteFill>
       <Video src={reverseVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
-        {visibleText}
-      </div>
+      <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
@@ -84,13 +92,10 @@ const AdultScene = () => {
     {from: 217, text: "隐忍，自律的性格"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
-  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 3) + 1);
   return (
     <AbsoluteFill>
       <Video src={adultVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
-        {visibleText}
-      </div>
+      <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
@@ -104,13 +109,10 @@ const EatFastScene = () => {
     {from: 87, text: "对外界充满了不信任感"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
-  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 2) + 1);
   return (
     <AbsoluteFill>
       <Video src={eatVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
-        {visibleText}
-      </div>
+      <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
@@ -125,13 +127,10 @@ const DisappointScene = () => {
     {from: 106, text: "指的是精神匮乏"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
-  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 2) + 1);
   return (
     <AbsoluteFill>
       <Video src={disappointVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
-        {visibleText}
-      </div>
+      <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
@@ -148,10 +147,7 @@ const FullScene = () => {
   return (
     <AbsoluteFill>
       <Video src={fullVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center"}}>
-        <div>{caption.text}</div>
-        {caption.next && <div>{caption.next}</div>}
-      </div>
+      <BottomCaption from={caption.from} text={caption.text} secondLine={caption.next} />
     </AbsoluteFill>
   );
 };
@@ -164,13 +160,10 @@ const PickyScene = () => {
     {from: 75, text: "也是被父母挑剔的人"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
-  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 2) + 1);
   return (
     <AbsoluteFill>
       <Video src={pickVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
-        {visibleText}
-      </div>
+      <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
@@ -184,13 +177,10 @@ const FoodControlScene = () => {
     {from: 193, text: "消除内心的不确定性"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
-  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 3) + 1);
   return (
     <AbsoluteFill>
       <Video src={finalVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
-        {visibleText}
-      </div>
+      <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
