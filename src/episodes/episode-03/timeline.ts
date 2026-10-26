@@ -8,6 +8,7 @@ export const EPISODE03_EAT_DURATION = 152; // ceil(5.061995 seconds * 30 fps).
 export const EPISODE03_DISAPPOINT_DURATION = 152; // ceil(5.061995 seconds * 30 fps).
 export const EPISODE03_FULL_DURATION = 123; // ceil(4.087007 seconds * 30 fps).
 export const EPISODE03_PICK_DURATION = 122; // ceil(4.063991 seconds * 30 fps).
+export const EPISODE03_FINAL_DURATION = 303; // ceil(10.08 seconds * 30 fps).
 
 // Draft timing, pending recorded narration. Text remains in words.txt.
 export const episode03Chapters = [
@@ -22,6 +23,8 @@ export const episode03Timeline = episode03Chapters.map((chapter) => {
   const from = cursor;
   const durationInFrames = chapter.id === "save-best"
     ? EPISODE03_DELICIOUS_DURATION + EPISODE03_REVERSE_DURATION + EPISODE03_ADULT_DURATION
+    : chapter.id === "picky"
+    ? EPISODE03_PICK_DURATION + EPISODE03_FINAL_DURATION
     : chapter.seconds * EPISODE03_FPS;
   cursor += durationInFrames;
   return {...chapter, from, durationInFrames};

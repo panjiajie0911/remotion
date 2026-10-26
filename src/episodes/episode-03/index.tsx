@@ -8,6 +8,8 @@ import eatVideo from "./assets/eat.mp4";
 import disappointVideo from "./assets/disappoint.mp4";
 import fullVideo from "./assets/full.mp4";
 import pickVideo from "./assets/pick.mp4";
+import finalVideo from "./assets/final.mp4";
+import {EPISODE03_FINAL_DURATION} from "./timeline";
 import {EPISODE03_EAT_DURATION, EPISODE03_DISAPPOINT_DURATION, EPISODE03_FULL_DURATION, EPISODE03_PICK_DURATION} from "./timeline";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
 import {theme} from "../../lib/theme";
@@ -173,6 +175,26 @@ const PickyScene = () => {
   );
 };
 
+const FoodControlScene = () => {
+  const frame = useCurrentFrame();
+  // Provisional timing until the final narration is aligned.
+  const captions = [
+    {from: 0, text: "他们通过挑剔食物的色香味"},
+    {from: 116, text: "来满足控制欲"},
+    {from: 193, text: "消除内心的不确定性"},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
+  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 3) + 1);
+  return (
+    <AbsoluteFill>
+      <Video src={finalVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
+        {visibleText}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 /** Main episode timeline. Add narration and illustration scenes here. */
 export const Episode03 = () => (
   <AbsoluteFill
@@ -232,7 +254,12 @@ export const Episode03 = () => (
             <PickyScene />
           </Sequence>
         )}
-        {chapter.id !== "save-best" && <Sequence from={chapter.id === "eat-fast" ? EPISODE03_EAT_DURATION + EPISODE03_DISAPPOINT_DURATION + EPISODE03_FULL_DURATION : chapter.id === "picky" ? EPISODE03_PICK_DURATION : 0} name="后续内容占位">
+        {chapter.id === "picky" && (
+          <Sequence from={EPISODE03_PICK_DURATION} durationInFrames={EPISODE03_FINAL_DURATION} name="挑剔食物与控制感 · 视频">
+            <FoodControlScene />
+          </Sequence>
+        )}
+        {chapter.id !== "save-best" && chapter.id !== "picky" && <Sequence from={chapter.id === "eat-fast" ? EPISODE03_EAT_DURATION + EPISODE03_DISAPPOINT_DURATION + EPISODE03_FULL_DURATION : 0} name="后续内容占位">
         <AbsoluteFill style={{padding: "150px 90px 220px"}}>
           <div style={{fontSize: 30, color: theme.colors.primary, marginBottom: 40}}>{chapter.title.replace("\n", "")}</div>
           <div style={{fontSize: 78, fontWeight: 700, lineHeight: 1.35, whiteSpace: "pre-line"}}>{chapter.title}</div>
