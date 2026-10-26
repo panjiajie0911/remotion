@@ -1,14 +1,19 @@
-import {AbsoluteFill, Sequence, useCurrentFrame} from "remotion";
+import {AbsoluteFill, Series, useCurrentFrame} from "remotion";
 import {Video} from "@remotion/media";
 import forbiddenVideo from "./assets/forbidden.mp4";
 import deliciousVideo from "./assets/delicious.mp4";
 import reverseVideo from "./assets/reverse.mp4";
 import adultVideo from "./assets/adult.mp4";
 import eatVideo from "./assets/eat.mp4";
-import {EPISODE03_EAT_DURATION} from "./timeline";
+import disappointVideo from "./assets/disappoint.mp4";
+import fullVideo from "./assets/full.mp4";
+import pickVideo from "./assets/pick.mp4";
+import finalVideo from "./assets/final.mp4";
+import {EPISODE03_FINAL_DURATION} from "./timeline";
+import {EPISODE03_EAT_DURATION, EPISODE03_DISAPPOINT_DURATION, EPISODE03_FULL_DURATION, EPISODE03_PICK_DURATION} from "./timeline";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
 import {theme} from "../../lib/theme";
-import {episode03Timeline, EPISODE03_OPENING_DURATION, EPISODE03_DELICIOUS_DURATION as DELICIOUS_DURATION, EPISODE03_REVERSE_DURATION as REVERSE_DURATION, EPISODE03_ADULT_DURATION} from "./timeline";
+import {EPISODE03_OPENING_DURATION, EPISODE03_DELICIOUS_DURATION as DELICIOUS_DURATION, EPISODE03_REVERSE_DURATION as REVERSE_DURATION, EPISODE03_ADULT_DURATION} from "./timeline";
 export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
 
 export const EPISODE03_ID = "Episode03EatingHabits";
@@ -110,64 +115,121 @@ const EatFastScene = () => {
   );
 };
 
-/** Main episode timeline. Add narration and illustration scenes here. */
+const DisappointScene = () => {
+  const frame = useCurrentFrame();
+  // Draft timing, pending alignment with the final voiceover.
+  const captions = [
+    {from: 0, text: "这种人一般生长在"},
+    {from: 40, text: "匮乏的家庭里"},
+    {from: 74, text: "这里的匮乏"},
+    {from: 106, text: "指的是精神匮乏"},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
+  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 2) + 1);
+  return (
+    <AbsoluteFill>
+      <Video src={disappointVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
+        {visibleText}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const FullScene = () => {
+  const frame = useCurrentFrame();
+  // Short source clip: provisional captions until the narration is available.
+  const captions = [
+    {from: 0, text: "食物的饱腹感为人提供了", next: "最早的精神慰藉"},
+    {from: 45, text: "当精神缺乏爱和关注时", next: "孩子就会把注意力"},
+    {from: 89, text: "集中在身体的生长上", next: ""},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
+  return (
+    <AbsoluteFill>
+      <Video src={fullVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center"}}>
+        <div>{caption.text}</div>
+        {caption.next && <div>{caption.next}</div>}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const PickyScene = () => {
+  const frame = useCurrentFrame();
+  const captions = [
+    {from: 0, text: "吃饭挑剔的人"},
+    {from: 37, text: "往往在孩童时期"},
+    {from: 75, text: "也是被父母挑剔的人"},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
+  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 2) + 1);
+  return (
+    <AbsoluteFill>
+      <Video src={pickVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
+        {visibleText}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const FoodControlScene = () => {
+  const frame = useCurrentFrame();
+  // Provisional timing until the final narration is aligned.
+  const captions = [
+    {from: 0, text: "他们通过挑剔食物的色香味"},
+    {from: 116, text: "来满足控制欲"},
+    {from: 193, text: "消除内心的不确定性"},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
+  const visibleText = caption.text.slice(0, Math.floor((frame - caption.from) / 3) + 1);
+  return (
+    <AbsoluteFill>
+      <Video src={finalVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <div style={{position: "absolute", left: 70, right: 70, bottom: 180, padding: "24px 28px", backgroundColor: "rgba(0, 0, 0, 0.65)", borderRadius: 8, color: "#fff", fontSize: 48, fontWeight: 600, lineHeight: 1.5, textAlign: "center", whiteSpace: "nowrap"}}>
+        {visibleText}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/** Play the intro and videos consecutively without chapter placeholders. */
 export const Episode03 = () => (
-  <AbsoluteFill
-    style={{
-      backgroundColor: EPISODE03_BACKGROUND,
-      color: theme.colors.text,
-      fontFamily: theme.fonts.sans,
-      justifyContent: "center",
-      padding: 100,
-    }}
-  >
-    <Sequence durationInFrames={SERIES_INTRO_DURATION} name="统一片头">
-      <SeriesIntro
-        eyebrow="第 03 期 · 心理观察"
-        title={["你的吃饭习惯，", "暴露了你的心理"]}
-        emphasisLines={[1]}
-      />
-    </Sequence>
-    <Sequence from={SERIES_INTRO_DURATION} durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
-      <Video src={forbiddenVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <OpeningCaption />
-    </Sequence>
-    {episode03Timeline.map((chapter) => (
-      <Sequence key={chapter.id} from={chapter.from} durationInFrames={chapter.durationInFrames} name={chapter.title.replace("\n", "")}>
-        {chapter.id === "save-best" && (
-          <Sequence durationInFrames={DELICIOUS_DURATION} name="喜欢的食物留到最后 · 视频">
-            <DeliciousScene />
-          </Sequence>
-        )}
-        {chapter.id === "save-best" && (
-          <Sequence from={DELICIOUS_DURATION} durationInFrames={REVERSE_DURATION} name="有条件的爱 · 视频">
-            <ConditionalLoveScene />
-          </Sequence>
-        )}
-        {chapter.id === "save-best" && (
-          <Sequence from={DELICIOUS_DURATION + REVERSE_DURATION} durationInFrames={EPISODE03_ADULT_DURATION} name="成年后的隐忍与自律 · 视频">
-            <AdultScene />
-          </Sequence>
-        )}
-        {chapter.id === "eat-fast" && (
-          <Sequence durationInFrames={EPISODE03_EAT_DURATION} name="狼吞虎咽 · 视频">
-            <EatFastScene />
-          </Sequence>
-        )}
-        {chapter.id !== "save-best" && <Sequence from={chapter.id === "eat-fast" ? EPISODE03_EAT_DURATION : 0} name="后续内容占位">
-        <AbsoluteFill style={{padding: "150px 90px 220px"}}>
-          <div style={{fontSize: 30, color: theme.colors.primary, marginBottom: 40}}>{chapter.title.replace("\n", "")}</div>
-          <div style={{fontSize: 78, fontWeight: 700, lineHeight: 1.35, whiteSpace: "pre-line"}}>{chapter.title}</div>
-          <div style={{height: 560, marginTop: 70, padding: 50, border: "2px dashed #CFC5AC", borderRadius: 32, display: "flex", flexDirection: "column", justifyContent: "center", gap: 30, textAlign: "center", color: theme.colors.muted}}>
-            <div style={{fontSize: 32}}>插画动画 · 占位</div>
-            <div style={{fontSize: 36, lineHeight: 1.5}}>{chapter.visual}</div>
-          </div>
-          <div style={{marginTop: 55, fontSize: 36, lineHeight: 1.7}}>{chapter.beats.map((beat) => <div key={beat}>{beat}</div>)}</div>
-          <div style={{position: "absolute", bottom: 150, fontSize: 26, color: theme.colors.muted}}>口播位置 · {chapter.narration}</div>
-        </AbsoluteFill>
-        </Sequence>}
-      </Sequence>
-    ))}
+  <AbsoluteFill style={{backgroundColor: EPISODE03_BACKGROUND, color: theme.colors.text, fontFamily: theme.fonts.sans}}>
+    <Series>
+      <Series.Sequence durationInFrames={SERIES_INTRO_DURATION} name="统一片头">
+        <SeriesIntro eyebrow="第 03 期 · 心理观察" title={["你的吃饭习惯，", "暴露了你的心理"]} emphasisLines={[1]} />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
+        <Video src={forbiddenVideo} objectFit="contain" style={{width: "100%", height: "100%"}} /><OpeningCaption />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={DELICIOUS_DURATION} name="喜欢的食物留到最后">
+        <DeliciousScene />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={REVERSE_DURATION} name="有条件的爱">
+        <ConditionalLoveScene />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={EPISODE03_ADULT_DURATION} name="成年后的隐忍与自律">
+        <AdultScene />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={EPISODE03_EAT_DURATION} name="狼吞虎咽">
+        <EatFastScene />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={EPISODE03_DISAPPOINT_DURATION} name="精神匮乏">
+        <DisappointScene />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={EPISODE03_FULL_DURATION} name="饱腹与精神慰藉">
+        <FullScene />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={EPISODE03_PICK_DURATION} name="挑食与被挑剔">
+        <PickyScene />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={EPISODE03_FINAL_DURATION} name="挑剔食物与控制感">
+        <FoodControlScene />
+      </Series.Sequence>
+    </Series>
   </AbsoluteFill>
 );
 
