@@ -1,5 +1,5 @@
-import {AbsoluteFill, Series, interpolate, useCurrentFrame} from "remotion";
-import {Video} from "@remotion/media";
+import {AbsoluteFill, Series, interpolate, useCurrentFrame, useVideoConfig} from "remotion";
+import {Audio, Video} from "@remotion/media";
 import forbiddenVideo from "./assets/forbidden.mp4";
 import deliciousVideo from "./assets/delicious.mp4";
 import reverseVideo from "./assets/reverse.mp4";
@@ -9,6 +9,7 @@ import disappointVideo from "./assets/disappoint.mp4";
 import fullVideo from "./assets/full.mp4";
 import pickVideo from "./assets/pick.mp4";
 import finalVideo from "./assets/final.mp4";
+import backgroundMusic from "./assets/nop.mp3";
 import {EPISODE03_FINAL_DURATION} from "./timeline";
 import {EPISODE03_EAT_DURATION, EPISODE03_DISAPPOINT_DURATION, EPISODE03_FULL_DURATION, EPISODE03_PICK_DURATION} from "./timeline";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
@@ -186,8 +187,11 @@ const FoodControlScene = () => {
 };
 
 /** Play the intro and videos consecutively without chapter placeholders. */
-export const Episode03 = () => (
-  <AbsoluteFill style={{backgroundColor: EPISODE03_BACKGROUND, color: theme.colors.text, fontFamily: theme.fonts.sans}}>
+export const Episode03 = () => {
+  const {durationInFrames} = useVideoConfig();
+
+  return (
+    <AbsoluteFill style={{backgroundColor: EPISODE03_BACKGROUND, color: theme.colors.text, fontFamily: theme.fonts.sans}}>
     <Series>
       <Series.Sequence durationInFrames={SERIES_INTRO_DURATION} name="统一片头">
         <SeriesIntro title={["你的吃饭习惯，", "暴露了你的心理"]} emphasisLines={[1]} />
@@ -220,7 +224,12 @@ export const Episode03 = () => (
         <FoodControlScene />
       </Series.Sequence>
     </Series>
-  </AbsoluteFill>
-);
+      <Audio
+        src={backgroundMusic}
+        volume={(frame) => interpolate(frame, [0, 24, durationInFrames - 45, durationInFrames], [0, 0.12, 0.12, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})}
+      />
+    </AbsoluteFill>
+  );
+};
 
 export default Episode03;
