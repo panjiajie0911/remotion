@@ -194,7 +194,7 @@ export const Episode03 = () => {
     <AbsoluteFill style={{backgroundColor: EPISODE03_BACKGROUND, color: theme.colors.text, fontFamily: theme.fonts.sans}}>
     <Series>
       <Series.Sequence durationInFrames={SERIES_INTRO_DURATION} name="统一片头">
-        <SeriesIntro title={["你的吃饭习惯，", "暴露了你的心理"]} emphasisLines={[1]} />
+        <SeriesIntro title={["你的吃饭习惯", "暴露了你的心理"]} emphasisLines={[1]} />
       </Series.Sequence>
       <Series.Sequence durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
         <Video src={forbiddenVideo} objectFit="contain" style={{width: "100%", height: "100%"}} /><OpeningCaption />
