@@ -89,7 +89,8 @@ const ConditionalLoveScene = () => {
 };
 
 const AdultScene = () => {
-  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
+  const timeScale = EPISODE03_ADULT_DURATION / 304;
+  const frame = useCurrentFrame() / timeScale;
   // Draft caption timing; adjust against the final narration recording.
   const captions = [
     {from: 0, text: "潜意识中存在深深的"},
@@ -100,8 +101,8 @@ const AdultScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={adultVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <BottomCaption from={caption.from} text={caption.text} />
+      <Video muted playbackRate={1 / timeScale} src={adultVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
