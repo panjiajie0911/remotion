@@ -10,8 +10,7 @@ export const Episode04 = () => (
     <Series.Sequence durationInFrames={SERIES_INTRO_DURATION} name="统一片头">
       <SeriesIntro
         title={[
-          "今天发生的一切",
-          "让你焦虑的事情，",
+          "今天一切让你焦虑的事情",
           "都不过是小学三年级",
           "忘戴的红领巾",
         ]}
