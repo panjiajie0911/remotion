@@ -1,7 +1,7 @@
 import {SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
 export const EPISODE03_FPS = 30;
 // Provisional proportional timing until the narration is aligned sentence by sentence.
-export const EPISODE03_NARRATION_DURATION = Math.ceil(88.681 * EPISODE03_FPS);
+export const EPISODE03_NARRATION_DURATION = Math.ceil(82.520813 * EPISODE03_FPS);
 export const EPISODE03_TIME_SCALE = EPISODE03_NARRATION_DURATION / 1715;
 export const EPISODE03_OPENING_DURATION = Math.ceil(122 * EPISODE03_TIME_SCALE);
 export const EPISODE03_DELICIOUS_DURATION = Math.ceil(134 * EPISODE03_TIME_SCALE);

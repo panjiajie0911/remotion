@@ -10,7 +10,7 @@ import fullVideo from "./assets/full.mp4";
 import pickVideo from "./assets/pick.mp4";
 import finalVideo from "./assets/final.mp4";
 import backgroundMusic from "./assets/nop.mp3";
-import narration from "./assets/asset.m4a";
+import narration from "./assets/asset.mp3";
 import {EPISODE03_TIME_SCALE} from "./timeline";
 import {EPISODE03_FINAL_DURATION} from "./timeline";
 import {EPISODE03_EAT_DURATION, EPISODE03_DISAPPOINT_DURATION, EPISODE03_FULL_DURATION, EPISODE03_PICK_DURATION} from "./timeline";
