@@ -120,7 +120,7 @@ const EatFastScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={eatVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted src={eatVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
