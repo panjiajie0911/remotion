@@ -14,7 +14,8 @@ import narration from "./assets/asset.mp3";
 import {EPISODE03_TIME_SCALE} from "./timeline";
 import {EPISODE03_FINAL_DURATION} from "./timeline";
 import {EPISODE03_EAT_DURATION, EPISODE03_DISAPPOINT_DURATION, EPISODE03_FULL_DURATION, EPISODE03_PICK_DURATION} from "./timeline";
-import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
+import {SeriesIntro} from "../../components/intro/SeriesIntro";
+import {EPISODE03_INTRO_DURATION} from "./timeline";
 import {theme} from "../../lib/theme";
 import {EPISODE03_OPENING_DURATION, EPISODE03_DELICIOUS_DURATION as DELICIOUS_DURATION, EPISODE03_REVERSE_DURATION as REVERSE_DURATION, EPISODE03_ADULT_DURATION} from "./timeline";
 export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
@@ -23,8 +24,8 @@ export const EPISODE03_ID = "Episode03EatingHabits";
 export const EPISODE03_BACKGROUND = "#FFFFF0"; // Ivory white, this episode's main color.
 
 // Whole captions fade in over six frames, including when seeking.
-const BottomCaption = ({from, text, secondLine}: {from: number; text: string; secondLine?: string}) => {
-  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
+const BottomCaption = ({from, text, secondLine, timeScale = EPISODE03_TIME_SCALE}: {from: number; text: string; secondLine?: string; timeScale?: number}) => {
+  const frame = useCurrentFrame() / timeScale;
   return (
     <div style={{
       position: "absolute", left: 80, right: 80, bottom: 160,
@@ -53,7 +54,8 @@ const OpeningCaption = () => {
 };
 
 const DeliciousScene = () => {
-  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
+  const timeScale = DELICIOUS_DURATION / 134;
+  const frame = useCurrentFrame() / timeScale;
   const captions = [
     {from: 0, text: "习惯把最喜欢的食物"},
     {from: 44, text: "留到最后吃的人"},
@@ -62,14 +64,15 @@ const DeliciousScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={deliciousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <BottomCaption from={caption.from} text={caption.text} />
+      <Video muted playbackRate={1 / timeScale} src={deliciousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
 
 const ConditionalLoveScene = () => {
-  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
+  const timeScale = REVERSE_DURATION / 303;
+  const frame = useCurrentFrame() / timeScale;
   const captions = [
     {from: 0, text: "这样的人，从小生活在"},
     {from: 72, text: "“有条件的爱”的家庭里"},
@@ -79,8 +82,8 @@ const ConditionalLoveScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={reverseVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <BottomCaption from={caption.from} text={caption.text} />
+      <Video muted playbackRate={1 / timeScale} src={reverseVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
@@ -195,7 +198,7 @@ export const Episode03 = () => {
   return (
     <AbsoluteFill style={{backgroundColor: EPISODE03_BACKGROUND, color: theme.colors.text, fontFamily: theme.fonts.sans}}>
     <Series>
-      <Series.Sequence durationInFrames={SERIES_INTRO_DURATION} name="统一片头">
+      <Series.Sequence durationInFrames={EPISODE03_INTRO_DURATION} name="统一片头">
         <SeriesIntro title={["你的吃饭习惯", "暴露了你的心理"]} emphasisLines={[1]} />
       </Series.Sequence>
       <Series.Sequence durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
@@ -226,7 +229,7 @@ export const Episode03 = () => {
         <FoodControlScene />
       </Series.Sequence>
     </Series>
-      <Sequence from={SERIES_INTRO_DURATION} name="口播" layout="none">
+      <Sequence name="口播" layout="none">
         <Audio src={narration} volume={1} />
       </Sequence>
       <Audio
