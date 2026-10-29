@@ -174,7 +174,7 @@ const AnxiousScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video muted playbackRate={1 / timeScale} src={anxiousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted src={anxiousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
