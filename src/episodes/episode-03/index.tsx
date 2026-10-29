@@ -7,6 +7,8 @@ import adultVideo from "./assets/adult.mp4";
 import eatVideo from "./assets/eat.mp4";
 import disappointVideo from "./assets/disappoint.mp4";
 import fullVideo from "./assets/full.mp4";
+import anxiousVideo from "./assets/anxious.mp4";
+import {EPISODE03_ANXIOUS_DURATION} from "./timeline";
 import pickVideo from "./assets/pick.mp4";
 import finalVideo from "./assets/final.mp4";
 import backgroundMusic from "./assets/nop.mp3";
@@ -160,6 +162,23 @@ const FullScene = () => {
   );
 };
 
+const AnxiousScene = () => {
+  const frame = useCurrentFrame();
+  const captions = [
+    {from: 0, text: "而食物焦虑的人"},
+    {from: 33, text: "更容易食物上瘾"},
+    {from: 66, text: "因为糖和脂肪"},
+    {from: 99, text: "能带来更多的愉悦感"},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
+  return (
+    <AbsoluteFill>
+      <Video muted src={anxiousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <BottomCaption from={caption.from} text={caption.text} timeScale={1} />
+    </AbsoluteFill>
+  );
+};
+
 const PickyScene = () => {
   const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   const captions = [
@@ -223,6 +242,9 @@ export const Episode03 = () => {
       </Series.Sequence>
       <Series.Sequence durationInFrames={EPISODE03_FULL_DURATION} name="饱腹与精神慰藉">
         <FullScene />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={EPISODE03_ANXIOUS_DURATION} name="食物焦虑与愉悦感">
+        <AnxiousScene />
       </Series.Sequence>
       <Series.Sequence durationInFrames={EPISODE03_PICK_DURATION} name="挑食与被挑剔">
         <PickyScene />
