@@ -18,12 +18,32 @@ import {EPISODE03_FINAL_DURATION} from "./timeline";
 import {EPISODE03_EAT_DURATION, EPISODE03_DISAPPOINT_DURATION, EPISODE03_FULL_DURATION, EPISODE03_PICK_DURATION} from "./timeline";
 import {SeriesIntro} from "../../components/intro/SeriesIntro";
 import {EPISODE03_INTRO_DURATION} from "./timeline";
+import {EPISODE03_FPS} from "./timeline";
 import {theme} from "../../lib/theme";
 import {EPISODE03_OPENING_DURATION, EPISODE03_DELICIOUS_DURATION as DELICIOUS_DURATION, EPISODE03_REVERSE_DURATION as REVERSE_DURATION, EPISODE03_ADULT_DURATION} from "./timeline";
 export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
 
 export const EPISODE03_ID = "Episode03EatingHabits";
 export const EPISODE03_BACKGROUND = "#FFFFF0"; // Ivory white, this episode's main color.
+
+const DISSOLVE_FRAMES = 8;
+// Prepare hidden videos before cuts to avoid pausing the shared audio clock.
+const VIDEO_PREMOUNT_FRAMES = 2 * EPISODE03_FPS;
+// Include the incoming pre-roll in playback length, preserving all narration boundaries.
+const ADULT_PLAYBACK_RATE = 10.100680 * EPISODE03_FPS / (EPISODE03_ADULT_DURATION + DISSOLVE_FRAMES);
+const FULL_PLAYBACK_RATE = 11.041667 * EPISODE03_FPS / (EPISODE03_FULL_DURATION + DISSOLVE_FRAMES);
+
+const DissolvePicture = ({src, playbackRate}: {src: string; playbackRate: number}) => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{
+      backgroundColor: EPISODE03_BACKGROUND,
+      opacity: interpolate(frame, [0, DISSOLVE_FRAMES], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}),
+    }}>
+      <Video muted src={src} playbackRate={playbackRate} objectFit="contain" style={{width: "100%", height: "100%"}} />
+    </AbsoluteFill>
+  );
+};
 
 // Whole captions fade in over six frames, including when seeking.
 const BottomCaption = ({from, text, secondLine, timeScale = EPISODE03_TIME_SCALE}: {from: number; text: string; secondLine?: string; timeScale?: number}) => {
@@ -85,6 +105,9 @@ const ConditionalLoveScene = () => {
   return (
     <AbsoluteFill>
       <Video muted playbackRate={1 / timeScale} src={reverseVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Sequence from={REVERSE_DURATION - DISSOLVE_FRAMES} durationInFrames={DISSOLVE_FRAMES} premountFor={VIDEO_PREMOUNT_FRAMES} name="童年到成年：短叠化">
+        <DissolvePicture src={adultVideo} playbackRate={ADULT_PLAYBACK_RATE} />
+      </Sequence>
       <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
@@ -103,7 +126,9 @@ const AdultScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video muted playbackRate={1 / timeScale} src={adultVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Sequence from={-DISSOLVE_FRAMES} layout="none">
+        <Video muted playbackRate={ADULT_PLAYBACK_RATE} src={adultVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      </Sequence>
       <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
@@ -120,7 +145,7 @@ const EatFastScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={eatVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted src={eatVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
@@ -139,6 +164,9 @@ const DisappointScene = () => {
   return (
     <AbsoluteFill>
       <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={disappointVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Sequence from={EPISODE03_DISAPPOINT_DURATION - DISSOLVE_FRAMES} durationInFrames={DISSOLVE_FRAMES} premountFor={VIDEO_PREMOUNT_FRAMES} name="精神匮乏到慰藉：短叠化">
+        <DissolvePicture src={fullVideo} playbackRate={FULL_PLAYBACK_RATE} />
+      </Sequence>
       <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
@@ -147,7 +175,7 @@ const DisappointScene = () => {
 const FullScene = () => {
   const timeScale = EPISODE03_FULL_DURATION / 123;
   const frame = useCurrentFrame() / timeScale;
-  // Short source clip: provisional captions until the narration is available.
+  // Caption timing stays independent of the regenerated video's duration.
   const captions = [
     {from: 0, text: "食物的饱腹感为人提供了", next: "最早的精神慰藉"},
     {from: 45, text: "当精神缺乏爱和关注时", next: "孩子就会把注意力"},
@@ -156,7 +184,9 @@ const FullScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video muted playbackRate={1 / timeScale} src={fullVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Sequence from={-DISSOLVE_FRAMES} layout="none">
+        <Video muted playbackRate={FULL_PLAYBACK_RATE} src={fullVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      </Sequence>
       <BottomCaption from={caption.from} text={caption.text} secondLine={caption.next} timeScale={timeScale} />
     </AbsoluteFill>
   );
@@ -223,34 +253,34 @@ export const Episode03 = () => {
       <Series.Sequence durationInFrames={EPISODE03_INTRO_DURATION} name="统一片头">
         <SeriesIntro title={["你的吃饭习惯", "暴露了你的心理"]} emphasisLines={[1]} />
       </Series.Sequence>
-      <Series.Sequence durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
+      <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
         <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={forbiddenVideo} objectFit="contain" style={{width: "100%", height: "100%"}} /><OpeningCaption />
       </Series.Sequence>
-      <Series.Sequence durationInFrames={DELICIOUS_DURATION} name="喜欢的食物留到最后">
+      <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={DELICIOUS_DURATION} name="喜欢的食物留到最后">
         <DeliciousScene />
       </Series.Sequence>
-      <Series.Sequence durationInFrames={REVERSE_DURATION} name="有条件的爱">
+      <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={REVERSE_DURATION} name="有条件的爱">
         <ConditionalLoveScene />
       </Series.Sequence>
-      <Series.Sequence durationInFrames={EPISODE03_ADULT_DURATION} name="成年后的隐忍与自律">
+      <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={EPISODE03_ADULT_DURATION} name="成年后的隐忍与自律">
         <AdultScene />
       </Series.Sequence>
-      <Series.Sequence durationInFrames={EPISODE03_EAT_DURATION} name="狼吞虎咽">
+      <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={EPISODE03_EAT_DURATION} name="狼吞虎咽">
         <EatFastScene />
       </Series.Sequence>
-      <Series.Sequence durationInFrames={EPISODE03_DISAPPOINT_DURATION} name="精神匮乏">
+      <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={EPISODE03_DISAPPOINT_DURATION} name="精神匮乏">
         <DisappointScene />
       </Series.Sequence>
-      <Series.Sequence durationInFrames={EPISODE03_FULL_DURATION} name="饱腹与精神慰藉">
+      <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={EPISODE03_FULL_DURATION} name="饱腹与精神慰藉">
         <FullScene />
       </Series.Sequence>
-      <Series.Sequence durationInFrames={EPISODE03_ANXIOUS_DURATION} name="食物焦虑与愉悦感">
+      <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={EPISODE03_ANXIOUS_DURATION} name="食物焦虑与愉悦感">
         <AnxiousScene />
       </Series.Sequence>
-      <Series.Sequence durationInFrames={EPISODE03_PICK_DURATION} name="挑食与被挑剔">
+      <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={EPISODE03_PICK_DURATION} name="挑食与被挑剔">
         <PickyScene />
       </Series.Sequence>
-      <Series.Sequence durationInFrames={EPISODE03_FINAL_DURATION} name="挑剔食物与控制感">
+      <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={EPISODE03_FINAL_DURATION} name="挑剔食物与控制感">
         <FoodControlScene />
       </Series.Sequence>
     </Series>
