@@ -163,7 +163,8 @@ const FullScene = () => {
 };
 
 const AnxiousScene = () => {
-  const frame = useCurrentFrame();
+  const timeScale = EPISODE03_ANXIOUS_DURATION / 150;
+  const frame = useCurrentFrame() / timeScale;
   const captions = [
     {from: 0, text: "而食物焦虑的人"},
     {from: 33, text: "更容易食物上瘾"},
@@ -173,8 +174,8 @@ const AnxiousScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video muted src={anxiousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <BottomCaption from={caption.from} text={caption.text} timeScale={1} />
+      <Video muted playbackRate={1 / timeScale} src={anxiousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
