@@ -143,7 +143,8 @@ const DisappointScene = () => {
 };
 
 const FullScene = () => {
-  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
+  const timeScale = EPISODE03_FULL_DURATION / 123;
+  const frame = useCurrentFrame() / timeScale;
   // Short source clip: provisional captions until the narration is available.
   const captions = [
     {from: 0, text: "食物的饱腹感为人提供了", next: "最早的精神慰藉"},
@@ -153,8 +154,8 @@ const FullScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={fullVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <BottomCaption from={caption.from} text={caption.text} secondLine={caption.next} />
+      <Video muted playbackRate={1 / timeScale} src={fullVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <BottomCaption from={caption.from} text={caption.text} secondLine={caption.next} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
