@@ -1,4 +1,4 @@
-import {AbsoluteFill, Series, interpolate, useCurrentFrame, useVideoConfig} from "remotion";
+import {AbsoluteFill, Sequence, Series, interpolate, useCurrentFrame, useVideoConfig} from "remotion";
 import {Audio, Video} from "@remotion/media";
 import forbiddenVideo from "./assets/forbidden.mp4";
 import deliciousVideo from "./assets/delicious.mp4";
@@ -10,6 +10,8 @@ import fullVideo from "./assets/full.mp4";
 import pickVideo from "./assets/pick.mp4";
 import finalVideo from "./assets/final.mp4";
 import backgroundMusic from "./assets/nop.mp3";
+import narration from "./assets/asset.m4a";
+import {EPISODE03_TIME_SCALE} from "./timeline";
 import {EPISODE03_FINAL_DURATION} from "./timeline";
 import {EPISODE03_EAT_DURATION, EPISODE03_DISAPPOINT_DURATION, EPISODE03_FULL_DURATION, EPISODE03_PICK_DURATION} from "./timeline";
 import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesIntro";
@@ -22,7 +24,7 @@ export const EPISODE03_BACKGROUND = "#FFFFF0"; // Ivory white, this episode's ma
 
 // Whole captions fade in over six frames, including when seeking.
 const BottomCaption = ({from, text, secondLine}: {from: number; text: string; secondLine?: string}) => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   return (
     <div style={{
       position: "absolute", left: 80, right: 80, bottom: 160,
@@ -39,7 +41,7 @@ const BottomCaption = ({from, text, secondLine}: {from: number; text: string; se
 };
 
 const OpeningCaption = () => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   const secondStartsAt = 76;
   const text = frame < secondStartsAt
     ? "几乎所有不健全家庭长大的孩子"
@@ -51,7 +53,7 @@ const OpeningCaption = () => {
 };
 
 const DeliciousScene = () => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   const captions = [
     {from: 0, text: "习惯把最喜欢的食物"},
     {from: 44, text: "留到最后吃的人"},
@@ -60,14 +62,14 @@ const DeliciousScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video src={deliciousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={deliciousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
 
 const ConditionalLoveScene = () => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   const captions = [
     {from: 0, text: "这样的人，从小生活在"},
     {from: 72, text: "“有条件的爱”的家庭里"},
@@ -77,14 +79,14 @@ const ConditionalLoveScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video src={reverseVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={reverseVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
 
 const AdultScene = () => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   // Draft caption timing; adjust against the final narration recording.
   const captions = [
     {from: 0, text: "潜意识中存在深深的"},
@@ -95,14 +97,14 @@ const AdultScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video src={adultVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={adultVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
 
 const EatFastScene = () => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   // Draft timing, pending alignment with the final voiceover.
   const captions = [
     {from: 0, text: "吃饭吃得很快"},
@@ -112,14 +114,14 @@ const EatFastScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video src={eatVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={eatVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
 
 const DisappointScene = () => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   // Draft timing, pending alignment with the final voiceover.
   const captions = [
     {from: 0, text: "这种人一般生长在"},
@@ -130,14 +132,14 @@ const DisappointScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video src={disappointVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={disappointVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
 
 const FullScene = () => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   // Short source clip: provisional captions until the narration is available.
   const captions = [
     {from: 0, text: "食物的饱腹感为人提供了", next: "最早的精神慰藉"},
@@ -147,14 +149,14 @@ const FullScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video src={fullVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={fullVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} secondLine={caption.next} />
     </AbsoluteFill>
   );
 };
 
 const PickyScene = () => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   const captions = [
     {from: 0, text: "吃饭挑剔的人"},
     {from: 37, text: "往往在孩童时期"},
@@ -163,14 +165,14 @@ const PickyScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video src={pickVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={pickVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
 };
 
 const FoodControlScene = () => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   // Provisional timing until the final narration is aligned.
   const captions = [
     {from: 0, text: "他们通过挑剔食物的色香味"},
@@ -180,7 +182,7 @@ const FoodControlScene = () => {
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill>
-      <Video src={finalVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={finalVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
       <BottomCaption from={caption.from} text={caption.text} />
     </AbsoluteFill>
   );
@@ -197,7 +199,7 @@ export const Episode03 = () => {
         <SeriesIntro title={["你的吃饭习惯", "暴露了你的心理"]} emphasisLines={[1]} />
       </Series.Sequence>
       <Series.Sequence durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
-        <Video src={forbiddenVideo} objectFit="contain" style={{width: "100%", height: "100%"}} /><OpeningCaption />
+        <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={forbiddenVideo} objectFit="contain" style={{width: "100%", height: "100%"}} /><OpeningCaption />
       </Series.Sequence>
       <Series.Sequence durationInFrames={DELICIOUS_DURATION} name="喜欢的食物留到最后">
         <DeliciousScene />
@@ -224,6 +226,9 @@ export const Episode03 = () => {
         <FoodControlScene />
       </Series.Sequence>
     </Series>
+      <Sequence from={SERIES_INTRO_DURATION} name="口播" layout="none">
+        <Audio src={narration} volume={1} />
+      </Sequence>
       <Audio
         src={backgroundMusic}
         volume={(frame) => interpolate(frame, [0, 24, durationInFrames - 45, durationInFrames], [0, 0.12, 0.12, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})}
