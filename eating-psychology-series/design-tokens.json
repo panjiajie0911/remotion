@@ -1,0 +1,435 @@
+{
+  "schemaVersion": 1,
+  "format": "od-design-tokens/v1",
+  "contract": "TOKEN_SCHEMA",
+  "generatedAt": "2026-11-02T12:00:00.000Z",
+  "source": {
+    "tokensCss": "tokens.css"
+  },
+  "tokens": [
+    {
+      "name": "--bg",
+      "value": "#f5f6f7",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--surface",
+      "value": "#ffffff",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--fg",
+      "value": "#15171c",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--fg-2",
+      "value": "#6c7480",
+      "type": "color",
+      "layer": "B-slot",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--meta",
+      "value": "#9ba2ac",
+      "type": "color",
+      "layer": "B-slot",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--border",
+      "value": "#e2e5e9",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--accent",
+      "value": "#c3a66b",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--accent-on",
+      "value": "#0f1115",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--night",
+      "value": "#0f1115",
+      "type": "color",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--night-raised",
+      "value": "#171a20",
+      "type": "color",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--paper",
+      "value": "var(--bg)",
+      "type": "color",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--gold",
+      "value": "var(--accent)",
+      "type": "color",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--ink",
+      "value": "var(--fg)",
+      "type": "color",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--ink-muted",
+      "value": "var(--fg-2)",
+      "type": "color",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--line",
+      "value": "var(--border)",
+      "type": "color",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--font-display",
+      "value": "\"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "type": "font",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--font-body",
+      "value": "\"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "type": "font",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--font-mono",
+      "value": "ui-monospace, \"SF Mono\", \"JetBrains Mono\", Menlo, Consolas, monospace",
+      "type": "font",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--text-frame-micro",
+      "value": "24px",
+      "type": "fontSize",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--text-frame-meta",
+      "value": "30px",
+      "type": "fontSize",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--text-frame-label",
+      "value": "28px",
+      "type": "fontSize",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--text-frame-body",
+      "value": "40px",
+      "type": "fontSize",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--text-frame-lead",
+      "value": "48px",
+      "type": "fontSize",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--text-frame-heading",
+      "value": "64px",
+      "type": "fontSize",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--text-frame-title",
+      "value": "88px",
+      "type": "fontSize",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--text-frame-display",
+      "value": "120px",
+      "type": "fontSize",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--space-6",
+      "value": "24px",
+      "type": "dimension",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--space-8",
+      "value": "32px",
+      "type": "dimension",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--space-12",
+      "value": "48px",
+      "type": "dimension",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--section-y-desktop",
+      "value": "96px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--safe-bottom",
+      "value": "320px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--caption-bottom",
+      "value": "320px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--frame-w",
+      "value": "1080px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--frame-h",
+      "value": "1920px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--frame-fps",
+      "value": "30",
+      "type": "number",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--frame-margin-x",
+      "value": "88px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--frame-margin-top",
+      "value": "144px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--frame-margin-bottom",
+      "value": "208px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--frame-content-w",
+      "value": "904px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--frame-rule-w",
+      "value": "56px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--frame-avatar",
+      "value": "96px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--frame-avatar-large",
+      "value": "160px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--caption-size",
+      "value": "48px",
+      "type": "fontSize",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--caption-weight",
+      "value": "500",
+      "type": "fontWeight",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--caption-leading",
+      "value": "1.5",
+      "type": "number",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--caption-max",
+      "value": "820px",
+      "type": "dimension",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--caption-color",
+      "value": "#f7f6f3",
+      "type": "color",
+      "layer": "C-extension",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--motion-fast",
+      "value": "300ms",
+      "type": "duration",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--motion-base",
+      "value": "450ms",
+      "type": "duration",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--ease-standard",
+      "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "type": "cubicBezier",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--radius-sm",
+      "value": "4px",
+      "type": "dimension",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--elev-ring",
+      "value": "0 0 0 1px var(--border)",
+      "type": "shadow",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    },
+    {
+      "name": "--focus-ring",
+      "value": "0 0 0 4px color-mix(in oklab, var(--accent), transparent 68%)",
+      "type": "shadow",
+      "layer": "A2",
+      "confidence": "high",
+      "sources": ["tokens.css"]
+    }
+  ]
+}

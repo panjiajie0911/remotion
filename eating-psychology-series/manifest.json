@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "od-design-system-project/v1",
+  "id": "eating-psychology-series",
+  "name": "心理观察 · 系列视觉体系",
+  "category": "Video",
+  "description": "1080 × 1920 竖屏心理学短纪录片的系列视觉体系：纸白底、近黑字、单一金色强调，含片头、章节卡、字幕、结尾卡与 9:16 封面规则。",
+  "source": {
+    "type": "local",
+    "path": ".",
+    "importedAt": "2026-11-02T12:00:00.000Z"
+  },
+  "files": {
+    "design": "DESIGN.md",
+    "tokens": "tokens.css",
+    "designTokens": "design-tokens.json",
+    "tailwind": "tailwind-v4.css",
+    "components": "components.html"
+  },
+  "assetsDir": "assets",
+  "previewDir": "preview",
+  "usage": "USAGE.md",
+  "importMode": "normalized",
+  "craft": {
+    "applies": [
+      "color",
+      "typography",
+      "motion"
+    ],
+    "suggested": [
+      "video",
+      "editorial"
+    ],
+    "exemptions": []
+  },
+  "fonts": [
+    {
+      "family": "Noto Sans SC",
+      "file": "assets/fonts/NotoSansSC-VF-subset.woff2",
+      "weight": "100 900",
+      "style": "normal"
+    }
+  ],
+  "preview": {
+    "dir": "preview",
+    "pages": [
+      {
+        "path": "preview/index.html",
+        "role": "overview",
+        "title": "体系概览"
+      }
+    ]
+  },
+  "sourceFiles": {
+    "evidence": "source/evidence.md"
+  }
+}
