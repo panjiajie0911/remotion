@@ -13,6 +13,8 @@ export type SeriesIntroProps = {
   emphasisLines?: number[];
   /** Substrings inside title rows that receive the accent treatment. */
   emphasisWords?: string[];
+  /** Second-beat line revealed after the title settles, e.g. a question hook. */
+  hook?: string;
   eyebrow?: string;
   footer?: string;
   /** Diameter of the circular portrait. Defaults to the compact 96px mark. */
@@ -25,6 +27,7 @@ export const SeriesIntro = ({
   emphasisLine = 1,
   emphasisLines,
   emphasisWords,
+  hook,
   eyebrow,
   footer = "",
   avatarSize = theme.layout.avatar,
@@ -33,11 +36,16 @@ export const SeriesIntro = ({
   const { fps } = useVideoConfig();
   const avatar = getStaticFiles().find((file) => file.name === "shared/avatar.png")?.src;
   const ease = Easing.bezier(...theme.motion.easing);
-  const blink = interpolate(frame / fps, [1.35, 1.45, 1.5, 1.65, 2.15, 2.25, 2.3, 2.45], [0, 1, 1, 0, 0, 1, 1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.inOut(Easing.quad),
-  });
+  const blink = interpolate(
+    frame / fps,
+    [1.35, 1.45, 1.5, 1.65, 2.15, 2.25, 2.3, 2.45, 4.55, 4.65, 4.7, 4.85, 5.35, 5.45, 5.5, 5.65],
+    [0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: Easing.inOut(Easing.quad),
+    },
+  );
   const lines = (Array.isArray(title) ? title : title.split(/\r?\n/)).filter(Boolean);
   const highlightedLines = emphasisLines ?? (emphasisWords?.length ? [] : [emphasisLine]);
   const renderTitleLine = (line: string) => {
@@ -47,7 +55,18 @@ export const SeriesIntro = ({
     return (
       <>
         {before}
-        <span style={{ color: theme.palette.accent, fontWeight: theme.typography.weight.semibold }}>{word}</span>
+        <span
+          style={{
+            color: theme.palette.ink,
+            fontWeight: theme.typography.weight.semibold,
+            textDecorationColor: theme.palette.mark,
+            textDecorationLine: "underline",
+            textDecorationThickness: "0.07em",
+            textUnderlineOffset: "0.14em",
+          }}
+        >
+          {word}
+        </span>
         {rest.join(word)}
       </>
     );
@@ -58,6 +77,12 @@ export const SeriesIntro = ({
       extrapolateRight: "clamp",
       easing: ease,
     });
+  // The shared card is three seconds; longer slots earn a second beat at 3s.
+  const hookReveal = interpolate(frame, [Math.round(3 * fps), Math.round(3.6 * fps)], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: ease,
+  });
 
   return (
     <AbsoluteFill
@@ -91,7 +116,20 @@ export const SeriesIntro = ({
           {eyebrow ?? ""}
         </div>
 
-        <div style={{ display: "flex", flex: 1, flexDirection: "column", justifyContent: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "center",
+            scale: interpolate(frame, [0, fps * 6], [1, 1.012], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            }),
+            transformOrigin: "left center",
+            translate: `0 ${-theme.motion.rise * 2 * hookReveal}px`,
+          }}
+        >
           <div
             style={{
               marginBottom: theme.spacing.xxl,
@@ -126,6 +164,41 @@ export const SeriesIntro = ({
               </div>
             );
           })}
+
+          {hook ? (
+            <div
+              style={{
+                alignItems: "center",
+                display: "flex",
+                gap: theme.spacing.md,
+                height: theme.typography.size.lead * theme.typography.lineHeight.snug,
+                marginTop: theme.spacing.xl,
+                opacity: hookReveal,
+                translate: `0 ${theme.motion.rise * (1 - hookReveal)}px`,
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: theme.palette.mark,
+                  flexShrink: 0,
+                  height: theme.borderWidth.normal,
+                  width: theme.layout.ruleWidth,
+                }}
+              />
+              <div
+                style={{
+                  color: theme.palette.inkMuted,
+                  fontSize: theme.typography.size.lead,
+                  fontWeight: theme.typography.weight.medium,
+                  letterSpacing: theme.typography.tracking.meta,
+                  lineHeight: theme.typography.lineHeight.snug,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {hook}
+              </div>
+            </div>
+          ) : null}
         </div>
 
         <div style={{ alignItems: "center", display: "flex", gap: theme.spacing.lg, minHeight: avatarSize }}>

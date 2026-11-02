@@ -24,9 +24,12 @@ import {theme} from "../../lib/theme";
 import {CaptionScrim, Rule, VideoCaption} from "../../design-system";
 import {EPISODE03_OPENING_DURATION, EPISODE03_DELICIOUS_DURATION as DELICIOUS_DURATION, EPISODE03_REVERSE_DURATION as REVERSE_DURATION, EPISODE03_ADULT_DURATION} from "./timeline";
 export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
+export {Episode03Cover} from "./Cover";
 
 export const EPISODE03_ID = "Episode03EatingHabits";
 export const EPISODE03_BACKGROUND = theme.palette.night;
+
+type Cue = {from: number; text: string; emphasis?: string; next?: string; until?: number};
 
 const DISSOLVE_FRAMES = 8;
 // Prepare hidden videos before cuts to avoid pausing the shared audio clock.
@@ -51,18 +54,91 @@ const DissolvePicture = ({src, playbackRate}: {src: string; playbackRate: number
   );
 };
 
+const ChapterMarker = ({index, label, detail}: {index: string; label: string; detail: string}) => {
+  const frame = useCurrentFrame();
+  const ease = Easing.bezier(...theme.motion.easing);
+  const enter = interpolate(frame, [0, 14], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: ease,
+  });
+  const exit = interpolate(frame, [62, 80], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const opacity = enter * exit;
+  if (opacity <= 0) return null;
+
+  return (
+    <div style={{
+      background: "linear-gradient(180deg, rgba(10,12,16,0.62) 0%, rgba(10,12,16,0.26) 58%, rgba(10,12,16,0) 100%)",
+      left: 0,
+      opacity,
+      padding: `${theme.layout.marginTop}px ${theme.layout.marginX}px ${theme.spacing.section}px`,
+      pointerEvents: "none",
+      position: "absolute",
+      right: 0,
+      top: 0,
+    }}>
+      <div style={{
+        alignItems: "flex-start",
+        display: "flex",
+        gap: theme.spacing.lg,
+        translate: `0 ${theme.motion.rise * (1 - enter)}px`,
+      }}>
+        <div style={{
+          color: theme.palette.mark,
+          fontSize: theme.typography.size.display,
+          fontWeight: theme.typography.weight.light,
+          letterSpacing: theme.typography.tracking.display,
+          lineHeight: 1,
+        }}>
+          {index}
+        </div>
+        <div style={{paddingTop: theme.spacing.sm}}>
+          <div style={{
+            backgroundColor: theme.palette.mark,
+            height: theme.borderWidth.normal,
+            marginBottom: theme.spacing.md,
+            width: theme.layout.ruleWidth,
+          }} />
+          <div style={{
+            color: theme.palette.surface,
+            fontSize: theme.typography.size.heading,
+            fontWeight: theme.typography.weight.semibold,
+            letterSpacing: theme.typography.tracking.heading,
+            lineHeight: theme.typography.lineHeight.tight,
+          }}>
+            {label}
+          </div>
+          <div style={{
+            color: theme.palette.surface,
+            fontSize: theme.typography.size.label,
+            fontWeight: theme.typography.weight.regular,
+            letterSpacing: theme.typography.tracking.meta,
+            marginTop: theme.spacing.sm,
+            opacity: 0.72,
+          }}>
+            {detail}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const OpeningScene = () => {
   const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
-  const captions = [
+  const captions: Cue[] = [
     {from: 0, text: "几乎所有不健全家庭长大的孩子"},
-    {from: 76, text: "都存在进食障碍"},
+    {from: 76, text: "都存在进食障碍", emphasis: "进食障碍"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill style={SCENE_STYLE}>
       <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={forbiddenVideo} objectFit="contain" style={VIDEO_STYLE} />
       <CaptionScrim />
-      <VideoCaption from={caption.from} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
+      <VideoCaption from={caption.from} emphasisWords={caption.emphasis ? [caption.emphasis] : undefined} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
     </AbsoluteFill>
   );
 };
@@ -70,17 +146,18 @@ const OpeningScene = () => {
 const DeliciousScene = () => {
   const timeScale = DELICIOUS_DURATION / 134;
   const frame = useCurrentFrame() / timeScale;
-  const captions = [
+  const captions: Cue[] = [
     {from: 0, text: "习惯把最喜欢的食物"},
     {from: 44, text: "留到最后吃的人"},
-    {from: 82, text: "潜意识中存在“不配得感”"},
+    {from: 82, text: "潜意识中存在“不配得感”", emphasis: "不配得感"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill style={SCENE_STYLE}>
       <Video muted src={deliciousVideo} objectFit="contain" style={VIDEO_STYLE} />
       <CaptionScrim />
-      <VideoCaption from={caption.from} text={caption.text} timeScale={timeScale} />
+      <ChapterMarker index="01" label="留到最后" detail="把最喜欢的食物留到最后" />
+      <VideoCaption from={caption.from} emphasisWords={caption.emphasis ? [caption.emphasis] : undefined} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
@@ -88,9 +165,9 @@ const DeliciousScene = () => {
 const ConditionalLoveScene = () => {
   const timeScale = REVERSE_DURATION / 303;
   const frame = useCurrentFrame() / timeScale;
-  const captions = [
+  const captions: Cue[] = [
     {from: 0, text: "这样的人，从小生活在"},
-    {from: 72, text: "“有条件的爱”的家庭里"},
+    {from: 72, text: "“有条件的爱”的家庭里", emphasis: "有条件的爱"},
     {from: 153, text: "只有表现得好"},
     {from: 216, text: "才能获得奖励和鼓励"},
   ];
@@ -102,7 +179,7 @@ const ConditionalLoveScene = () => {
         <DissolvePicture src={adultVideo} playbackRate={ADULT_PLAYBACK_RATE} />
       </Sequence>
       <CaptionScrim />
-      <VideoCaption from={caption.from} text={caption.text} timeScale={timeScale} />
+      <VideoCaption from={caption.from} emphasisWords={caption.emphasis ? [caption.emphasis] : undefined} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
@@ -111,11 +188,11 @@ const AdultScene = () => {
   const timeScale = EPISODE03_ADULT_DURATION / 304;
   const frame = useCurrentFrame() / timeScale;
   // Draft caption timing; adjust against the final narration recording.
-  const captions = [
+  const captions: Cue[] = [
     {from: 0, text: "潜意识中存在深深的"},
-    {from: 65, text: "对安全感的失控的恐惧"},
+    {from: 65, text: "对安全感的失控的恐惧", emphasis: "失控"},
     {from: 146, text: "因此成年后形成了"},
-    {from: 217, text: "隐忍，自律的性格"},
+    {from: 217, text: "隐忍，自律的性格", emphasis: "隐忍"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
@@ -124,7 +201,7 @@ const AdultScene = () => {
         <Video muted playbackRate={ADULT_PLAYBACK_RATE} src={adultVideo} objectFit="contain" style={VIDEO_STYLE} />
       </Sequence>
       <CaptionScrim />
-      <VideoCaption from={caption.from} text={caption.text} timeScale={timeScale} />
+      <VideoCaption from={caption.from} emphasisWords={caption.emphasis ? [caption.emphasis] : undefined} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
@@ -132,17 +209,18 @@ const AdultScene = () => {
 const EatFastScene = () => {
   const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   // Draft timing, pending alignment with the final voiceover.
-  const captions = [
+  const captions: Cue[] = [
     {from: 0, text: "吃饭吃得很快"},
     {from: 38, text: "习惯狼吞虎咽的人"},
-    {from: 87, text: "对外界充满了不信任感"},
+    {from: 87, text: "对外界充满了不信任感", emphasis: "不信任感"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill style={SCENE_STYLE}>
       <Video muted src={eatVideo} objectFit="contain" style={VIDEO_STYLE} />
       <CaptionScrim />
-      <VideoCaption from={caption.from} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
+      <ChapterMarker index="02" label="狼吞虎咽" detail="吃饭很快，不信任外界" />
+      <VideoCaption from={caption.from} emphasisWords={caption.emphasis ? [caption.emphasis] : undefined} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
     </AbsoluteFill>
   );
 };
@@ -150,11 +228,11 @@ const EatFastScene = () => {
 const DisappointScene = () => {
   const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
   // Draft timing, pending alignment with the final voiceover.
-  const captions = [
+  const captions: Cue[] = [
     {from: 0, text: "这种人一般生长在"},
     {from: 40, text: "匮乏的家庭里"},
     {from: 74, text: "这里的匮乏"},
-    {from: 106, text: "指的是精神匮乏"},
+    {from: 106, text: "指的是精神匮乏", emphasis: "精神匮乏"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
@@ -164,7 +242,7 @@ const DisappointScene = () => {
         <DissolvePicture src={fullVideo} playbackRate={FULL_PLAYBACK_RATE} />
       </Sequence>
       <CaptionScrim />
-      <VideoCaption from={caption.from} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
+      <VideoCaption from={caption.from} emphasisWords={caption.emphasis ? [caption.emphasis] : undefined} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
     </AbsoluteFill>
   );
 };
@@ -173,10 +251,10 @@ const FullScene = () => {
   const timeScale = EPISODE03_FULL_DURATION / 123;
   const frame = useCurrentFrame() / timeScale;
   // Caption timing stays independent of the regenerated video's duration.
-  const captions = [
-    {from: 0, text: "食物的饱腹感为人提供了", next: "最早的精神慰藉"},
+  const captions: Cue[] = [
+    {from: 0, text: "食物的饱腹感为人提供了", next: "最早的精神慰藉", emphasis: "精神慰藉"},
     {from: 45, text: "当精神缺乏爱和关注时", next: "孩子就会把注意力"},
-    {from: 89, text: "集中在身体的生长上", next: ""},
+    {from: 89, text: "集中在身体的生长上", next: "", emphasis: "身体的生长"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
@@ -185,7 +263,7 @@ const FullScene = () => {
         <Video muted playbackRate={FULL_PLAYBACK_RATE} src={fullVideo} objectFit="contain" style={VIDEO_STYLE} />
       </Sequence>
       <CaptionScrim />
-      <VideoCaption from={caption.from} text={caption.text} secondLine={caption.next} timeScale={timeScale} />
+      <VideoCaption from={caption.from} emphasisWords={caption.emphasis ? [caption.emphasis] : undefined} text={caption.text} secondLine={caption.next} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
@@ -193,35 +271,36 @@ const FullScene = () => {
 const AnxiousScene = () => {
   const timeScale = EPISODE03_ANXIOUS_DURATION / 150;
   const frame = useCurrentFrame() / timeScale;
-  const captions = [
+  const captions: Cue[] = [
     {from: 0, text: "而食物焦虑的人"},
-    {from: 33, text: "更容易食物上瘾"},
+    {from: 33, text: "更容易食物上瘾", emphasis: "食物上瘾"},
     {from: 66, text: "因为糖和脂肪"},
-    {from: 99, text: "能带来更多的愉悦感"},
+    {from: 99, text: "能带来更多的愉悦感", emphasis: "愉悦感"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill style={SCENE_STYLE}>
       <Video muted src={anxiousVideo} objectFit="contain" style={VIDEO_STYLE} />
       <CaptionScrim />
-      <VideoCaption from={caption.from} text={caption.text} timeScale={timeScale} />
+      <VideoCaption from={caption.from} emphasisWords={caption.emphasis ? [caption.emphasis] : undefined} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
 
 const PickyScene = () => {
   const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
-  const captions = [
+  const captions: Cue[] = [
     {from: 0, text: "吃饭挑剔的人"},
     {from: 37, text: "往往在孩童时期"},
-    {from: 75, text: "也是被父母挑剔的人"},
+    {from: 75, text: "也是被父母挑剔的人", emphasis: "被父母挑剔"},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill style={SCENE_STYLE}>
       <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={pickVideo} objectFit="contain" style={VIDEO_STYLE} />
       <CaptionScrim />
-      <VideoCaption from={caption.from} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
+      <ChapterMarker index="03" label="挑剔" detail="被挑剔的人，学会挑剔" />
+      <VideoCaption from={caption.from} emphasisWords={caption.emphasis ? [caption.emphasis] : undefined} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
     </AbsoluteFill>
   );
 };
@@ -313,9 +392,9 @@ const ClosingCard = ({start, end}: {start: number; end: number}) => {
 
 const FoodControlScene = () => {
   const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
-  const captions: {from: number; text: string; until?: number}[] = [
+  const captions: Cue[] = [
     {from: 0, text: "他们通过挑剔食物的色香味"},
-    {from: 70, text: "来满足控制欲"},
+    {from: 70, text: "来满足控制欲", emphasis: "控制欲"},
     {from: 110, text: "消除内心的不确定性", until: 158},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
@@ -323,7 +402,7 @@ const FoodControlScene = () => {
     <AbsoluteFill style={SCENE_STYLE}>
       <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={finalVideo} objectFit="contain" style={VIDEO_STYLE} />
       <CaptionScrim />
-      <VideoCaption from={caption.from} until={caption.until} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
+      <VideoCaption from={caption.from} until={caption.until} emphasisWords={caption.emphasis ? [caption.emphasis] : undefined} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
       <ClosingCard start={EPISODE03_CLOSING_START} end={EPISODE03_FINAL_DURATION} />
     </AbsoluteFill>
   );
@@ -341,6 +420,7 @@ export const Episode03 = () => {
           eyebrow="第 03 期 · 心理观察"
           title={["你的吃饭习惯", "暴露了你的心理"]}
           emphasisWords={["吃饭习惯"]}
+          hook="你知道吗？"
           avatarSize={theme.layout.avatarLarge}
         />
       </Series.Sequence>

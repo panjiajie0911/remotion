@@ -1,3 +1,5 @@
+import {fontFamily} from "./fonts";
+
 const palette = {
   canvas: "#F5F6F7",
   surface: "#FFFFFF",
@@ -31,8 +33,7 @@ export const theme = {
     danger: palette.danger,
   },
   fonts: {
-    // Install or load the font files before rendering on another machine.
-    sans: '"Source Han Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif',
+    sans: fontFamily,
   },
   // Pixel values are authored for a 1080 x 1920 composition.
   typography: {
@@ -74,7 +75,7 @@ export const theme = {
   // Full-frame overlays. Only the scrim is reused; never stack both.
   overlay: {
     scrim:
-      "linear-gradient(180deg, rgba(10,12,16,0) 0%, rgba(10,12,16,0.18) 40%, rgba(10,12,16,0.58) 66%, rgba(10,12,16,0.84) 86%, rgba(10,12,16,0.9) 100%)",
+      "linear-gradient(180deg, rgba(10,12,16,0) 0%, rgba(10,12,16,0.10) 42%, rgba(10,12,16,0.34) 66%, rgba(10,12,16,0.52) 86%, rgba(10,12,16,0.58) 100%)",
     veil:
       "linear-gradient(180deg, rgba(10,12,16,0.58) 0%, rgba(10,12,16,0.12) 40%, rgba(10,12,16,0.70) 100%)",
   },
@@ -116,7 +117,7 @@ export const theme = {
     maxCharacters: 32,
     // Burned-in captions over footage: no outline, only a bottom scrim.
     onVideo: {
-      bottom: 208,
+      bottom: 320,
       maxWidth: 820,
       size: 48,
       weight: 500,
