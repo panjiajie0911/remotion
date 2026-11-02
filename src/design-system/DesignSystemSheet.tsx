@@ -77,7 +77,7 @@ const TypeRow = ({
  * Open with `pnpm ds` (src/entries/design-system.tsx).
  */
 export const DesignSystemSheet = () => (
-  <SceneFrame eyebrow="DESIGN SYSTEM" footer="EPISODE 03 · V1" contentStyle={{ justifyContent: "flex-start" }}>
+  <SceneFrame eyebrow="DESIGN SYSTEM" footer="SERIES SYSTEM · V1" contentStyle={{ justifyContent: "flex-start" }}>
     <div style={{ display: "flex", flexDirection: "column", gap: theme.spacing.xl }}>
       <div>
         <div
@@ -154,7 +154,7 @@ export const DesignSystemSheet = () => (
           <div
             aria-hidden
             style={{
-              background: `linear-gradient(150deg, ${theme.palette.accentDeep} 0%, ${theme.palette.night} 72%)`,
+              background: `linear-gradient(150deg, ${theme.palette.mark} 0%, ${theme.palette.night} 72%)`,
               inset: 0,
               opacity: 0.5,
               position: "absolute",
@@ -174,11 +174,11 @@ export const DesignSystemSheet = () => (
             }}
           >
             <div>潜意识中存在</div>
-            <div>“不配得感”</div>
+            <div>“<span style={{ color: theme.palette.mark }}>不配得感</span>”</div>
           </div>
         </div>
         <div style={{ ...label, marginTop: theme.spacing.sm }}>
-          无描边 · 底部渐隐 · 单行 48Px · 距底 208Px
+          无描边 · 底部渐隐 · 单行 48Px · 距底 320Px
         </div>
       </div>
     </div>

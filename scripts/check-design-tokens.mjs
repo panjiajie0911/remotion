@@ -3,7 +3,7 @@ import path from "node:path";
 
 // Directories that must stay on design tokens. Legacy episodes are reported but
 // not blocked while they are migrated one at a time.
-const enforced = ["episodes/episode-03", "design-system", "components/intro"];
+const enforced = ["episodes/episode-03", "episodes/episode-04", "episodes/_template", "design-system", "components/intro"];
 const legacy = ["episodes/episode-01", "episodes/episode-02", "episodes/episode-04", "components/text", "components/ui", "components/animation"];
 
 const root = path.resolve("src");
@@ -59,4 +59,4 @@ if (blocking.length) {
   process.exit(1);
 }
 
-console.log("Design token check passed for episode-03, design-system and shared intro.");
+console.log("Design token check passed for the shared system, episode-03, episode-04 and the template.");

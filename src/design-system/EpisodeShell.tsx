@@ -56,7 +56,7 @@ export const EpisodeShell = ({
           </Series.Sequence>
         ))}
       </Series>
-      {narration ? <Audio src={narration} volume={theme.audio.volume.voice} /> : null}
+      {narration ? <Audio src={narration} volume={() => theme.audio.volume.voice} /> : null}
       {music ? (
         <Audio
           src={music}

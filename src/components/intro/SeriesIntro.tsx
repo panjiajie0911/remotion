@@ -126,7 +126,7 @@ export const SeriesIntro = ({
               <div
                 key={`${line}-${index}`}
                 style={{
-                  color: isEmphasis ? theme.palette.accent : theme.palette.ink,
+                  color: theme.palette.ink,
                   fontSize: theme.typography.size.title,
                   fontWeight: isEmphasis ? theme.typography.weight.semibold : theme.typography.weight.medium,
                   letterSpacing: theme.typography.tracking.title,
@@ -136,6 +136,14 @@ export const SeriesIntro = ({
                   overflowWrap: "anywhere",
                   textWrap: "balance",
                   translate: `0 ${theme.motion.rise * (1 - reveal(start))}px`,
+                  ...(isEmphasis
+                    ? {
+                        textDecorationColor: theme.palette.mark,
+                        textDecorationLine: "underline" as const,
+                        textDecorationThickness: "0.07em",
+                        textUnderlineOffset: "0.14em",
+                      }
+                    : null),
                 }}
               >
                 {renderEmphasis(line, emphasisWords)}
