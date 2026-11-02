@@ -1,18 +1,17 @@
 import {AbsoluteFill, getStaticFiles, Img} from "remotion";
-import {Rule} from "../../design-system";
-import {theme} from "../../lib/theme";
+import {theme} from "../lib/theme";
+import type {EpisodeMeta} from "./episode-meta";
+import {renderEmphasis} from "./emphasis";
+import {Rule} from "./Type";
 
-const emphasis = {
-  textDecorationColor: theme.palette.mark,
-  textDecorationLine: "underline" as const,
-  textDecorationThickness: "0.07em",
-  textUnderlineOffset: "0.14em",
-};
-
-/** 9:16 poster frame used as the episode thumbnail. */
-export const Episode03Cover = () => {
+/** 9:16 poster shared by every episode; only the meta changes. */
+export const EpisodeCover = ({meta}: {meta: EpisodeMeta}) => {
   const avatar = getStaticFiles().find((file) => file.name === "shared/avatar.png")?.src;
   const avatarSize = theme.layout.avatarLarge / 2;
+  const cover = meta.cover ?? {};
+  const titleLines = cover.title ?? meta.title;
+  const titleSize = cover.titleSize ?? theme.typography.size.display;
+  const hasSignoff = Boolean(cover.signoff || cover.note);
 
   return (
     <AbsoluteFill
@@ -42,7 +41,7 @@ export const Episode03Cover = () => {
               lineHeight: 1,
             }}
           >
-            第 03 期
+            {meta.numberLabel}
           </div>
           <div
             style={{
@@ -53,7 +52,7 @@ export const Episode03Cover = () => {
               lineHeight: 1,
             }}
           >
-            心理观察
+            {meta.seriesLabel}
           </div>
         </div>
 
@@ -71,29 +70,30 @@ export const Episode03Cover = () => {
           </div>
           <div
             style={{
-              fontSize: theme.typography.size.display,
+              fontSize: titleSize,
               fontWeight: theme.typography.weight.semibold,
               letterSpacing: theme.typography.tracking.display,
               lineHeight: theme.typography.lineHeight.tight,
             }}
           >
-            <div>
-              你的<span style={emphasis}>吃饭习惯</span>
+            {titleLines.map((line) => (
+              <div key={line}>{renderEmphasis(line, meta.emphasisWords)}</div>
+            ))}
+          </div>
+          {cover.subtitle ? (
+            <div
+              style={{
+                color: theme.palette.inkMuted,
+                fontSize: theme.typography.size.lead,
+                fontWeight: theme.typography.weight.regular,
+                letterSpacing: theme.typography.tracking.meta,
+                lineHeight: theme.typography.lineHeight.snug,
+                marginTop: theme.spacing.xl,
+              }}
+            >
+              {cover.subtitle}
             </div>
-            <div>暴露了你的心理</div>
-          </div>
-          <div
-            style={{
-              color: theme.palette.inkMuted,
-              fontSize: theme.typography.size.lead,
-              fontWeight: theme.typography.weight.regular,
-              letterSpacing: theme.typography.tracking.meta,
-              lineHeight: theme.typography.lineHeight.snug,
-              marginTop: theme.spacing.xl,
-            }}
-          >
-            吃饭的样子，藏着你的来路
-          </div>
+          ) : null}
         </div>
 
         <div style={{alignItems: "center", display: "flex", gap: theme.spacing.lg}}>
@@ -122,31 +122,43 @@ export const Episode03Cover = () => {
               />
             </div>
           ) : null}
-          <div>
-            <div
-              style={{
-                fontSize: theme.typography.size.label,
-                fontWeight: theme.typography.weight.medium,
-                letterSpacing: theme.typography.tracking.meta,
-                lineHeight: theme.typography.lineHeight.snug,
-              }}
-            >
-              事已至此，先吃饭吧。
+          {hasSignoff ? (
+            <div>
+              {cover.signoff ? (
+                <div
+                  style={{
+                    fontSize: theme.typography.size.label,
+                    fontWeight: theme.typography.weight.medium,
+                    letterSpacing: theme.typography.tracking.meta,
+                    lineHeight: theme.typography.lineHeight.snug,
+                  }}
+                >
+                  {cover.signoff}
+                </div>
+              ) : null}
+              {cover.note ? (
+                <div
+                  style={{
+                    color: theme.palette.inkMuted,
+                    fontSize: theme.typography.size.micro,
+                    letterSpacing: theme.typography.tracking.meta,
+                    lineHeight: theme.typography.lineHeight.snug,
+                    marginTop: theme.spacing.xs,
+                  }}
+                >
+                  {cover.note}
+                </div>
+              ) : null}
             </div>
-            <div
-              style={{
-                color: theme.palette.inkMuted,
-                fontSize: theme.typography.size.micro,
-                letterSpacing: theme.typography.tracking.meta,
-                lineHeight: theme.typography.lineHeight.snug,
-                marginTop: theme.spacing.xs,
-              }}
-            >
-              一个习惯，不能定义你
-            </div>
-          </div>
+          ) : null}
         </div>
       </div>
     </AbsoluteFill>
   );
+};
+
+export const createEpisodeCover = (meta: EpisodeMeta) => {
+  const Cover = () => <EpisodeCover meta={meta} />;
+  Cover.displayName = `EpisodeCover(${meta.id})`;
+  return Cover;
 };

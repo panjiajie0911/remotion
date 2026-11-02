@@ -1,6 +1,7 @@
 import { AbsoluteFill, Easing, getStaticFiles, Img, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { theme } from "../../lib/theme";
 import { Rule } from "../../design-system/Type";
+import { renderEmphasis } from "../../design-system/emphasis";
 
 export const SERIES_INTRO_DURATION = 90;
 
@@ -48,29 +49,6 @@ export const SeriesIntro = ({
   );
   const lines = (Array.isArray(title) ? title : title.split(/\r?\n/)).filter(Boolean);
   const highlightedLines = emphasisLines ?? (emphasisWords?.length ? [] : [emphasisLine]);
-  const renderTitleLine = (line: string) => {
-    const word = emphasisWords?.find((candidate) => candidate.length > 0 && line.includes(candidate));
-    if (!word) return line;
-    const [before, ...rest] = line.split(word);
-    return (
-      <>
-        {before}
-        <span
-          style={{
-            color: theme.palette.ink,
-            fontWeight: theme.typography.weight.semibold,
-            textDecorationColor: theme.palette.mark,
-            textDecorationLine: "underline",
-            textDecorationThickness: "0.07em",
-            textUnderlineOffset: "0.14em",
-          }}
-        >
-          {word}
-        </span>
-        {rest.join(word)}
-      </>
-    );
-  };
   const reveal = (start: number, duration = theme.motion.durationSeconds.normal) =>
     interpolate(frame, [start, start + Math.round(duration * fps)], [0, 1], {
       extrapolateLeft: "clamp",
@@ -160,7 +138,7 @@ export const SeriesIntro = ({
                   translate: `0 ${theme.motion.rise * (1 - reveal(start))}px`,
                 }}
               >
-                {renderTitleLine(line)}
+                {renderEmphasis(line, emphasisWords)}
               </div>
             );
           })}
