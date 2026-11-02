@@ -1,6 +1,6 @@
 # 统一视频开篇
 
-系列视频统一使用 `SeriesIntro`。头像背景图和动效固定，标题通过参数传入：
+系列视频统一使用 `SeriesIntro`。版式、头像和入场动效固定，标题通过参数传入：
 
 ```tsx
 import { SeriesIntro, SERIES_INTRO_DURATION } from "../../components";

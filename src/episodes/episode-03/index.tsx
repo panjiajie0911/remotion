@@ -1,3 +1,4 @@
+import type {CSSProperties} from "react";
 import {AbsoluteFill, Sequence, Series, interpolate, useCurrentFrame, useVideoConfig} from "remotion";
 import {Audio, Video} from "@remotion/media";
 import forbiddenVideo from "./assets/forbidden.mp4";
@@ -20,11 +21,12 @@ import {SeriesIntro} from "../../components/intro/SeriesIntro";
 import {EPISODE03_INTRO_DURATION} from "./timeline";
 import {EPISODE03_FPS} from "./timeline";
 import {theme} from "../../lib/theme";
+import {CaptionScrim, VideoCaption} from "../../design-system";
 import {EPISODE03_OPENING_DURATION, EPISODE03_DELICIOUS_DURATION as DELICIOUS_DURATION, EPISODE03_REVERSE_DURATION as REVERSE_DURATION, EPISODE03_ADULT_DURATION} from "./timeline";
 export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
 
 export const EPISODE03_ID = "Episode03EatingHabits";
-export const EPISODE03_BACKGROUND = "#FFFFF0"; // Ivory white, this episode's main color.
+export const EPISODE03_BACKGROUND = theme.palette.night;
 
 const DISSOLVE_FRAMES = 8;
 // Prepare hidden videos before cuts to avoid pausing the shared audio clock.
@@ -33,45 +35,35 @@ const VIDEO_PREMOUNT_FRAMES = 2 * EPISODE03_FPS;
 const ADULT_PLAYBACK_RATE = 10.100680 * EPISODE03_FPS / (EPISODE03_ADULT_DURATION + DISSOLVE_FRAMES);
 const FULL_PLAYBACK_RATE = 11.041667 * EPISODE03_FPS / (EPISODE03_FULL_DURATION + DISSOLVE_FRAMES);
 
+// Footage sits on the night ground so letterboxing reads as a deliberate frame.
+const SCENE_STYLE: CSSProperties = {backgroundColor: theme.palette.night};
+const VIDEO_STYLE: CSSProperties = {height: "100%", width: "100%"};
+
 const DissolvePicture = ({src, playbackRate}: {src: string; playbackRate: number}) => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{
-      backgroundColor: EPISODE03_BACKGROUND,
+      backgroundColor: theme.palette.night,
       opacity: interpolate(frame, [0, DISSOLVE_FRAMES], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}),
     }}>
-      <Video muted src={src} playbackRate={playbackRate} objectFit="contain" style={{width: "100%", height: "100%"}} />
+      <Video muted src={src} playbackRate={playbackRate} objectFit="contain" style={VIDEO_STYLE} />
     </AbsoluteFill>
   );
 };
 
-// Whole captions fade in over six frames, including when seeking.
-const BottomCaption = ({from, text, secondLine, timeScale = EPISODE03_TIME_SCALE}: {from: number; text: string; secondLine?: string; timeScale?: number}) => {
-  const frame = useCurrentFrame() / timeScale;
-  return (
-    <div style={{
-      position: "absolute", left: 80, right: 80, bottom: 160,
-      color: "#FFF9F0", fontFamily: '"Noto Sans SC", "Microsoft YaHei", sans-serif',
-      fontSize: 44, fontWeight: 500, lineHeight: 1.5, letterSpacing: 2, textAlign: "center",
-      WebkitTextStroke: "1px rgba(25, 22, 20, 0.85)", paintOrder: "stroke fill",
-      textShadow: "0 3px 10px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.65)", pointerEvents: "none",
-      opacity: interpolate(frame - from, [0, 6], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}),
-    }}>
-      <div>{text}</div>
-      {secondLine && <div>{secondLine}</div>}
-    </div>
-  );
-};
-
-const OpeningCaption = () => {
+const OpeningScene = () => {
   const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
-  const secondStartsAt = 76;
-  const text = frame < secondStartsAt
-    ? "几乎所有不健全家庭长大的孩子"
-    : "都存在进食障碍";
-  const localFrame = frame < secondStartsAt ? frame : frame - secondStartsAt;
+  const captions = [
+    {from: 0, text: "几乎所有不健全家庭长大的孩子"},
+    {from: 76, text: "都存在进食障碍"},
+  ];
+  const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
-    <BottomCaption from={frame - localFrame} text={text} />
+    <AbsoluteFill style={SCENE_STYLE}>
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={forbiddenVideo} objectFit="contain" style={VIDEO_STYLE} />
+      <CaptionScrim />
+      <VideoCaption from={caption.from} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
+    </AbsoluteFill>
   );
 };
 
@@ -85,9 +77,10 @@ const DeliciousScene = () => {
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
-    <AbsoluteFill>
-      <Video muted src={deliciousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
+    <AbsoluteFill style={SCENE_STYLE}>
+      <Video muted src={deliciousVideo} objectFit="contain" style={VIDEO_STYLE} />
+      <CaptionScrim />
+      <VideoCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
@@ -103,12 +96,13 @@ const ConditionalLoveScene = () => {
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
-    <AbsoluteFill>
-      <Video muted playbackRate={1 / timeScale} src={reverseVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+    <AbsoluteFill style={SCENE_STYLE}>
+      <Video muted playbackRate={1 / timeScale} src={reverseVideo} objectFit="contain" style={VIDEO_STYLE} />
       <Sequence from={REVERSE_DURATION - DISSOLVE_FRAMES} durationInFrames={DISSOLVE_FRAMES} premountFor={VIDEO_PREMOUNT_FRAMES} name="童年到成年：短叠化">
         <DissolvePicture src={adultVideo} playbackRate={ADULT_PLAYBACK_RATE} />
       </Sequence>
-      <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
+      <CaptionScrim />
+      <VideoCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
@@ -125,11 +119,12 @@ const AdultScene = () => {
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
-    <AbsoluteFill>
+    <AbsoluteFill style={SCENE_STYLE}>
       <Sequence from={-DISSOLVE_FRAMES} layout="none">
-        <Video muted playbackRate={ADULT_PLAYBACK_RATE} src={adultVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+        <Video muted playbackRate={ADULT_PLAYBACK_RATE} src={adultVideo} objectFit="contain" style={VIDEO_STYLE} />
       </Sequence>
-      <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
+      <CaptionScrim />
+      <VideoCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
@@ -144,9 +139,10 @@ const EatFastScene = () => {
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
-    <AbsoluteFill>
-      <Video muted src={eatVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <BottomCaption from={caption.from} text={caption.text} />
+    <AbsoluteFill style={SCENE_STYLE}>
+      <Video muted src={eatVideo} objectFit="contain" style={VIDEO_STYLE} />
+      <CaptionScrim />
+      <VideoCaption from={caption.from} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
     </AbsoluteFill>
   );
 };
@@ -162,12 +158,13 @@ const DisappointScene = () => {
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
-    <AbsoluteFill>
-      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={disappointVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+    <AbsoluteFill style={SCENE_STYLE}>
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={disappointVideo} objectFit="contain" style={VIDEO_STYLE} />
       <Sequence from={EPISODE03_DISAPPOINT_DURATION - DISSOLVE_FRAMES} durationInFrames={DISSOLVE_FRAMES} premountFor={VIDEO_PREMOUNT_FRAMES} name="精神匮乏到慰藉：短叠化">
         <DissolvePicture src={fullVideo} playbackRate={FULL_PLAYBACK_RATE} />
       </Sequence>
-      <BottomCaption from={caption.from} text={caption.text} />
+      <CaptionScrim />
+      <VideoCaption from={caption.from} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
     </AbsoluteFill>
   );
 };
@@ -183,11 +180,12 @@ const FullScene = () => {
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
-    <AbsoluteFill>
+    <AbsoluteFill style={SCENE_STYLE}>
       <Sequence from={-DISSOLVE_FRAMES} layout="none">
-        <Video muted playbackRate={FULL_PLAYBACK_RATE} src={fullVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
+        <Video muted playbackRate={FULL_PLAYBACK_RATE} src={fullVideo} objectFit="contain" style={VIDEO_STYLE} />
       </Sequence>
-      <BottomCaption from={caption.from} text={caption.text} secondLine={caption.next} timeScale={timeScale} />
+      <CaptionScrim />
+      <VideoCaption from={caption.from} text={caption.text} secondLine={caption.next} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
@@ -203,9 +201,10 @@ const AnxiousScene = () => {
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
-    <AbsoluteFill>
-      <Video muted src={anxiousVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <BottomCaption from={caption.from} text={caption.text} timeScale={timeScale} />
+    <AbsoluteFill style={SCENE_STYLE}>
+      <Video muted src={anxiousVideo} objectFit="contain" style={VIDEO_STYLE} />
+      <CaptionScrim />
+      <VideoCaption from={caption.from} text={caption.text} timeScale={timeScale} />
     </AbsoluteFill>
   );
 };
@@ -219,9 +218,10 @@ const PickyScene = () => {
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
-    <AbsoluteFill>
-      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={pickVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <BottomCaption from={caption.from} text={caption.text} />
+    <AbsoluteFill style={SCENE_STYLE}>
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={pickVideo} objectFit="contain" style={VIDEO_STYLE} />
+      <CaptionScrim />
+      <VideoCaption from={caption.from} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
     </AbsoluteFill>
   );
 };
@@ -236,9 +236,10 @@ const FoodControlScene = () => {
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
-    <AbsoluteFill>
-      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={finalVideo} objectFit="contain" style={{width: "100%", height: "100%"}} />
-      <BottomCaption from={caption.from} text={caption.text} />
+    <AbsoluteFill style={SCENE_STYLE}>
+      <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={finalVideo} objectFit="contain" style={VIDEO_STYLE} />
+      <CaptionScrim />
+      <VideoCaption from={caption.from} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
     </AbsoluteFill>
   );
 };
@@ -248,13 +249,17 @@ export const Episode03 = () => {
   const {durationInFrames} = useVideoConfig();
 
   return (
-    <AbsoluteFill style={{backgroundColor: EPISODE03_BACKGROUND, color: theme.colors.text, fontFamily: theme.fonts.sans}}>
+    <AbsoluteFill style={{backgroundColor: EPISODE03_BACKGROUND, color: theme.palette.ink, fontFamily: theme.fonts.sans}}>
     <Series>
       <Series.Sequence durationInFrames={EPISODE03_INTRO_DURATION} name="统一片头">
-        <SeriesIntro title={["你的吃饭习惯", "暴露了你的心理"]} emphasisLines={[1]} />
+        <SeriesIntro
+          eyebrow="第 03 期 · 心理观察"
+          title={["你的吃饭习惯", "暴露了你的心理"]}
+          emphasisLines={[1]}
+        />
       </Series.Sequence>
       <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
-        <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={forbiddenVideo} objectFit="contain" style={{width: "100%", height: "100%"}} /><OpeningCaption />
+        <OpeningScene />
       </Series.Sequence>
       <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={DELICIOUS_DURATION} name="喜欢的食物留到最后">
         <DeliciousScene />
