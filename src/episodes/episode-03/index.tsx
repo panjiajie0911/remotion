@@ -12,7 +12,7 @@ import anxiousVideo from "./assets/anxious.mp4";
 import pickVideo from "./assets/pick.mp4";
 import finalVideo from "./assets/final.mp4";
 import backgroundMusic from "./assets/nop.mp3";
-import narration from "./assets/asset.mp3";
+import narration from "./assets/asset-normalized.mp3";
 import {SeriesIntro} from "../../components/intro/SeriesIntro";
 import {ClosingCard, createEpisodeCover, EpisodeShell, FootageScene} from "../../design-system";
 import {theme} from "../../lib/theme";
@@ -58,6 +58,8 @@ const VIDEO_PREMOUNT_FRAMES = 2 * EPISODE03_FPS;
 // Include the incoming pre-roll in playback length, preserving all narration boundaries.
 const ADULT_PLAYBACK_RATE = 10.100680 * EPISODE03_FPS / (EPISODE03_ADULT_DURATION + DISSOLVE_FRAMES);
 const FULL_PLAYBACK_RATE = 11.041667 * EPISODE03_FPS / (EPISODE03_FULL_DURATION + DISSOLVE_FRAMES);
+// The anxious clip is only 5.06s; slow it to fill the 8s narration slot instead of freezing.
+const ANXIOUS_PLAYBACK_RATE = 5.061995 * EPISODE03_FPS / EPISODE03_ANXIOUS_DURATION;
 
 const VIDEO_STYLE: CSSProperties = {height: "100%", width: "100%"};
 
@@ -163,6 +165,7 @@ const AnxiousScene = () => (
     src={anxiousVideo}
     cues={ANXIOUS_CUES}
     timeScale={EPISODE03_ANXIOUS_DURATION / 150}
+    playbackRate={ANXIOUS_PLAYBACK_RATE}
   />
 );
 
