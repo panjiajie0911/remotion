@@ -11,8 +11,12 @@ export type SeriesIntroProps = {
   emphasisLine?: number;
   /** Multiple title rows can share the same emphasis treatment. */
   emphasisLines?: number[];
+  /** Substrings inside title rows that receive the accent treatment. */
+  emphasisWords?: string[];
   eyebrow?: string;
   footer?: string;
+  /** Diameter of the circular portrait. Defaults to the compact 96px mark. */
+  avatarSize?: number;
 };
 
 /** Shared 3-second opening card for every episode in the series. */
@@ -20,15 +24,34 @@ export const SeriesIntro = ({
   title,
   emphasisLine = 1,
   emphasisLines,
+  emphasisWords,
   eyebrow,
   footer = "",
+  avatarSize = theme.layout.avatar,
 }: SeriesIntroProps) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const avatar = getStaticFiles().find((file) => file.name === "shared/avatar.png")?.src;
   const ease = Easing.bezier(...theme.motion.easing);
+  const blink = interpolate(frame / fps, [1.35, 1.45, 1.5, 1.65, 2.15, 2.25, 2.3, 2.45], [0, 1, 1, 0, 0, 1, 1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.inOut(Easing.quad),
+  });
   const lines = (Array.isArray(title) ? title : title.split(/\r?\n/)).filter(Boolean);
-  const highlightedLines = emphasisLines ?? [emphasisLine];
+  const highlightedLines = emphasisLines ?? (emphasisWords?.length ? [] : [emphasisLine]);
+  const renderTitleLine = (line: string) => {
+    const word = emphasisWords?.find((candidate) => candidate.length > 0 && line.includes(candidate));
+    if (!word) return line;
+    const [before, ...rest] = line.split(word);
+    return (
+      <>
+        {before}
+        <span style={{ color: theme.palette.accent, fontWeight: theme.typography.weight.semibold }}>{word}</span>
+        {rest.join(word)}
+      </>
+    );
+  };
   const reveal = (start: number, duration = theme.motion.durationSeconds.normal) =>
     interpolate(frame, [start, start + Math.round(duration * fps)], [0, 1], {
       extrapolateLeft: "clamp",
@@ -99,25 +122,82 @@ export const SeriesIntro = ({
                   translate: `0 ${theme.motion.rise * (1 - reveal(start))}px`,
                 }}
               >
-                {line}
+                {renderTitleLine(line)}
               </div>
             );
           })}
         </div>
 
-        <div style={{ alignItems: "center", display: "flex", gap: theme.spacing.lg, minHeight: theme.layout.avatar }}>
+        <div style={{ alignItems: "center", display: "flex", gap: theme.spacing.lg, minHeight: avatarSize }}>
           {avatar ? (
             <div
               style={{
                 border: `${theme.borderWidth.thin}px solid ${theme.palette.line}`,
                 borderRadius: "50%",
-                height: theme.layout.avatar,
+                flexShrink: 0,
+                height: avatarSize,
                 opacity: reveal(34),
                 overflow: "hidden",
-                width: theme.layout.avatar,
+                position: "relative",
+                width: avatarSize,
               }}
             >
-              <Img src={avatar} style={{ height: "100%", objectFit: "cover", width: "100%" }} />
+              <Img
+                src={avatar}
+                style={{
+                  height: avatarSize * 1.35 * 1523 / 1204,
+                  left: avatarSize * (1 - 1.35) / 2,
+                  maxWidth: "none",
+                  position: "absolute",
+                  top: avatarSize * 0.05,
+                  width: avatarSize * 1.35,
+                }}
+              />
+              {blink > 0 ? [454, 685].map((eyeLeft) => {
+                const scale = avatarSize * 1.35 / 1204;
+                return (
+                  <div key={eyeLeft} aria-hidden style={{
+                    position: "absolute",
+                    left: avatarSize * (1 - 1.35) / 2 + eyeLeft * scale,
+                    top: avatarSize * 0.05 + 359 * scale,
+                    width: 80 * scale,
+                    height: 80 * scale,
+                    overflow: "hidden",
+                    borderRadius: "35%",
+                  }}>
+                    <Img
+                      src={avatar}
+                      style={{
+                        height: avatarSize * 1.35 * 1523 / 1204,
+                        left: -540 * scale,
+                        maxWidth: "none",
+                        position: "absolute",
+                        top: -350 * scale,
+                        width: avatarSize * 1.35,
+                      }}
+                    />
+                    <div style={{
+                      position: "absolute",
+                      inset: 0,
+                      overflow: "hidden",
+                      borderRadius: "35%",
+                      scale: `1 ${1 - blink * 0.9}`,
+                    }}>
+                      <Img
+                        src={avatar}
+                        style={{
+                          height: avatarSize * 1.35 * 1523 / 1204,
+                          left: -eyeLeft * scale,
+                          maxWidth: "none",
+                          position: "absolute",
+                          top: -359 * scale,
+                          width: avatarSize * 1.35,
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              }) : null}
             </div>
           ) : null}
           <div

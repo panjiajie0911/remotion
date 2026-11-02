@@ -65,6 +65,7 @@ export const theme = {
     ruleWidth: 56,
     ruleHeight: 2,
     avatar: 96,
+    avatarLarge: 320,
   },
   spacing: { xs: 8, sm: 16, md: 24, lg: 32, xl: 48, xxl: 64, section: 96 },
   radius: { none: 0, sm: 4, md: 8, pill: 999 },

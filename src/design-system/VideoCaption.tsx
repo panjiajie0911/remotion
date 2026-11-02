@@ -13,6 +13,8 @@ export type VideoCaptionProps = {
   secondLine?: string;
   /** Frame in the scaled scene clock at which this cue becomes visible. */
   from: number;
+  /** Frame in the scaled scene clock at which this cue starts fading out. */
+  until?: number;
   /** Scene clock compression, matching the narration timeline. */
   timeScale?: number;
 };
@@ -21,13 +23,19 @@ export type VideoCaptionProps = {
  * Burned-in caption for footage: one ground scrim, one type size, no outline.
  * Each line stays a block element so long lines wrap instead of collapsing.
  */
-export const VideoCaption = ({ text, secondLine, from, timeScale = 1 }: VideoCaptionProps) => {
+export const VideoCaption = ({ text, secondLine, from, until, timeScale = 1 }: VideoCaptionProps) => {
   const frame = useCurrentFrame() / timeScale;
   const progress = interpolate(frame - from, [0, theme.motion.frames.captionIn], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: easeOutCubic,
   });
+  const exit = until === undefined
+    ? 1
+    : interpolate(frame, [until - theme.motion.frames.captionOut, until], [1, 0], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      });
   const style = theme.captions.onVideo;
 
   return (
@@ -35,7 +43,7 @@ export const VideoCaption = ({ text, secondLine, from, timeScale = 1 }: VideoCap
       style={{
         bottom: style.bottom,
         left: theme.layout.marginX,
-        opacity: progress,
+        opacity: progress * exit,
         pointerEvents: "none",
         position: "absolute",
         right: theme.layout.marginX,

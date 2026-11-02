@@ -1,5 +1,5 @@
 import type {CSSProperties} from "react";
-import {AbsoluteFill, Sequence, Series, interpolate, useCurrentFrame, useVideoConfig} from "remotion";
+import {AbsoluteFill, Easing, Sequence, Series, interpolate, useCurrentFrame, useVideoConfig} from "remotion";
 import {Audio, Video} from "@remotion/media";
 import forbiddenVideo from "./assets/forbidden.mp4";
 import deliciousVideo from "./assets/delicious.mp4";
@@ -15,13 +15,13 @@ import finalVideo from "./assets/final.mp4";
 import backgroundMusic from "./assets/nop.mp3";
 import narration from "./assets/asset.mp3";
 import {EPISODE03_TIME_SCALE} from "./timeline";
-import {EPISODE03_FINAL_DURATION} from "./timeline";
+import {EPISODE03_FINAL_DURATION, EPISODE03_CLOSING_START} from "./timeline";
 import {EPISODE03_EAT_DURATION, EPISODE03_DISAPPOINT_DURATION, EPISODE03_FULL_DURATION, EPISODE03_PICK_DURATION} from "./timeline";
 import {SeriesIntro} from "../../components/intro/SeriesIntro";
 import {EPISODE03_INTRO_DURATION} from "./timeline";
 import {EPISODE03_FPS} from "./timeline";
 import {theme} from "../../lib/theme";
-import {CaptionScrim, VideoCaption} from "../../design-system";
+import {CaptionScrim, Rule, VideoCaption} from "../../design-system";
 import {EPISODE03_OPENING_DURATION, EPISODE03_DELICIOUS_DURATION as DELICIOUS_DURATION, EPISODE03_REVERSE_DURATION as REVERSE_DURATION, EPISODE03_ADULT_DURATION} from "./timeline";
 export {EPISODE03_FPS, EPISODE03_DURATION} from "./timeline";
 
@@ -226,20 +226,105 @@ const PickyScene = () => {
   );
 };
 
+const ClosingCard = ({start, end}: {start: number; end: number}) => {
+  const frame = useCurrentFrame();
+  const local = frame - start;
+  const total = end - start;
+  const fadeStart = total - 18;
+  const ease = Easing.bezier(...theme.motion.easing);
+  const reveal = (from: number, duration = 12) =>
+    interpolate(local - from, [0, duration], [0, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: ease,
+    });
+  const veil = interpolate(local, [0, 18, fadeStart, total], [0, 0.78, 0.78, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const contentOut = interpolate(local, [fadeStart, total - 4], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const drift = interpolate(local, [0, total], [1, 1.015], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  return (
+    <AbsoluteFill style={{pointerEvents: "none"}}>
+      <AbsoluteFill style={{backgroundColor: theme.palette.night, opacity: veil}} />
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        inset: 0,
+        justifyContent: "center",
+        opacity: contentOut,
+        padding: `0 ${theme.layout.marginX}px`,
+        position: "absolute",
+      }}>
+        <div style={{scale: drift, transformOrigin: "left center"}}>
+          <div style={{
+            color: theme.palette.inkFaint,
+            fontSize: theme.typography.size.meta,
+            fontWeight: theme.typography.weight.medium,
+            letterSpacing: theme.typography.tracking.eyebrow,
+            lineHeight: 1,
+            opacity: reveal(15),
+          }}>
+            一个习惯，不能定义你
+          </div>
+          <div style={{
+            marginBottom: theme.spacing.xl,
+            marginTop: theme.spacing.xl,
+            opacity: reveal(24),
+            scale: `${reveal(24)} 1`,
+            transformOrigin: "left center",
+            width: theme.layout.ruleWidth,
+          }}>
+            <Rule />
+          </div>
+          <div style={{
+            color: theme.palette.surface,
+            fontSize: theme.typography.size.display,
+            fontWeight: theme.typography.weight.semibold,
+            letterSpacing: theme.typography.tracking.display,
+            lineHeight: theme.typography.lineHeight.tight,
+          }}>
+            <div style={{opacity: reveal(33), translate: `0 ${theme.motion.rise * (1 - reveal(33))}px`}}>事已至此</div>
+            <div style={{opacity: reveal(40), translate: `0 ${theme.motion.rise * (1 - reveal(40))}px`}}>先吃饭吧。</div>
+          </div>
+        </div>
+      </div>
+      <div style={{
+        bottom: theme.layout.safeBottom,
+        color: theme.palette.inkFaint,
+        fontSize: theme.typography.size.micro,
+        left: theme.layout.marginX,
+        letterSpacing: theme.typography.tracking.meta,
+        opacity: reveal(60) * contentOut,
+        position: "absolute",
+      }}>
+        第 03 期 · 心理观察
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 const FoodControlScene = () => {
   const frame = useCurrentFrame() / EPISODE03_TIME_SCALE;
-  // Provisional timing until the final narration is aligned.
-  const captions = [
+  const captions: {from: number; text: string; until?: number}[] = [
     {from: 0, text: "他们通过挑剔食物的色香味"},
-    {from: 116, text: "来满足控制欲"},
-    {from: 193, text: "消除内心的不确定性"},
+    {from: 70, text: "来满足控制欲"},
+    {from: 110, text: "消除内心的不确定性", until: 158},
   ];
   const caption = [...captions].reverse().find((item) => frame >= item.from)!;
   return (
     <AbsoluteFill style={SCENE_STYLE}>
       <Video muted playbackRate={1 / EPISODE03_TIME_SCALE} src={finalVideo} objectFit="contain" style={VIDEO_STYLE} />
       <CaptionScrim />
-      <VideoCaption from={caption.from} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
+      <VideoCaption from={caption.from} until={caption.until} text={caption.text} timeScale={EPISODE03_TIME_SCALE} />
+      <ClosingCard start={EPISODE03_CLOSING_START} end={EPISODE03_FINAL_DURATION} />
     </AbsoluteFill>
   );
 };
@@ -255,7 +340,8 @@ export const Episode03 = () => {
         <SeriesIntro
           eyebrow="第 03 期 · 心理观察"
           title={["你的吃饭习惯", "暴露了你的心理"]}
-          emphasisLines={[1]}
+          emphasisWords={["吃饭习惯"]}
+          avatarSize={theme.layout.avatarLarge}
         />
       </Series.Sequence>
       <Series.Sequence premountFor={VIDEO_PREMOUNT_FRAMES} durationInFrames={EPISODE03_OPENING_DURATION} name="家庭与进食">
