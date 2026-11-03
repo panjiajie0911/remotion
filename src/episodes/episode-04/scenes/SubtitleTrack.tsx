@@ -47,6 +47,8 @@ export const SubtitleTrack = ({lines, from, until, emphasisWords}: SubtitleTrack
 
   const local = frame - active.start;
   const length = active.end - active.start;
+  const chars = active.line.replace(/[，。、；：！？,.;:!?"“”]/g, "").length;
+  const fit = chars > 14 ? Math.max(0.72, 14 / chars) : 1;
   const fadeIn = interpolate(local, [0, 5], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -74,7 +76,8 @@ export const SubtitleTrack = ({lines, from, until, emphasisWords}: SubtitleTrack
         style={{
           color: style.color,
           fontFamily: theme.fonts.sans,
-          fontSize: style.size,
+          fontSize: style.size * fit,
+          whiteSpace: "nowrap",
           fontWeight: style.weight,
           letterSpacing: style.tracking,
           lineHeight: style.lineHeight,
