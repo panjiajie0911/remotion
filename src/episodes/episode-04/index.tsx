@@ -54,6 +54,12 @@ export const Episode04 = () => (
         premountFor: 60,
         node: <S03Scene />,
       },
+      {
+        name: "S04 门外 · 罚站",
+        durationInFrames: EPISODE04_S04_DURATION,
+        premountFor: 60,
+        node: <S04Scene />,
+      },
     ]}
   />
 );
