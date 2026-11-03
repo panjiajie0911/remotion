@@ -2,18 +2,24 @@ import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesI
 import {createEpisodeCover, EpisodeShell} from "../../design-system";
 import {theme} from "../../lib/theme";
 import {EPISODE04_META} from "./meta";
+import {S01Preview, S01_DURATION_IN_FRAMES} from "./scenes/S01Preview";
+import {S02Scene, S02_DURATION_IN_FRAMES} from "./scenes/S02Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
-export const EPISODE04_DURATION = SERIES_INTRO_DURATION;
+export const EPISODE04_INTRO_DURATION = SERIES_INTRO_DURATION;
+export const EPISODE04_S01_DURATION = S01_DURATION_IN_FRAMES;
+export const EPISODE04_S02_DURATION = S02_DURATION_IN_FRAMES;
+export const EPISODE04_DURATION =
+  EPISODE04_INTRO_DURATION + EPISODE04_S01_DURATION + EPISODE04_S02_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
   <EpisodeShell
-    background={theme.palette.canvas}
+    background={theme.palette.night}
     intro={{
       name: "统一片头",
-      durationInFrames: SERIES_INTRO_DURATION,
+      durationInFrames: EPISODE04_INTRO_DURATION,
       node: (
         <SeriesIntro
           eyebrow={`${EPISODE04_META.numberLabel} · ${EPISODE04_META.seriesLabel}`}
@@ -23,7 +29,18 @@ export const Episode04 = () => (
         />
       ),
     }}
-    scenes={[]}
+    scenes={[
+      {
+        name: "S01 空教室 · 红领巾",
+        durationInFrames: EPISODE04_S01_DURATION,
+        node: <S01Preview />,
+      },
+      {
+        name: "S02 校门口 · 红领巾",
+        durationInFrames: EPISODE04_S02_DURATION,
+        node: <S02Scene />,
+      },
+    ]}
   />
 );
 
