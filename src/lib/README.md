@@ -22,8 +22,11 @@ Safe-area margins are starting values, not platform guarantees.
 Motion durations use seconds. Convert with `Math.round(seconds * fps)` from
 `useVideoConfig()`. Pass `...theme.motion.easing` to `Easing.bezier()`.
 
-The font stack does not download Source Han Sans. Supply and load licensed local
-font files before requiring identical output across machines.
+Noto Sans SC ships as an OFL variable subset at
+`src/assets/font/NotoSansSC-VF-subset.woff2` and is declared in `src/lib/fonts.css`.
+The subset covers the glyphs currently authored in `src/`. If copy gains new
+characters, rebuild it with `fonttools` from the upstream `NotoSansSC[wght].ttf`
+so those glyphs do not fall back to a system font.
 
 Audio volumes are linear multipliers, not dB or LUFS targets. Music is disabled
 by default; recordings still need individual level checks.

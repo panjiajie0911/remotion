@@ -36,7 +36,10 @@
     "lint": "eslint src && tsc",
     "media": "node scripts/media.mjs",
     "preview": "node scripts/episode.mjs preview",
-    "render": "node scripts/episode.mjs render"
+    "render": "node scripts/episode.mjs render",
+    "ds": "remotion studio src/entries/design-system.tsx",
+    "font:subset": "node scripts/build-font.mjs",
+    "check:tokens": "node scripts/check-design-tokens.mjs"
   },
   "sideEffects": [
     "*.css"

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>心理观察 · 画面组件</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="system.css">
+</head>
+<body>
+  <main class="kit-page">
+    <header class="kit-head">
+      <div>
+        <div class="kicker">COMPONENT FIXTURE · 1080 × 1920</div>
+        <h1>五个固定画面，五种内容。</h1>
+      </div>
+      <div class="frame-meta">
+        <div class="kicker">SERIES SYSTEM · V1</div>
+      </div>
+    </header>
+
+    <div class="kit-grid">
+      <div>
+        <div class="frame frame--intro">
+          <div class="frame-inner">
+            <div class="frame-eyebrow">第 03 期 · 心理观察</div>
+            <div class="intro-main">
+              <div class="frame-rule"></div>
+              <div class="frame-title">
+                <span class="line">你的吃饭习惯</span>
+                <span class="line">暴露了你的<u class="em">心理</u></span>
+              </div>
+              <div class="intro-hook">
+                <span class="frame-rule"></span>
+                你知道吗？
+              </div>
+            </div>
+            <div class="intro-bottom">
+              <div class="avatar"><img src="assets/avatar.png" alt=""></div>
+              <div class="frame-footer">事已至此，先吃饭吧。</div>
+            </div>
+          </div>
+        </div>
+        <div class="frame-caption"><strong>片头</strong><span>SeriesIntro</span></div>
+      </div>
+
+      <div>
+        <div class="frame frame--chapter">
+          <div class="chapter-scrim"></div>
+          <div class="chapter-card">
+            <div class="chapter-index">02</div>
+            <div class="chapter-body">
+              <div class="frame-rule"></div>
+              <div class="chapter-label">狼吞虎咽</div>
+              <div class="chapter-detail">不是饿，是停不下来</div>
+            </div>
+          </div>
+          <div class="frame-caption-text">吃饭太快的人<br>常常在<span class="em-caption">赶时间</span></div>
+        </div>
+        <div class="frame-caption"><strong>章节卡</strong><span>ChapterCard</span></div>
+      </div>
+
+      <div>
+        <div class="frame frame--caption">
+          <div class="caption-scrim"></div>
+          <div class="frame-caption-text">潜意识中存在<br>“<span class="em-caption">不配得感</span>”</div>
+        </div>
+        <div class="frame-caption"><strong>字幕</strong><span>VideoCaption</span></div>
+      </div>
+
+      <div>
+        <div class="frame frame--closing">
+          <div class="closing-inner">
+            <div class="closing-kicker">写给你</div>
+            <div class="frame-rule"></div>
+            <div class="closing-title">
+              <span class="line">事已至此，</span>
+              <span class="line">先吃饭吧。</span>
+            </div>
+          </div>
+          <div class="closing-footer">第 03 期 · 心理观察</div>
+        </div>
+        <div class="frame-caption"><strong>结尾卡</strong><span>ClosingCard</span></div>
+      </div>
+
+      <div>
+        <div class="frame frame--cover">
+          <div class="frame-inner">
+            <div class="cover-top"><span>第 03 期</span><span>心理观察</span></div>
+            <div class="cover-main">
+              <div class="frame-rule"></div>
+              <div class="cover-title">
+                <span class="line">你的吃饭习惯</span>
+                <span class="line">暴露了你的<u class="em">心理</u></span>
+              </div>
+              <p class="frame-sub">吃饭的样子，藏着你的来路</p>
+            </div>
+            <div class="cover-bottom">
+              <div class="avatar"><img src="assets/avatar.png" alt=""></div>
+              <div>
+                <div class="cover-signoff">事已至此，先吃饭吧。</div>
+                <div class="cover-note">一个习惯，不能定义你</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="frame-caption"><strong>封面</strong><span>EpisodeCover</span></div>
+      </div>
+    </div>
+
+    <div class="notes" style="margin-top:42px">
+      <p><strong>静态示意。</strong>组件按 1080 × 1920 的比例绘制，页面内等比缩放；实际动效、帧数与 Remotion 组件一致。</p>
+      <p>金色只承担标记：片头关键词、章节序号、字幕关键词、封面下划线。同一帧不要出现第二个金色元素组。</p>
+    </div>
+  </main>
+</body>
+</html>
