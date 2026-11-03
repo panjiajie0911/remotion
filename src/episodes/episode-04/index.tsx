@@ -9,6 +9,7 @@ import {S04Scene, S04_DURATION_IN_FRAMES} from "./scenes/S04Scene";
 import {S05Scene, S05_DURATION_IN_FRAMES} from "./scenes/S05Scene";
 import {S06Scene, S06_DURATION_IN_FRAMES} from "./scenes/S06Scene";
 import {S07Scene, S07_DURATION_IN_FRAMES} from "./scenes/S07Scene";
+import {S08Scene, S08_DURATION_IN_FRAMES} from "./scenes/S08Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -20,6 +21,7 @@ export const EPISODE04_S04_DURATION = S04_DURATION_IN_FRAMES;
 export const EPISODE04_S05_DURATION = S05_DURATION_IN_FRAMES;
 export const EPISODE04_S06_DURATION = S06_DURATION_IN_FRAMES;
 export const EPISODE04_S07_DURATION = S07_DURATION_IN_FRAMES;
+export const EPISODE04_S08_DURATION = S08_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -28,7 +30,8 @@ export const EPISODE04_DURATION =
   EPISODE04_S04_DURATION +
   EPISODE04_S05_DURATION +
   EPISODE04_S06_DURATION +
-  EPISODE04_S07_DURATION;
+  EPISODE04_S07_DURATION +
+  EPISODE04_S08_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -86,6 +89,12 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S07_DURATION,
         premountFor: 60,
         node: <S07Scene />,
+      },
+      {
+        name: "S08 字卡 · 第一章 在恐吓中长大",
+        durationInFrames: EPISODE04_S08_DURATION,
+        premountFor: 24,
+        node: <S08Scene />,
       },
     ]}
   />
