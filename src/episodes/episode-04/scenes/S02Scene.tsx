@@ -1,6 +1,7 @@
 import {AbsoluteFill, Easing, Img, interpolate, useCurrentFrame} from "remotion";
-import {CaptionScrim, VideoCaption} from "../../../design-system";
+import {CaptionScrim} from "../../../design-system";
 import panPlate from "../assets/img/s02-pan.jpg";
+import {SubtitleTrack} from "./SubtitleTrack";
 
 export const S02_DURATION_IN_FRAMES = 135;
 
@@ -30,10 +31,10 @@ export const S02Scene = () => {
         }}
       />
       <CaptionScrim />
-      <VideoCaption
+      <SubtitleTrack
         from={8}
         until={128}
-        text={"小学的时候，学校要求学生要佩戴红领巾。"}
+        lines={["小学的时候，", "学校要求学生要佩戴红领巾。"]}
         emphasisWords={["红领巾"]}
       />
     </AbsoluteFill>

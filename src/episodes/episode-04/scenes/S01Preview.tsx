@@ -1,6 +1,7 @@
 import {AbsoluteFill, Easing, Img, interpolate, useCurrentFrame} from "remotion";
-import {CaptionScrim, VideoCaption} from "../../../design-system";
+import {CaptionScrim} from "../../../design-system";
 import keyframe from "../assets/img/s01-keyframe.png";
+import {SubtitleTrack} from "./SubtitleTrack";
 
 export const S01_DURATION_IN_FRAMES = 180;
 
@@ -32,10 +33,10 @@ export const S01Preview = () => {
         }}
       />
       <CaptionScrim />
-      <VideoCaption
+      <SubtitleTrack
         from={12}
         until={172}
-        text={"今天让你焦虑的事，\n不过是小学3年级时忘戴的红领巾"}
+        lines={["今天让你焦虑的事情，", "不过是小学3年级时候，", "忘戴的红领巾。"]}
         emphasisWords={["红领巾"]}
       />
       <AbsoluteFill
