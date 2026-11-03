@@ -4,14 +4,19 @@ import {theme} from "../../lib/theme";
 import {EPISODE04_META} from "./meta";
 import {S01Preview, S01_DURATION_IN_FRAMES} from "./scenes/S01Preview";
 import {S02Scene, S02_DURATION_IN_FRAMES} from "./scenes/S02Scene";
+import {S03Scene, S03_DURATION_IN_FRAMES} from "./scenes/S03Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
 export const EPISODE04_INTRO_DURATION = SERIES_INTRO_DURATION;
 export const EPISODE04_S01_DURATION = S01_DURATION_IN_FRAMES;
 export const EPISODE04_S02_DURATION = S02_DURATION_IN_FRAMES;
+export const EPISODE04_S03_DURATION = S03_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
-  EPISODE04_INTRO_DURATION + EPISODE04_S01_DURATION + EPISODE04_S02_DURATION;
+  EPISODE04_INTRO_DURATION +
+  EPISODE04_S01_DURATION +
+  EPISODE04_S02_DURATION +
+  EPISODE04_S03_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -39,6 +44,12 @@ export const Episode04 = () => (
         name: "S02 校门口 · 红领巾",
         durationInFrames: EPISODE04_S02_DURATION,
         node: <S02Scene />,
+      },
+      {
+        name: "S03 教室 · 当众批评",
+        durationInFrames: EPISODE04_S03_DURATION,
+        premountFor: 60,
+        node: <S03Scene />,
       },
     ]}
   />
