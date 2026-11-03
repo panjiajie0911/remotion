@@ -7,6 +7,7 @@ import {S02Scene, S02_DURATION_IN_FRAMES} from "./scenes/S02Scene";
 import {S03Scene, S03_DURATION_IN_FRAMES} from "./scenes/S03Scene";
 import {S04Scene, S04_DURATION_IN_FRAMES} from "./scenes/S04Scene";
 import {S05Scene, S05_DURATION_IN_FRAMES} from "./scenes/S05Scene";
+import {S06Scene, S06_DURATION_IN_FRAMES} from "./scenes/S06Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -16,13 +17,15 @@ export const EPISODE04_S02_DURATION = S02_DURATION_IN_FRAMES;
 export const EPISODE04_S03_DURATION = S03_DURATION_IN_FRAMES;
 export const EPISODE04_S04_DURATION = S04_DURATION_IN_FRAMES;
 export const EPISODE04_S05_DURATION = S05_DURATION_IN_FRAMES;
+export const EPISODE04_S06_DURATION = S06_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
   EPISODE04_S02_DURATION +
   EPISODE04_S03_DURATION +
   EPISODE04_S04_DURATION +
-  EPISODE04_S05_DURATION;
+  EPISODE04_S05_DURATION +
+  EPISODE04_S06_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -68,6 +71,12 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S05_DURATION,
         premountFor: 60,
         node: <S05Scene />,
+      },
+      {
+        name: "S06 三连蒙太奇 · 多年之后",
+        durationInFrames: EPISODE04_S06_DURATION,
+        premountFor: 60,
+        node: <S06Scene />,
       },
     ]}
   />
