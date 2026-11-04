@@ -10,6 +10,14 @@ import {S05Scene, S05_DURATION_IN_FRAMES} from "./scenes/S05Scene";
 import {S06Scene, S06_DURATION_IN_FRAMES} from "./scenes/S06Scene";
 import {S07Scene, S07_DURATION_IN_FRAMES} from "./scenes/S07Scene";
 import {S08Scene, S08_DURATION_IN_FRAMES} from "./scenes/S08Scene";
+import {S09Scene, S09_DURATION_IN_FRAMES} from "./scenes/S09Scene";
+import {S10Scene, S10_DURATION_IN_FRAMES} from "./scenes/S10Scene";
+import {S11Scene, S11_DURATION_IN_FRAMES} from "./scenes/S11Scene";
+import {S12Scene, S12_DURATION_IN_FRAMES} from "./scenes/S12Scene";
+import {S13Scene, S13_DURATION_IN_FRAMES} from "./scenes/S13Scene";
+import {S14Scene, S14_DURATION_IN_FRAMES} from "./scenes/S14Scene";
+import {S15Scene, S15_DURATION_IN_FRAMES} from "./scenes/S15Scene";
+import {S16Scene, S16_DURATION_IN_FRAMES} from "./scenes/S16Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -22,6 +30,14 @@ export const EPISODE04_S05_DURATION = S05_DURATION_IN_FRAMES;
 export const EPISODE04_S06_DURATION = S06_DURATION_IN_FRAMES;
 export const EPISODE04_S07_DURATION = S07_DURATION_IN_FRAMES;
 export const EPISODE04_S08_DURATION = S08_DURATION_IN_FRAMES;
+export const EPISODE04_S09_DURATION = S09_DURATION_IN_FRAMES;
+export const EPISODE04_S10_DURATION = S10_DURATION_IN_FRAMES;
+export const EPISODE04_S11_DURATION = S11_DURATION_IN_FRAMES;
+export const EPISODE04_S12_DURATION = S12_DURATION_IN_FRAMES;
+export const EPISODE04_S13_DURATION = S13_DURATION_IN_FRAMES;
+export const EPISODE04_S14_DURATION = S14_DURATION_IN_FRAMES;
+export const EPISODE04_S15_DURATION = S15_DURATION_IN_FRAMES;
+export const EPISODE04_S16_DURATION = S16_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -31,7 +47,15 @@ export const EPISODE04_DURATION =
   EPISODE04_S05_DURATION +
   EPISODE04_S06_DURATION +
   EPISODE04_S07_DURATION +
-  EPISODE04_S08_DURATION;
+  EPISODE04_S08_DURATION +
+  EPISODE04_S09_DURATION +
+  EPISODE04_S10_DURATION +
+  EPISODE04_S11_DURATION +
+  EPISODE04_S12_DURATION +
+  EPISODE04_S13_DURATION +
+  EPISODE04_S14_DURATION +
+  EPISODE04_S15_DURATION +
+  EPISODE04_S16_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -95,6 +119,54 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S08_DURATION,
         premountFor: 24,
         node: <S08Scene />,
+      },
+      {
+        name: "S09 分屏 · 家长与老师",
+        durationInFrames: EPISODE04_S09_DURATION,
+        premountFor: 60,
+        node: <S09Scene />,
+      },
+      {
+        name: "S10 黑板 · 红章压下后果",
+        durationInFrames: EPISODE04_S10_DURATION,
+        premountFor: 30,
+        node: <S10Scene />,
+      },
+      {
+        name: "S11 天平 · 人格问题",
+        durationInFrames: EPISODE04_S11_DURATION,
+        premountFor: 30,
+        node: <S11Scene />,
+      },
+      {
+        name: "S12 聚光灯 · 公开示众",
+        durationInFrames: EPISODE04_S12_DURATION,
+        premountFor: 30,
+        node: <S12Scene />,
+      },
+      {
+        name: "S13 试卷叠校门 · 没出息",
+        durationInFrames: EPISODE04_S13_DURATION,
+        premountFor: 30,
+        node: <S13Scene />,
+      },
+      {
+        name: "S14 请柬与餐桌 · 横移",
+        durationInFrames: EPISODE04_S14_DURATION,
+        premountFor: 30,
+        node: <S14Scene />,
+      },
+      {
+        name: "S15 路中央 · 三块标签",
+        durationInFrames: EPISODE04_S15_DURATION,
+        premountFor: 30,
+        node: <S15Scene />,
+      },
+      {
+        name: "S16 走廊 · 长大",
+        durationInFrames: EPISODE04_S16_DURATION,
+        premountFor: 30,
+        node: <S16Scene />,
       },
     ]}
   />

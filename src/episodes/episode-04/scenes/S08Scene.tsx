@@ -17,8 +17,6 @@ export const S08Scene = () => {
 
   return (
     <AbsoluteFill style={{backgroundColor: "#0D0A09", overflow: "hidden"}}>
-      <AbsoluteFill style={{opacity: enter, backgroundColor: "#FFF6E8"}} />
-
       <AbsoluteFill
         style={{
           opacity: card,
@@ -43,8 +41,9 @@ export const S08Scene = () => {
               </filter>
               <linearGradient id="s08-body" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="0%" stopColor="#080604" stopOpacity="0.96" />
-                <stop offset="58%" stopColor="#080604" stopOpacity="0.82" />
-                <stop offset="100%" stopColor="#080604" stopOpacity="0" />
+                <stop offset="34%" stopColor="#080604" stopOpacity="0.7" />
+                <stop offset="62%" stopColor="#080604" stopOpacity="0.2" />
+                <stop offset="82%" stopColor="#080604" stopOpacity="0" />
               </linearGradient>
             </defs>
 
@@ -64,10 +63,7 @@ export const S08Scene = () => {
               transform={`translate(556 300) scale(${loomScale}) translate(-556 -300)`}
             >
               <circle cx="620" cy="196" fill="#080604" r="106" />
-              <path
-                d="M186 700 C206 500 330 356 620 356 C910 356 1034 500 1054 700 L1054 760 L186 760 Z"
-                fill="url(#s08-body)"
-              />
+              <ellipse cx="620" cy="690" fill="url(#s08-body)" rx="468" ry="322" />
             </g>
 
             <g opacity={childIn} transform="translate(556 1520) scale(1.14) translate(-612 -1520)">
@@ -83,6 +79,8 @@ export const S08Scene = () => {
           </svg>
         </AbsoluteFill>
       </AbsoluteFill>
+
+      <AbsoluteFill style={{backgroundColor: "#FFF6E8", opacity: enter}} />
     </AbsoluteFill>
   );
 };
