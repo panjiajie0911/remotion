@@ -15,6 +15,8 @@ import {S10Scene, S10_DURATION_IN_FRAMES} from "./scenes/S10Scene";
 import {S11Scene, S11_DURATION_IN_FRAMES} from "./scenes/S11Scene";
 import {S12Scene, S12_DURATION_IN_FRAMES} from "./scenes/S12Scene";
 import {S13Scene, S13_DURATION_IN_FRAMES} from "./scenes/S13Scene";
+import {S14Scene, S14_DURATION_IN_FRAMES} from "./scenes/S14Scene";
+import {S15Scene, S15_DURATION_IN_FRAMES} from "./scenes/S15Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -32,6 +34,8 @@ export const EPISODE04_S10_DURATION = S10_DURATION_IN_FRAMES;
 export const EPISODE04_S11_DURATION = S11_DURATION_IN_FRAMES;
 export const EPISODE04_S12_DURATION = S12_DURATION_IN_FRAMES;
 export const EPISODE04_S13_DURATION = S13_DURATION_IN_FRAMES;
+export const EPISODE04_S14_DURATION = S14_DURATION_IN_FRAMES;
+export const EPISODE04_S15_DURATION = S15_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -46,7 +50,9 @@ export const EPISODE04_DURATION =
   EPISODE04_S10_DURATION +
   EPISODE04_S11_DURATION +
   EPISODE04_S12_DURATION +
-  EPISODE04_S13_DURATION;
+  EPISODE04_S13_DURATION +
+  EPISODE04_S14_DURATION +
+  EPISODE04_S15_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -140,6 +146,18 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S13_DURATION,
         premountFor: 30,
         node: <S13Scene />,
+      },
+      {
+        name: "S14 请柬与餐桌 · 横移",
+        durationInFrames: EPISODE04_S14_DURATION,
+        premountFor: 30,
+        node: <S14Scene />,
+      },
+      {
+        name: "S15 路中央 · 三块标签",
+        durationInFrames: EPISODE04_S15_DURATION,
+        premountFor: 30,
+        node: <S15Scene />,
       },
     ]}
   />
