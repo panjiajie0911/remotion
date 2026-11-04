@@ -11,6 +11,7 @@ import {S06Scene, S06_DURATION_IN_FRAMES} from "./scenes/S06Scene";
 import {S07Scene, S07_DURATION_IN_FRAMES} from "./scenes/S07Scene";
 import {S08Scene, S08_DURATION_IN_FRAMES} from "./scenes/S08Scene";
 import {S09Scene, S09_DURATION_IN_FRAMES} from "./scenes/S09Scene";
+import {S10Scene, S10_DURATION_IN_FRAMES} from "./scenes/S10Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -24,6 +25,7 @@ export const EPISODE04_S06_DURATION = S06_DURATION_IN_FRAMES;
 export const EPISODE04_S07_DURATION = S07_DURATION_IN_FRAMES;
 export const EPISODE04_S08_DURATION = S08_DURATION_IN_FRAMES;
 export const EPISODE04_S09_DURATION = S09_DURATION_IN_FRAMES;
+export const EPISODE04_S10_DURATION = S10_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -34,7 +36,8 @@ export const EPISODE04_DURATION =
   EPISODE04_S06_DURATION +
   EPISODE04_S07_DURATION +
   EPISODE04_S08_DURATION +
-  EPISODE04_S09_DURATION;
+  EPISODE04_S09_DURATION +
+  EPISODE04_S10_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -104,6 +107,12 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S09_DURATION,
         premountFor: 60,
         node: <S09Scene />,
+      },
+      {
+        name: "S10 黑板 · 红章压下后果",
+        durationInFrames: EPISODE04_S10_DURATION,
+        premountFor: 30,
+        node: <S10Scene />,
       },
     ]}
   />
