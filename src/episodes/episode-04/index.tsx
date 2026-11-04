@@ -14,6 +14,7 @@ import {S09Scene, S09_DURATION_IN_FRAMES} from "./scenes/S09Scene";
 import {S10Scene, S10_DURATION_IN_FRAMES} from "./scenes/S10Scene";
 import {S11Scene, S11_DURATION_IN_FRAMES} from "./scenes/S11Scene";
 import {S12Scene, S12_DURATION_IN_FRAMES} from "./scenes/S12Scene";
+import {S13Scene, S13_DURATION_IN_FRAMES} from "./scenes/S13Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -30,6 +31,7 @@ export const EPISODE04_S09_DURATION = S09_DURATION_IN_FRAMES;
 export const EPISODE04_S10_DURATION = S10_DURATION_IN_FRAMES;
 export const EPISODE04_S11_DURATION = S11_DURATION_IN_FRAMES;
 export const EPISODE04_S12_DURATION = S12_DURATION_IN_FRAMES;
+export const EPISODE04_S13_DURATION = S13_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -43,7 +45,8 @@ export const EPISODE04_DURATION =
   EPISODE04_S09_DURATION +
   EPISODE04_S10_DURATION +
   EPISODE04_S11_DURATION +
-  EPISODE04_S12_DURATION;
+  EPISODE04_S12_DURATION +
+  EPISODE04_S13_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -131,6 +134,12 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S12_DURATION,
         premountFor: 30,
         node: <S12Scene />,
+      },
+      {
+        name: "S13 试卷叠校门 · 没出息",
+        durationInFrames: EPISODE04_S13_DURATION,
+        premountFor: 30,
+        node: <S13Scene />,
       },
     ]}
   />
