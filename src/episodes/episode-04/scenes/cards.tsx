@@ -425,39 +425,63 @@ export const Closing05 = ({durationInFrames}: {durationInFrames: number}) => {
             textAlign: "center",
           }}
         >
-          <svg height={120} style={{marginBottom: 56}} viewBox="0 0 140 110" width={152}>
+          <svg height={176} style={{marginBottom: 44}} viewBox="0 0 200 176" width={200}>
+            <ellipse cx={100} cy={158} fill="rgba(140,104,58,0.16)" rx={78} ry={13} />
+            <ellipse cx={100} cy={154} fill="rgba(255,247,232,0.9)" rx={62} ry={9} />
+
             <path
-              d="M26 54 Q28 96 70 96 Q112 96 114 54"
-              fill="none"
-              opacity={0.85}
+              d="M40 96 Q62 66 100 64 Q138 66 160 96 Z"
+              fill="#FFFCF4"
+              stroke="#D9C7A9"
+              strokeWidth={1.6}
+            />
+            {[62, 78, 94, 110, 126, 138].map((cx, index) => (
+              <path
+                key={cx}
+                d={`M${cx} ${82 + (index % 3) * 6} q5 -4 10 0`}
+                fill="none"
+                opacity={0.45}
+                stroke="#CBB089"
+                strokeLinecap="round"
+                strokeWidth={2}
+              />
+            ))}
+
+            <path
+              d="M34 96 Q38 146 100 148 Q162 146 166 96"
+              fill="#FFFDF8"
+              opacity={0.96}
               stroke={C.ink}
               strokeLinecap="round"
               strokeWidth={3.4}
+              strokeLinejoin="round"
             />
             <path
-              d="M20 54 Q70 42 120 54"
+              d="M26 96 Q100 78 174 96"
               fill="none"
-              opacity={0.55}
+              opacity={0.5}
               stroke={C.ink}
               strokeLinecap="round"
-              strokeWidth={2.6}
+              strokeWidth={2.4}
             />
-            <path
-              d="M56 34 Q50 24 56 14"
-              fill="none"
-              opacity={0.4 * bowl}
-              stroke={C.olive}
-              strokeLinecap="round"
-              strokeWidth={3}
-            />
-            <path
-              d="M74 30 Q68 18 75 6"
-              fill="none"
-              opacity={0.34 * bowl}
-              stroke={C.olive}
-              strokeLinecap="round"
-              strokeWidth={3}
-            />
+
+            <g opacity={bowl}>
+              {[0, 1, 2].map((index) => {
+                const phase = (frame * 0.9 + index * 22) % 66;
+                const steamOpacity = Math.max(0, 1 - phase / 66) * 0.45;
+                return (
+                  <path
+                    key={index}
+                    d={`M${84 + index * 16} ${62 - phase * 0.5} q-9 -12 0 -24 q9 -12 0 -24`}
+                    fill="none"
+                    opacity={steamOpacity}
+                    stroke={C.olive}
+                    strokeLinecap="round"
+                    strokeWidth={3}
+                  />
+                );
+              })}
+            </g>
           </svg>
           <div
             style={{

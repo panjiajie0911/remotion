@@ -120,7 +120,7 @@ export const S13Scene = () => {
       <SubtitleTrack
         from={6}
         until={100}
-        emphasisWords={["不会", "出息"]}
+        emphasisWords={["不会有出息"]}
         lines={["考不上大学，", "变成了“以后不会有出息”；"]}
       />
     </AbsoluteFill>
