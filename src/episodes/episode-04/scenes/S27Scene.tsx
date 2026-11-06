@@ -53,12 +53,12 @@ const HeavyTag = ({spec}: {spec: TagSpec}) => {
     <>
       <div
         style={{
-          background: "rgba(228,200,115,0.55)",
+          background: "rgba(228,200,115,0.7)",
           height: Math.max(0, threadBottom - threadTop),
-          left: x - 0.5,
+          left: x - 1,
           position: "absolute",
           top: threadTop,
-          width: 1.4,
+          width: 2,
         }}
       />
       <div
@@ -71,13 +71,13 @@ const HeavyTag = ({spec}: {spec: TagSpec}) => {
           color: "#E8CD92",
           display: "flex",
           fontFamily: theme.fonts.sans,
-          fontSize: 34,
+          fontSize: 36,
           fontWeight: 600,
           justifyContent: "center",
           left: x,
           letterSpacing: 7,
           opacity: p,
-          padding: "20px 26px 18px",
+          padding: "22px 30px 20px",
           position: "absolute",
           rotate: `${rot}deg`,
           top: y,
