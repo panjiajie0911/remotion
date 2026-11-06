@@ -20,6 +20,7 @@ import {S15Scene, S15_DURATION_IN_FRAMES} from "./scenes/S15Scene";
 import {S16Scene, S16_DURATION_IN_FRAMES} from "./scenes/S16Scene";
 import {S17Scene, S17_DURATION_IN_FRAMES} from "./scenes/S17Scene";
 import {S18Scene, S18_DURATION_IN_FRAMES} from "./scenes/S18Scene";
+import {S19Scene, S19_DURATION_IN_FRAMES} from "./scenes/S19Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -42,6 +43,7 @@ export const EPISODE04_S15_DURATION = S15_DURATION_IN_FRAMES;
 export const EPISODE04_S16_DURATION = S16_DURATION_IN_FRAMES;
 export const EPISODE04_S17_DURATION = S17_DURATION_IN_FRAMES;
 export const EPISODE04_S18_DURATION = S18_DURATION_IN_FRAMES;
+export const EPISODE04_S19_DURATION = S19_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -61,7 +63,8 @@ export const EPISODE04_DURATION =
   EPISODE04_S15_DURATION +
   EPISODE04_S16_DURATION +
   EPISODE04_S17_DURATION +
-  EPISODE04_S18_DURATION;
+  EPISODE04_S18_DURATION +
+  EPISODE04_S19_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -185,6 +188,12 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S18_DURATION,
         premountFor: 30,
         node: <S18Scene />,
+      },
+      {
+        name: "S19 办公室 · 一句批评",
+        durationInFrames: EPISODE04_S19_DURATION,
+        premountFor: 30,
+        node: <S19Scene />,
       },
     ]}
   />
