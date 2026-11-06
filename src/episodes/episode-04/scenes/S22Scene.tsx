@@ -100,7 +100,7 @@ export const S22Scene = () => {
         from={10}
         until={172}
         emphasisWords={["老师", "父母", "权威", "公众"]}
-        lines={["把过去对老师、父母的恐惧", "带入对权威或公众的评价中。"]}
+        lines={["把过去对老师、父母的恐惧", "带入对权威或公众的评价中"]}
       />
     </AbsoluteFill>
   );

@@ -217,7 +217,7 @@ export const S27Scene = () => {
         from={12}
         until={186}
         emphasisWords={["价值", "道德", "品德"]}
-        lines={["它和“价值”“道德”“品德”", "没有关系", "不参与价值判断。"]}
+        lines={["它和“价值”“道德”“品德”", "没有关系", "不参与价值判断"]}
       />
     </AbsoluteFill>
   );

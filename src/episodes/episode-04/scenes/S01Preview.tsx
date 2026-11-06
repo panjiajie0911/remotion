@@ -36,7 +36,7 @@ export const S01Preview = () => {
       <SubtitleTrack
         from={12}
         until={172}
-        lines={["今天让你焦虑的事情", "不过是小学3年级时候", "忘戴的红领巾。"]}
+        lines={["今天让你焦虑的事情", "不过是小学3年级时候", "忘戴的红领巾"]}
         emphasisWords={["红领巾"]}
       />
       <AbsoluteFill

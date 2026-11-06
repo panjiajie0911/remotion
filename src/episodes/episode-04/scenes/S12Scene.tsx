@@ -82,7 +82,7 @@ export const S12Scene = () => {
         from={14}
         until={170}
         emphasisWords={["羞耻"]}
-        lines={["并伴随着公开点名", "示众等羞耻教育。"]}
+        lines={["并伴随着公开点名", "示众等羞耻教育"]}
       />
     </AbsoluteFill>
   );

@@ -84,7 +84,7 @@ export const S06Scene = () => {
         from={12}
         until={146}
         emphasisWords={["大学", "工作"]}
-        lines={["多年之后我依然考上了大学", "依然找到了工作。"]}
+        lines={["多年之后我依然考上了大学", "依然找到了工作"]}
       />
     </AbsoluteFill>
   );
