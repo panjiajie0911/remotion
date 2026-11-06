@@ -24,6 +24,7 @@ import {S19Scene, S19_DURATION_IN_FRAMES} from "./scenes/S19Scene";
 import {S20Scene, S20_DURATION_IN_FRAMES} from "./scenes/S20Scene";
 import {S21Scene, S21_DURATION_IN_FRAMES} from "./scenes/S21Scene";
 import {S22Scene, S22_DURATION_IN_FRAMES} from "./scenes/S22Scene";
+import {S23Scene, S23_DURATION_IN_FRAMES} from "./scenes/S23Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -50,6 +51,7 @@ export const EPISODE04_S19_DURATION = S19_DURATION_IN_FRAMES;
 export const EPISODE04_S20_DURATION = S20_DURATION_IN_FRAMES;
 export const EPISODE04_S21_DURATION = S21_DURATION_IN_FRAMES;
 export const EPISODE04_S22_DURATION = S22_DURATION_IN_FRAMES;
+export const EPISODE04_S23_DURATION = S23_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -73,7 +75,8 @@ export const EPISODE04_DURATION =
   EPISODE04_S19_DURATION +
   EPISODE04_S20_DURATION +
   EPISODE04_S21_DURATION +
-  EPISODE04_S22_DURATION;
+  EPISODE04_S22_DURATION +
+  EPISODE04_S23_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -221,6 +224,12 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S22_DURATION,
         premountFor: 30,
         node: <S22Scene />,
+      },
+      {
+        name: "S23 字卡 · 第三章 事实和价值分开",
+        durationInFrames: EPISODE04_S23_DURATION,
+        premountFor: 24,
+        node: <S23Scene />,
       },
     ]}
   />
