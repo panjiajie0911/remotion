@@ -498,14 +498,14 @@ export const Closing05 = ({durationInFrames}: {durationInFrames: number}) => {
           <div
             style={{
               color: C.ink,
-              fontSize: 104,
+              fontSize: 96,
               fontWeight: 600,
               letterSpacing: -2,
               lineHeight: 1.28,
             }}
           >
             <div style={rise(frame, 18, 22, 28)}>
-              没什么大不了的。
+              没什么<span style={{color: C.gold}}>大不了</span>的。
             </div>
           </div>
         </div>
