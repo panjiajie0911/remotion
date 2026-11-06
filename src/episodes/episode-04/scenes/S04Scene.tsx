@@ -32,7 +32,7 @@ export const S04Scene = () => {
         }}
       />
       <CaptionScrim />
-      <SubtitleTrack from={10} until={86} lines={["又被要求在教室门外罚站。"]} />
+      <SubtitleTrack from={10} until={86} lines={["又被要求在教室门外罚站"]} />
     </AbsoluteFill>
   );
 };

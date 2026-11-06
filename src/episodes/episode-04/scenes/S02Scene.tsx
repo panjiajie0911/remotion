@@ -34,7 +34,7 @@ export const S02Scene = () => {
       <SubtitleTrack
         from={8}
         until={128}
-        lines={["小学的时候，", "学校要求学生要佩戴红领巾。"]}
+        lines={["小学的时候", "学校要求学生要佩戴红领巾"]}
         emphasisWords={["红领巾"]}
       />
     </AbsoluteFill>

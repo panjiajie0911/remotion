@@ -73,7 +73,7 @@ export const S07Scene = () => {
         from={8}
         until={184}
         emphasisWords={["微不足道", "没有丝毫影响"]}
-        lines={["我回想起来。", "发现那不过只是", "一个微不足道的错误，", "对人生没有丝毫影响。"]}
+        lines={["我回想起来", "发现那不过只是", "一个微不足道的错误", "对人生没有丝毫影响"]}
       />
 
       <AbsoluteFill style={{backgroundColor: "#FFF6E8", opacity: flash}} />

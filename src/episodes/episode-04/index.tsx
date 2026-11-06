@@ -28,6 +28,10 @@ import {S23Scene, S23_DURATION_IN_FRAMES} from "./scenes/S23Scene";
 import {S24Scene, S24_DURATION_IN_FRAMES} from "./scenes/S24Scene";
 import {S25Scene, S25_DURATION_IN_FRAMES} from "./scenes/S25Scene";
 import {S26Scene, S26_DURATION_IN_FRAMES} from "./scenes/S26Scene";
+import {S27Scene, S27_DURATION_IN_FRAMES} from "./scenes/S27Scene";
+import {S28Scene, S28_DURATION_IN_FRAMES} from "./scenes/S28Scene";
+import {S29Scene, S29_DURATION_IN_FRAMES} from "./scenes/S29Scene";
+import {S30Scene, S30_DURATION_IN_FRAMES} from "./scenes/S30Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -58,6 +62,10 @@ export const EPISODE04_S23_DURATION = S23_DURATION_IN_FRAMES;
 export const EPISODE04_S24_DURATION = S24_DURATION_IN_FRAMES;
 export const EPISODE04_S25_DURATION = S25_DURATION_IN_FRAMES;
 export const EPISODE04_S26_DURATION = S26_DURATION_IN_FRAMES;
+export const EPISODE04_S27_DURATION = S27_DURATION_IN_FRAMES;
+export const EPISODE04_S28_DURATION = S28_DURATION_IN_FRAMES;
+export const EPISODE04_S29_DURATION = S29_DURATION_IN_FRAMES;
+export const EPISODE04_S30_DURATION = S30_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -85,7 +93,11 @@ export const EPISODE04_DURATION =
   EPISODE04_S23_DURATION +
   EPISODE04_S24_DURATION +
   EPISODE04_S25_DURATION +
-  EPISODE04_S26_DURATION;
+  EPISODE04_S26_DURATION +
+  EPISODE04_S27_DURATION +
+  EPISODE04_S28_DURATION +
+  EPISODE04_S29_DURATION +
+  EPISODE04_S30_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -229,7 +241,7 @@ export const Episode04 = () => (
         node: <S21Scene />,
       },
       {
-        name: "S22 评审席 · 换脸",
+        name: "S22 评审席 · 权威目光",
         durationInFrames: EPISODE04_S22_DURATION,
         premountFor: 30,
         node: <S22Scene />,
@@ -257,6 +269,30 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S26_DURATION,
         premountFor: 30,
         node: <S26Scene />,
+      },
+      {
+        name: "S27 天平 · 标签分离",
+        durationInFrames: EPISODE04_S27_DURATION,
+        premountFor: 30,
+        node: <S27Scene />,
+      },
+      {
+        name: "S28 放回红领巾 · 标签溶解",
+        durationInFrames: EPISODE04_S28_DURATION,
+        premountFor: 30,
+        node: <S28Scene />,
+      },
+      {
+        name: "S29 并肩走出走廊",
+        durationInFrames: EPISODE04_S29_DURATION,
+        premountFor: 30,
+        node: <S29Scene />,
+      },
+      {
+        name: "S30 结尾 · 没什么大不了的",
+        durationInFrames: EPISODE04_S30_DURATION,
+        premountFor: 30,
+        node: <S30Scene />,
       },
     ]}
   />

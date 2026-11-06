@@ -180,7 +180,7 @@ export const S24Scene = () => {
         from={10}
         until={98}
         emphasisWords={["事实", "价值"]}
-        lines={["理解“事实是事实，", "价值是价值”"]}
+        lines={["理解“事实是事实", "价值是价值”"]}
       />
     </AbsoluteFill>
   );

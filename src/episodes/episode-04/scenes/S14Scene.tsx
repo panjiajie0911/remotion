@@ -86,7 +86,7 @@ export const S14Scene = () => {
         from={10}
         until={142}
         emphasisWords={["不结婚", "被人笑话", "不孝顺"]}
-        lines={["“不结婚”变成了", "“被人笑话”“不孝顺”。"]}
+        lines={["“不结婚”变成了", "“被人笑话”“不孝顺”"]}
       />
     </AbsoluteFill>
   );

@@ -218,7 +218,7 @@ export const S11Scene = () => {
         from={16}
         until={212}
         emphasisWords={["人格", "道德"]}
-        lines={["“不戴红领巾”被上升到", "人格或道德问题。"]}
+        lines={["“不戴红领巾”被上升到", "人格或道德问题"]}
       />
     </AbsoluteFill>
   );
