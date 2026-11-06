@@ -18,6 +18,16 @@ import {S13Scene, S13_DURATION_IN_FRAMES} from "./scenes/S13Scene";
 import {S14Scene, S14_DURATION_IN_FRAMES} from "./scenes/S14Scene";
 import {S15Scene, S15_DURATION_IN_FRAMES} from "./scenes/S15Scene";
 import {S16Scene, S16_DURATION_IN_FRAMES} from "./scenes/S16Scene";
+import {S17Scene, S17_DURATION_IN_FRAMES} from "./scenes/S17Scene";
+import {S18Scene, S18_DURATION_IN_FRAMES} from "./scenes/S18Scene";
+import {S19Scene, S19_DURATION_IN_FRAMES} from "./scenes/S19Scene";
+import {S20Scene, S20_DURATION_IN_FRAMES} from "./scenes/S20Scene";
+import {S21Scene, S21_DURATION_IN_FRAMES} from "./scenes/S21Scene";
+import {S22Scene, S22_DURATION_IN_FRAMES} from "./scenes/S22Scene";
+import {S23Scene, S23_DURATION_IN_FRAMES} from "./scenes/S23Scene";
+import {S24Scene, S24_DURATION_IN_FRAMES} from "./scenes/S24Scene";
+import {S25Scene, S25_DURATION_IN_FRAMES} from "./scenes/S25Scene";
+import {S26Scene, S26_DURATION_IN_FRAMES} from "./scenes/S26Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -38,6 +48,16 @@ export const EPISODE04_S13_DURATION = S13_DURATION_IN_FRAMES;
 export const EPISODE04_S14_DURATION = S14_DURATION_IN_FRAMES;
 export const EPISODE04_S15_DURATION = S15_DURATION_IN_FRAMES;
 export const EPISODE04_S16_DURATION = S16_DURATION_IN_FRAMES;
+export const EPISODE04_S17_DURATION = S17_DURATION_IN_FRAMES;
+export const EPISODE04_S18_DURATION = S18_DURATION_IN_FRAMES;
+export const EPISODE04_S19_DURATION = S19_DURATION_IN_FRAMES;
+export const EPISODE04_S20_DURATION = S20_DURATION_IN_FRAMES;
+export const EPISODE04_S21_DURATION = S21_DURATION_IN_FRAMES;
+export const EPISODE04_S22_DURATION = S22_DURATION_IN_FRAMES;
+export const EPISODE04_S23_DURATION = S23_DURATION_IN_FRAMES;
+export const EPISODE04_S24_DURATION = S24_DURATION_IN_FRAMES;
+export const EPISODE04_S25_DURATION = S25_DURATION_IN_FRAMES;
+export const EPISODE04_S26_DURATION = S26_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -55,7 +75,17 @@ export const EPISODE04_DURATION =
   EPISODE04_S13_DURATION +
   EPISODE04_S14_DURATION +
   EPISODE04_S15_DURATION +
-  EPISODE04_S16_DURATION;
+  EPISODE04_S16_DURATION +
+  EPISODE04_S17_DURATION +
+  EPISODE04_S18_DURATION +
+  EPISODE04_S19_DURATION +
+  EPISODE04_S20_DURATION +
+  EPISODE04_S21_DURATION +
+  EPISODE04_S22_DURATION +
+  EPISODE04_S23_DURATION +
+  EPISODE04_S24_DURATION +
+  EPISODE04_S25_DURATION +
+  EPISODE04_S26_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -167,6 +197,66 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S16_DURATION,
         premountFor: 30,
         node: <S16Scene />,
+      },
+      {
+        name: "S17 字卡 · 第二章 身体还记得害怕",
+        durationInFrames: EPISODE04_S17_DURATION,
+        premountFor: 24,
+        node: <S17Scene />,
+      },
+      {
+        name: "S18 提线木偶 · 潜意识",
+        durationInFrames: EPISODE04_S18_DURATION,
+        premountFor: 30,
+        node: <S18Scene />,
+      },
+      {
+        name: "S19 办公室 · 一句批评",
+        durationInFrames: EPISODE04_S19_DURATION,
+        premountFor: 30,
+        node: <S19Scene />,
+      },
+      {
+        name: "S20 办公室变形 · 老师影子",
+        durationInFrames: EPISODE04_S20_DURATION,
+        premountFor: 30,
+        node: <S20Scene />,
+      },
+      {
+        name: "S21 肩颈特写 · 条件化反应",
+        durationInFrames: EPISODE04_S21_DURATION,
+        premountFor: 30,
+        node: <S21Scene />,
+      },
+      {
+        name: "S22 评审席 · 换脸",
+        durationInFrames: EPISODE04_S22_DURATION,
+        premountFor: 30,
+        node: <S22Scene />,
+      },
+      {
+        name: "S23 字卡 · 第三章 事实和价值分开",
+        durationInFrames: EPISODE04_S23_DURATION,
+        premountFor: 24,
+        node: <S23Scene />,
+      },
+      {
+        name: "S24 图解 · 事实 / 价值",
+        durationInFrames: EPISODE04_S24_DURATION,
+        premountFor: 24,
+        node: <S24Scene />,
+      },
+      {
+        name: "S25 桌面红领巾 · 标签飘走",
+        durationInFrames: EPISODE04_S25_DURATION,
+        premountFor: 30,
+        node: <S25Scene />,
+      },
+      {
+        name: "S26 四张卡片 · 都是事实",
+        durationInFrames: EPISODE04_S26_DURATION,
+        premountFor: 30,
+        node: <S26Scene />,
       },
     ]}
   />
