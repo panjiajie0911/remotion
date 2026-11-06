@@ -289,7 +289,7 @@ export const Episode04 = () => (
         node: <S29Scene />,
       },
       {
-        name: "S30 结尾 · 先吃饭吧",
+        name: "S30 结尾 · 没什么大不了的",
         durationInFrames: EPISODE04_S30_DURATION,
         premountFor: 30,
         node: <S30Scene />,

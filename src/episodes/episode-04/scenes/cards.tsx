@@ -504,9 +504,8 @@ export const Closing05 = ({durationInFrames}: {durationInFrames: number}) => {
               lineHeight: 1.28,
             }}
           >
-            <div style={rise(frame, 18, 20, 28)}>事已至此，</div>
-            <div style={rise(frame, 30, 20, 28)}>
-              先吃饭<span style={{color: C.gold}}>吧。</span>
+            <div style={rise(frame, 18, 22, 28)}>
+              没什么大不了的。
             </div>
           </div>
         </div>
