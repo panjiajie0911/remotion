@@ -30,6 +30,7 @@ import {S25Scene, S25_DURATION_IN_FRAMES} from "./scenes/S25Scene";
 import {S26Scene, S26_DURATION_IN_FRAMES} from "./scenes/S26Scene";
 import {S27Scene, S27_DURATION_IN_FRAMES} from "./scenes/S27Scene";
 import {S28Scene, S28_DURATION_IN_FRAMES} from "./scenes/S28Scene";
+import {S29Scene, S29_DURATION_IN_FRAMES} from "./scenes/S29Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -62,6 +63,7 @@ export const EPISODE04_S25_DURATION = S25_DURATION_IN_FRAMES;
 export const EPISODE04_S26_DURATION = S26_DURATION_IN_FRAMES;
 export const EPISODE04_S27_DURATION = S27_DURATION_IN_FRAMES;
 export const EPISODE04_S28_DURATION = S28_DURATION_IN_FRAMES;
+export const EPISODE04_S29_DURATION = S29_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -91,7 +93,8 @@ export const EPISODE04_DURATION =
   EPISODE04_S25_DURATION +
   EPISODE04_S26_DURATION +
   EPISODE04_S27_DURATION +
-  EPISODE04_S28_DURATION;
+  EPISODE04_S28_DURATION +
+  EPISODE04_S29_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -275,6 +278,12 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S28_DURATION,
         premountFor: 30,
         node: <S28Scene />,
+      },
+      {
+        name: "S29 并肩走出走廊",
+        durationInFrames: EPISODE04_S29_DURATION,
+        premountFor: 30,
+        node: <S29Scene />,
       },
     ]}
   />
