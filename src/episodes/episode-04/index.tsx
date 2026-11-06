@@ -28,6 +28,7 @@ import {S23Scene, S23_DURATION_IN_FRAMES} from "./scenes/S23Scene";
 import {S24Scene, S24_DURATION_IN_FRAMES} from "./scenes/S24Scene";
 import {S25Scene, S25_DURATION_IN_FRAMES} from "./scenes/S25Scene";
 import {S26Scene, S26_DURATION_IN_FRAMES} from "./scenes/S26Scene";
+import {S27Scene, S27_DURATION_IN_FRAMES} from "./scenes/S27Scene";
 
 export const EPISODE04_ID = EPISODE04_META.id;
 export const EPISODE04_FPS = 30;
@@ -58,6 +59,7 @@ export const EPISODE04_S23_DURATION = S23_DURATION_IN_FRAMES;
 export const EPISODE04_S24_DURATION = S24_DURATION_IN_FRAMES;
 export const EPISODE04_S25_DURATION = S25_DURATION_IN_FRAMES;
 export const EPISODE04_S26_DURATION = S26_DURATION_IN_FRAMES;
+export const EPISODE04_S27_DURATION = S27_DURATION_IN_FRAMES;
 export const EPISODE04_DURATION =
   EPISODE04_INTRO_DURATION +
   EPISODE04_S01_DURATION +
@@ -85,7 +87,8 @@ export const EPISODE04_DURATION =
   EPISODE04_S23_DURATION +
   EPISODE04_S24_DURATION +
   EPISODE04_S25_DURATION +
-  EPISODE04_S26_DURATION;
+  EPISODE04_S26_DURATION +
+  EPISODE04_S27_DURATION;
 export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 
 export const Episode04 = () => (
@@ -257,6 +260,12 @@ export const Episode04 = () => (
         durationInFrames: EPISODE04_S26_DURATION,
         premountFor: 30,
         node: <S26Scene />,
+      },
+      {
+        name: "S27 天平 · 标签分离",
+        durationInFrames: EPISODE04_S27_DURATION,
+        premountFor: 30,
+        node: <S27Scene />,
       },
     ]}
   />
