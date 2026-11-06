@@ -19,10 +19,10 @@ type LabelSpec = {
 };
 
 const LABELS: LabelSpec[] = [
-  {text: "考不上", x: 152, y: 452, rot: -13, at: 54},
-  {text: "不会做", x: 342, y: 388, rot: -4, at: 74},
-  {text: "没对象", x: 496, y: 260, rot: 4, at: 94},
-  {text: "没工作", x: 602, y: 424, rot: 8, at: 114},
+  {text: "考不上", x: 236, y: 748, rot: -17, at: 54},
+  {text: "不会做", x: 305, y: 482, rot: -6, at: 74},
+  {text: "没对象", x: 600, y: 278, rot: 2, at: 94},
+  {text: "没工作", x: 786, y: 588, rot: 4, at: 114},
 ];
 
 const Label = ({spec}: {spec: LabelSpec}) => {
@@ -36,7 +36,7 @@ const Label = ({spec}: {spec: LabelSpec}) => {
       style={{
         color: "#3B2A1D",
         fontFamily: theme.fonts.sans,
-        fontSize: 44,
+        fontSize: 38,
         fontWeight: 600,
         left: spec.x,
         letterSpacing: 4,
