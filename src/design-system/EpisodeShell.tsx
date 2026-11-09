@@ -20,6 +20,8 @@ export type EpisodeShellProps = {
   scenes: EpisodeSceneSpec[];
   narration?: string;
   music?: string;
+  /** Linear level for the music bed, defaults to the shared theme value. */
+  musicVolume?: number;
   background?: string;
 };
 
@@ -29,6 +31,7 @@ export const EpisodeShell = ({
   scenes,
   narration,
   music,
+  musicVolume = theme.audio.volume.music,
   background = theme.palette.night,
 }: EpisodeShellProps) => {
   const {durationInFrames} = useVideoConfig();
@@ -64,7 +67,7 @@ export const EpisodeShell = ({
             interpolate(
               frame,
               [0, 24, durationInFrames - 45, durationInFrames],
-              [0, theme.audio.volume.music, theme.audio.volume.music, 0],
+              [0, musicVolume, musicVolume, 0],
               {extrapolateLeft: "clamp", extrapolateRight: "clamp"},
             )
           }

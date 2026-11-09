@@ -2,6 +2,7 @@ import {SeriesIntro, SERIES_INTRO_DURATION} from "../../components/intro/SeriesI
 import {createEpisodeCover, EpisodeShell} from "../../design-system";
 import {theme} from "../../lib/theme";
 import {EPISODE04_META} from "./meta";
+import bgm from "./assets/video/bgm-normalized.mp3";
 import {S01Preview, S01_DURATION_IN_FRAMES} from "./scenes/S01Preview";
 import {S02Scene, S02_DURATION_IN_FRAMES} from "./scenes/S02Scene";
 import {S03Scene, S03_DURATION_IN_FRAMES} from "./scenes/S03Scene";
@@ -103,6 +104,8 @@ export const Episode04Cover = createEpisodeCover(EPISODE04_META);
 export const Episode04 = () => (
   <EpisodeShell
     background={theme.palette.night}
+    music={bgm}
+    musicVolume={0.15}
     intro={{
       name: "统一片头",
       durationInFrames: EPISODE04_INTRO_DURATION,
