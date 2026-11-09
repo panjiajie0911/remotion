@@ -505,7 +505,7 @@ export const Closing05 = ({durationInFrames}: {durationInFrames: number}) => {
             }}
           >
             <div style={rise(frame, 18, 22, 28)}>
-              没什么<span style={{color: C.gold}}>大不了</span>的。
+              没什么<span style={{color: C.gold}}>大不了</span>的
             </div>
           </div>
         </div>

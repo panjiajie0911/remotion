@@ -165,7 +165,7 @@ export const S29Scene = () => {
       <SubtitleTrack
         from={8}
         until={188}
-        emphasisWords={["恐惧", "红领巾", "仅此而已"]}
+        emphasisWords={["恐惧"]}
         lines={["你今天恐惧的事情", "不过都只是3年级那次没戴的红领巾", "仅此而已"]}
       />
     </AbsoluteFill>

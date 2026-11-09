@@ -14,7 +14,6 @@ export const S03Scene = () => (
       from={6}
       until={128}
       lines={["有一次我忘记戴红领巾", "被老师当着全班的面批评"]}
-      emphasisWords={["红领巾"]}
     />
   </AbsoluteFill>
 );
