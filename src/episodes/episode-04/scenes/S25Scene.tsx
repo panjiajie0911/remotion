@@ -130,7 +130,6 @@ export const S25Scene = () => {
       <SubtitleTrack
         from={8}
         until={158}
-        emphasisWords={["事实", "集体荣誉", "责任感"]}
         lines={["“不戴红领巾”是事实", "它和“集体荣誉”", "“责任感”没有关系"]}
       />
     </AbsoluteFill>

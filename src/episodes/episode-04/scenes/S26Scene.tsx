@@ -112,7 +112,6 @@ export const S26Scene = () => {
       <SubtitleTrack
         from={10}
         until={232}
-        emphasisWords={["事实"]}
         lines={["“考不上”“不会做”", "“没对象”“没工作”", "是事实"]}
       />
     </AbsoluteFill>

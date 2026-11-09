@@ -89,7 +89,6 @@ export const S19Scene = () => {
       <SubtitleTrack
         from={8}
         until={144}
-        emphasisWords={["批评", "迟到"]}
         lines={["长大后领导的一句批评", "或者一次上班迟到"]}
       />
     </AbsoluteFill>

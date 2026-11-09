@@ -175,7 +175,7 @@ export const S21Scene = () => {
       <SubtitleTrack
         from={10}
         until={158}
-        emphasisWords={["惩罚经验", "条件化反应"]}
+        emphasisWords={["条件化反应"]}
         lines={["过去的惩罚经验", "让你的身体", "形成了条件化反应"]}
       />
     </AbsoluteFill>

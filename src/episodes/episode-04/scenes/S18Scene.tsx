@@ -156,7 +156,7 @@ export const S18Scene = () => {
       <SubtitleTrack
         from={16}
         until={246}
-        emphasisWords={["恐吓", "潜意识", "操纵"]}
+        emphasisWords={["恐吓式教育"]}
         lines={["尽管身体已经长大了", "但是这种“恐吓式教育”造成的", "情绪模式能在潜意识中操纵我们"]}
       />
     </AbsoluteFill>

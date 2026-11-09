@@ -166,7 +166,6 @@ export const S28Scene = () => {
       <SubtitleTrack
         from={10}
         until={172}
-        emphasisWords={["犯错", "后果", "道德"]}
         lines={["允许自己犯错", "并适度承担后果", "但不能上升至人格或道德层面"]}
       />
     </AbsoluteFill>

@@ -169,7 +169,7 @@ export const S10Scene = () => {
       <SubtitleTrack
         from={12}
         until={112}
-        emphasisWords={["道德化", "后果"]}
+        emphasisWords={["道德化", "夸大"]}
         lines={["习惯将日常规则道德化", "并夸大其后果"]}
       />
     </AbsoluteFill>
