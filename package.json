@@ -30,8 +30,8 @@
     "typescript": "5.9.3"
   },
   "scripts": {
-    "dev": "node scripts/episode.mjs preview episode-03",
-    "build": "node scripts/episode.mjs bundle episode-03",
+    "dev": "node scripts/episode.mjs preview episode-04",
+    "build": "node scripts/episode.mjs bundle episode-04",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
     "media": "node scripts/media.mjs",
